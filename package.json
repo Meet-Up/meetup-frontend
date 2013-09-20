@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Frontend web application for Meet-Up",
   "dependencies": {},
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/isaacs/npm.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/isaacs/npm.git"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

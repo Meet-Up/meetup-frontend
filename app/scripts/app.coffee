@@ -1,5 +1,5 @@
 
-angular.module('meetupFrontendApp', ['meetupFrontendApp.controllers'])
+angular.module('meetupFrontendApp', [])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',

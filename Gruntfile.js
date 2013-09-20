@@ -72,7 +72,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost'
+        hostname: '0.0.0.0'
       },
       livereload: {
         options: {
@@ -256,7 +256,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
-          src: ['*.html', 'views/*.html', 'partials/*.html'],
+          src: ['*.html', 'views/*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -296,6 +296,7 @@ module.exports = function (grunt) {
       server: [
         'coffee:dist',
         'compass:server',
+        'ngtemplates',
         'copy:styles'
       ],
       test: [
@@ -306,6 +307,7 @@ module.exports = function (grunt) {
       dist: [
         'coffee',
         'compass:dist',
+        'ngtemplates',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -343,6 +345,16 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/scripts/scripts.js'
           ]
         }
+      }
+    },
+    ngtemplates:  {
+      options: {
+        module: 'meetupFrontendApp',
+        cwd: '<%= yeoman.app %>'
+      },
+      app: {
+        src: '{,*/}*.html',
+        dest: '.tmp/scripts/templates.js'
       }
     }
   });
