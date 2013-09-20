@@ -1,4 +1,3 @@
-
 angular.module('meetupFrontendApp')
   .controller 'MainCtrl', ($scope) ->
     $scope.awesomeThings = [
