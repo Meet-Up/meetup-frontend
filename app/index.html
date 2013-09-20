@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Welcome to Meet-Up</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -49,6 +49,10 @@
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
+        <!-- build:js scripts/plugins.js -->
+        <script src="vendors/jQueryFastClick/jQuery.fastClick.js"></script>
+        <!-- endbuild -->
+
         <!-- build:js scripts/modules.js -->
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -59,8 +63,11 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/create_event.js"></script>
+        <script src="scripts/controllers/select_dates.js"></script>
         <script src="scripts/directives/main.js"></script>
         <script src="scripts/directives/back.js"></script>
+        <script src="scripts/directives/fast_click.js"></script>
+        <script src="scripts/directives/fast_link.js"></script>
         <!-- endbuild -->
 </body>
 </html>

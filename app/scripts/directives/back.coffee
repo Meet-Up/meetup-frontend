@@ -2,9 +2,9 @@ angular.module('meetupDirectives')
   .directive 'backButton', () ->
     restrict: 'A'
 
-    link: (scope, elem, attrs) ->
+    link: ($scope, $elem, $attrs) ->
       goBack = ->
         history.back()
-        scope.$apply()
-      elem.bind 'click', goBack
+        $scope.$apply()
+      $elem.fastClick goBack
 
