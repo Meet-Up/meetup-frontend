@@ -1,4 +1,4 @@
-angular.module('meetupFrontendApp')
+angular.module('meetupDirectives')
   .directive 'backButton', () ->
     restrict: 'A'
 

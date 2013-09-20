@@ -1,4 +1,4 @@
-angular.module('meetupFrontendApp')
+angular.module('meetupControllers', [])
   .controller 'MainCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'

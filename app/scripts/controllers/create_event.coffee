@@ -1,2 +1,2 @@
-angular.module('meetupFrontendApp')
+angular.module('meetupControllers')
   .controller 'CreateEventCtrl', ($scope) ->

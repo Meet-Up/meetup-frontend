@@ -1,5 +1,7 @@
-angular.module('meetupFrontendApp', [])
-  .config ($routeProvider) ->
+angular.module('meetupApp', [
+  'meetupControllers'
+  'meetupDirectives'
+]).config ($routeProvider) ->
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
