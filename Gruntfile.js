@@ -18,6 +18,7 @@ module.exports = function (grunt) {
 
   // configurable paths
   var yeomanConfig = {
+    name: require('./bower.json').name + 'App',
     app: 'app',
     dist: 'dist'
   };
@@ -44,6 +45,10 @@ module.exports = function (grunt) {
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
+      },
+      partials: {
+        files: ['<%= yeoman.app %>/{partials,views}/{,*/}*.html'],
+        tasks: ['ngtemplates:app']
       },
       livereload: {
         options: {
@@ -243,7 +248,7 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          /*removeCommentsFromCDATA: true,
+          removeCommentsFromCDATA: true,
           // https://github.com/yeoman/grunt-usemin/issues/44
           //collapseWhitespace: true,
           collapseBooleanAttributes: true,
@@ -251,12 +256,12 @@ module.exports = function (grunt) {
           removeRedundantAttributes: true,
           useShortDoctype: true,
           removeEmptyAttributes: true,
-          removeOptionalTags: true*/
+          removeOptionalTags: true
         },
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
-          src: ['*.html', 'views/*.html'],
+          src: ['*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -296,7 +301,6 @@ module.exports = function (grunt) {
       server: [
         'coffee:dist',
         'compass:server',
-        'ngtemplates',
         'copy:styles'
       ],
       test: [
@@ -307,7 +311,6 @@ module.exports = function (grunt) {
       dist: [
         'coffee',
         'compass:dist',
-        'ngtemplates',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -348,13 +351,18 @@ module.exports = function (grunt) {
       }
     },
     ngtemplates:  {
-      options: {
-        module: 'meetupFrontendApp',
-        cwd: '<%= yeoman.app %>'
-      },
-      app: {
-        src: '{,*/}*.html',
-        dest: '.tmp/scripts/templates.js'
+      dist: {
+        src: '{partials,views}/{,*/}*.html',
+        dest: '.tmp/scripts/templates.js',
+        cwd: '<%= yeoman.app %>',
+        options: {
+          module: '<%= yeoman.name %>',
+          htmlmin: {
+            collapseWhitespace: true,
+            collapseBooleanAttributes: true
+          },
+          concat: '<%= yeoman.dist %>/scripts/scripts.js'
+        }
       }
     }
   });
@@ -386,6 +394,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'useminPrepare',
     'concurrent:dist',
+    'ngtemplates:dist',
     'autoprefixer',
     'concat',
     'copy:dist',
