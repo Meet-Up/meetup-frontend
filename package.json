@@ -1,7 +1,12 @@
 {
   "name": "meetup-frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Frontend web application for Meet-Up",
   "dependencies": {},
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/isaacs/npm.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
@@ -38,7 +43,8 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "grunt-angular-templates": "~0.4.1"
   },
   "engines": {
     "node": ">=0.8.0"
