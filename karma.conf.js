@@ -13,9 +13,12 @@ module.exports = function(config) {
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angularjs-rails-resource/angularjs-rails-resource.js',
       'app/scripts/app.coffee',
-      'app/scripts/controllers/main.coffee',
+      'app/scripts/config.coffee',
+      'app/scripts/services/main.coffee',
       'app/scripts/directives/main.coffee',
+      'app/scripts/controllers/main.coffee',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'test/mock/**/*.coffee',
