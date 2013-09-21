@@ -1,8 +1,7 @@
 angular.module('meetupDirectives')
   .directive 'fastClick', ($parse) ->
-    restrict: 'A'
 
-    link: ($scope, $elem, $attr) ->
-      $elem.fastClick () =>
-        fn = $parse $attr['fastClick']
-        $scope.$apply () -> fn($scope, { $event: e })
+    ($scope, $elem, $attr) ->
+      fn = $parse $attr.fastClick
+      $elem.fastClick (event) ->
+        $scope.$apply () -> fn($scope, { $event: event })

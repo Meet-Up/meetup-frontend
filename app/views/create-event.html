@@ -1,3 +1,4 @@
+<div ng-controller="CreateEventCtrl">
 <h2>Create event {{event.name}}<a href="" back-button="">Back</a></h2>
 
 <div class="action">
@@ -11,3 +12,13 @@
 </div>
 
 <a href="#/create-event/select-dates" fast-link>Select dates</a>
+
+<div class="dates">
+  <span class="label">Dates</span>
+  <ul ng-repeat="date in event.dates">
+    <li>{{date.start | date:'yy/MM/dd'}}</li>
+  </ul>
+</div>
+
+<input type="submit" fast-click="saveEvent()">
+</div>

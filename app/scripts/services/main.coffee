@@ -1,2 +1,2 @@
-angular.module 'meetupServices', ['rails']
+angular.module 'meetupServices', ['rails', 'meetupConfig']
 
