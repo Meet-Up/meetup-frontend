@@ -17,7 +17,9 @@
   </thead>
   <tbody>
     <tr ng-repeat="week in calendar.weeks">
-      <td ng-repeat="day in week" class="day-cell" ng-class="{0: 'current', 1: 'future', '-1': 'past'}[day.getMonth() - calendar.date.getMonth()]">
+      <td ng-repeat="day in week"
+          class="day-cell"
+          date-status="[day,calendar.date]">
         {{day.getDate()}}
       </td>
     </tr>
