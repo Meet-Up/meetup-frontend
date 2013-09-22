@@ -6,9 +6,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="week in calendar.weeks">
-      <td ng-repeat="day in week"
-          class="day-cell"
-          date-status="[day,calendar.date]">
+      <td ng-repeat="day in week" calendar-cell="day" fast-click="toggleDate(day)">
         {{day.getDate()}}
       </td>
     </tr>

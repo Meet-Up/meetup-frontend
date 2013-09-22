@@ -46,18 +46,14 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
       },
-      partials: {
-        files: ['<%= yeoman.app %>/{partials,views}/{,*/}*.html'],
-        tasks: ['ngtemplates:app']
-      },
       livereload: {
         options: {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+          '<%= yeoman.app %>/**/*.html',
+          '.tmp/styles/**/*.css',
+          '{.tmp,<%= yeoman.app %>}/scripts/**/*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -352,7 +348,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    ngtemplates:  {
+    ngtemplates: {
       dist: {
         src: '{partials,views}/{,*/}*.html',
         dest: '.tmp/scripts/templates.js',

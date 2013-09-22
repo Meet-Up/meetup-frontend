@@ -25,3 +25,10 @@ angular.module('meetupControllers')
       newDate = $scope.calendar.date.next().month()
       setDate newDate
 
+    $scope.toggleDate = (date) ->
+      console.log $scope.event.dates
+      key = date.toString 'yyMMdd'
+      oldStatus = $scope.event.dates[key] ? false
+      $scope.event.dates[key] = not oldStatus
+
+
