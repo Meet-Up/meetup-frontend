@@ -31,7 +31,7 @@ module.exports = function (grunt) {
     yeoman: yeomanConfig,
     watch: {
       coffee: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
+        files: ['<%= yeoman.app %>/scripts/{,*/,*/*/}*.coffee'],
         tasks: ['coffee:dist']
       },
       coffeeTest: {
