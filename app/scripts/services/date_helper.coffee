@@ -1,12 +1,14 @@
 angular.module('meetupServices')
   .factory 'DateHelper', ->
     getDaysForMonth = (date) ->
-      start = date.clone().moveToFirstDayOfMonth().last().monday()
-      end = date.moveToLastDayOfMonth().next().sunday()
-      date = start
+      start = date.clone().moveToFirstDayOfMonth()
+      start = start.last().monday() unless start.is().monday()
+      end = date.moveToLastDayOfMonth()
+      end = end.next().sunday() unless end.is().sunday()
       days = []
-      while date < end
-        days.push date
-        date = date.next().day().clone()
+      while start <= end
+        days.push start
+        start = start.clone().next().day()
+      days
 
     getDaysForMonth: getDaysForMonth

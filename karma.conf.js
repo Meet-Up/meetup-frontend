@@ -14,6 +14,8 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angularjs-rails-resource/angularjs-rails-resource.js',
+      'app/bower_components/jquery/jquery.js',
+      'app/vendors/datejs/date.js',
       'app/scripts/app.coffee',
       'app/scripts/config.coffee',
       'app/scripts/services/main.coffee',
@@ -37,7 +39,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // Start these browsers, currently available:
