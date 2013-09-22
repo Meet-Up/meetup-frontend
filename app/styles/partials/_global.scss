@@ -10,20 +10,24 @@ header.global {
     margin: auto;
   }
 
-  #header-logo img {
-    width:120px;
+  #header-logo {
     float: left;
     margin-top:8px;
     margin-left:6px;
-    height: 100%;
+    img {
+      width:120px;
+      height: 100%;
+    }
   }
 
-  #header-icon img {
-    width:27px;
+  #header-icon {
     float: right;
     margin-top:8px;
     margin-right:10px;
-    height: 100%;
+    img {
+      width:27px;
+      height: 100%;
+    }
   }
 }
 

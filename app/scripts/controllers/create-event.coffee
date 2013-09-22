@@ -1,6 +1,10 @@
 angular.module('meetupControllers')
   .controller 'CreateEventCtrl', ($scope, Event, EventDate, DateHelper) ->
 
+    $scope.$emit 'titleBarUpdate', {
+      hasNext: true
+    }
+
     $scope.event = new Event({ dates: {} })
     $scope.daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 

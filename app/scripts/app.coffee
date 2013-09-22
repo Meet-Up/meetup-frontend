@@ -5,7 +5,7 @@ angular.module('meetupApp', [
     $routeProvider
       .when '/',
         templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
+        controller: 'HomeCtrl'
       .when '/create-event',
         templateUrl: 'views/create-event.html'
         controller: 'CreateEventCtrl'
