@@ -1,7 +1,3 @@
 angular.module('meetupControllers', ['meetupServices', 'meetupDirectives'])
   .controller 'MainCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+    $scope.device = if $(window).width() < 1000 then 'mobile' else 'desktop'

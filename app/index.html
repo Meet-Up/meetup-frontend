@@ -27,12 +27,12 @@
 
     <!-- Application content -->
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="MainCtrl" class="{{device}}">
       <header class="global" ng-include="" src="'partials/header.html'"></header>
 
-      <div class="container" ng-view=""></div>
+      <div class="container main-content" ng-view=""></div>
 
-      <footer class="global" ng-include="" src="'partials/footer.html'"></footer>
+      <footer class="global main-content" ng-include="" src="'partials/footer.html'"></footer>
     </div>
 
     <!-- Application content ends -->
@@ -78,14 +78,5 @@
         <script src="scripts/services/serializers/event-serializer.js"></script>
         <!-- endbuild -->
 
-        <script>
-        $(function() {
-          if($(window).width() < 1000) {
-            $('#wrapper').addClass('mobile');
-          } else {
-            $('#wrapper').addClass('desktop');
-          }
-        });
-        </script>
 </body>
 </html>
