@@ -3,10 +3,10 @@ angular.module('meetupControllers')
     eventDate = new EventDate()
     eventDate.start = new Date()
 
-    Event.query().then (results) ->
-      console.log results
-    , (error) ->
-      console.log error
+    # Event.query().then (results) ->
+    #   console.log results
+    # , (error) ->
+    #   console.log error
 
     $scope.event = new Event({
       name: 'foo'

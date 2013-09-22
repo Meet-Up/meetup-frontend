@@ -1,0 +1,16 @@
+.cell {
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.no-space [class*="span"] {
+  margin-left: 0;
+}
+
+.selected {
+  background-color: #339933
+}
+
+.unselected {
+  background-color: #DCDDDD;
+}

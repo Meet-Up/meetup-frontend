@@ -27,11 +27,13 @@
 
     <!-- Application content -->
 
-    <header ng-include="" src="'partials/header.html'"></header>
+    <div id="wrapper">
+      <header class="global" ng-include="" src="'partials/header.html'"></header>
 
-    <div class="container" ng-view=""></div>
+      <div class="container" ng-view=""></div>
 
-    <header ng-include="" src="'partials/footer.html'"></header>
+      <footer class="global" ng-include="" src="'partials/footer.html'"></footer>
+    </div>
 
     <!-- Application content ends -->
 
@@ -75,5 +77,15 @@
         <script src="scripts/services/event-date.js"></script>
         <script src="scripts/services/serializers/event-serializer.js"></script>
         <!-- endbuild -->
+
+        <script>
+        $(function() {
+          if($(window).width() < 1000) {
+            $('#wrapper').addClass('mobile');
+          } else {
+            $('#wrapper').addClass('desktop');
+          }
+        });
+        </script>
 </body>
 </html>

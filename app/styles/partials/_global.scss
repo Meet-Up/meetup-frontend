@@ -1,0 +1,32 @@
+header.global {
+  width: 100%;
+  height: $header-height;
+  background: image-url("header.png") repeat-x;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+
+  #title-bar {
+    margin: auto;
+  }
+
+  #header-logo img {
+    width:120px;
+    float: left;
+    margin-top:8px;
+    margin-left:6px;
+    height: 100%;
+  }
+
+  #header-icon img {
+    width:27px;
+    float: right;
+    margin-top:8px;
+    margin-right:10px;
+    height: 100%;
+  }
+}
+
+.container {
+  margin-top: $header-height;
+}
