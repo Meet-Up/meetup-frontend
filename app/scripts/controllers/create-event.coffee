@@ -1,20 +1,27 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, EventDate) ->
-    eventDate = new EventDate()
-    eventDate.start = new Date()
+  .controller 'CreateEventCtrl', ($scope, Event, EventDate, DateHelper) ->
 
-    # Event.query().then (results) ->
-    #   console.log results
-    # , (error) ->
-    #   console.log error
+    $scope.event = new Event()
+    $scope.daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 
-    $scope.event = new Event({
-      name: 'foo'
-      description: 'bar'
-      dates: []
-    })
+    setDate = (date) ->
+      $scope.calendar = {
+        date: date
+        weeks: DateHelper.getWeeksInMonth date
+      }
 
-    $scope.event.dates.push(eventDate)
+    $scope.dates = {}
+
+    setDate Date.today()
 
     $scope.saveEvent = ->
       $scope.event.save()
+
+    $scope.toLastMonth = ->
+      newDate = $scope.calendar.date.last().month()
+      setDate newDate
+
+    $scope.toNextMonth = ->
+      newDate = $scope.calendar.date.next().month()
+      setDate newDate
+

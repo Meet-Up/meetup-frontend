@@ -1,0 +1,25 @@
+<div class="calendar-tools">
+  <button class="previous" fast-click="toLastMonth()">
+    Previous
+  </button>
+  <span class="current-month">
+    {{ calendar.date | date: 'yyyy/MM'}}
+  </span>
+  <button class="next" fast-click="toNextMonth()">
+    Next
+  </button>
+</div>
+<table>
+  <thead>
+    <tr>
+      <td ng-repeat="day in daysOfWeek">{{day}}</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="week in calendar.weeks">
+      <td ng-repeat="day in week" class="day-cell" ng-class="{0: 'current', 1: 'future', '-1': 'past'}[day.getMonth() - calendar.date.getMonth()]">
+        {{day.getDate()}}
+      </td>
+    </tr>
+  </tbody>
+</table>
