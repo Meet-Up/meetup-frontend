@@ -9,7 +9,8 @@
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
     "jquery": "~2.0.3",
-    "angularjs-rails-resource": "~0.2.2"
+    "angularjs-rails-resource": "~0.2.2",
+    "compass-mixins": "~1.0.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
