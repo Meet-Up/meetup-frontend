@@ -67,15 +67,15 @@ describe 'Service: DateHelper', ->
 
 
     it 'should count cells correctly with when minutes is not set', ->
-      makeTest 14, 0, 18, 0, 4
+      makeTest 14, 0, 18, 0, 4      # 14:00~18:00 -> 4 hours
 
     it 'should count cells correctly when minutes are 0 or 30', ->
-      makeTest 14, 30, 18, 0, 3.5
-      makeTest 14, 0, 18, 30, 4.5
+      makeTest 14, 30, 18, 0, 3.5   # 14:30~18:00 -> 3.5 hours
+      makeTest 14, 0, 18, 30, 4.5   # 14:00~18:30 -> 4.5 hours
 
     it 'should take last cell for non integer cells number', ->
-      makeTest 14, 30, 18, 35, 4.5
+      makeTest 14, 30, 18, 35, 4.5  # 14:30~18:35 -> 4.5 hours
 
     it 'should support a full day', ->
-      makeTest 0, 0, 23, 59, 24
+      makeTest 0, 0, 23, 59, 24     # 00:00~23:59 -> 24 hours
 

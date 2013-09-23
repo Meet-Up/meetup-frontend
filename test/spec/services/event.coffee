@@ -38,8 +38,3 @@ describe 'Service: Event', ->
     maxTime = new Date(1970, 1, 1, 18, 0)
     expectedNumber = DateHelper.getCellsNumberInInterval(minTime, maxTime)
     expect(evt.neededRowsNumber()).toBe expectedNumber
-
-
-
-
-
