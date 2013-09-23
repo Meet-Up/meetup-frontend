@@ -321,11 +321,11 @@ module.exports = function (grunt) {
         browsers: ['Firefox']
       },
       unit: {
-        configFile: 'karma.conf.js',
+        configFile: 'config/karma.conf.js',
         singleRun: true
       },
       e2e: {
-        configFile: 'karma-e2e.conf.js',
+        configFile: 'config/karma-e2e.conf.js',
         singleRun: true
       }
     },
