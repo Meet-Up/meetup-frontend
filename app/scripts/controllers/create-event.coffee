@@ -1,5 +1,5 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, EventDate, DateHelper, $state) ->
+  .controller 'CreateEventCtrl', ($scope, Event, EventDate, DateHelper) ->
 
     $scope.event = new Event({ dates: {} })
     $scope.daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
@@ -28,8 +28,7 @@ angular.module('meetupControllers')
       if $scope.event.dates[key]
         delete $scope.event.dates[key]
       else
-        eventDate = new EventDate({
-          start: date.set { hours: 0, minute: 0 }
-          end: date.clone().last().minute()
-        })
+        eventDate = new EventDate()
+        eventDate.start = date.clone().set { hours: 0, minute: 0 }
+        eventDate.end = date.clone().set { hours: 23, minute: 59 }
         $scope.event.dates[key] = eventDate

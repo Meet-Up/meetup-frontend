@@ -1,6 +1,8 @@
 angular.module('meetupServices')
-  .factory 'DateHelper', ->
-    getDaysForMonth = (date) ->
+  .factory 'DateHelper', (CELLS_PER_DAY)->
+
+
+    getDaysForMonth: (date) ->
       start = date.clone().moveToFirstDayOfMonth()
       start = start.last().monday() unless start.is().monday()
       end = date.clone().moveToLastDayOfMonth()
@@ -11,10 +13,12 @@ angular.module('meetupServices')
         start = start.clone().next().day()
       days
 
-    getWeeksInMonth = (date) ->
-      days = getDaysForMonth(date)
+    getWeeksInMonth: (date) ->
+      days = @getDaysForMonth(date)
       (days[n..n+6] for n in [0..days.length-1] by 7)
 
 
-    getDaysForMonth: getDaysForMonth
-    getWeeksInMonth: getWeeksInMonth
+    getCellsNumberInDay: (start, end) ->
+      minutesDiff = (end - start) / 60000
+      minutesPerCell = 24 * 60 / CELLS_PER_DAY
+      Math.floor(minutesDiff / minutesPerCell)
