@@ -1,11 +1,11 @@
 <div id="title-bar" class="main-content">
   <div id="header-logo">
-    <a href="#/" fast-link>
+    <a ui-sref="home" fast-link>
       <img src="images/logo.png" alt="MeetUp">
     </a>
   </div>
   <div id="header-icon">
-    <a href="#/create-event" class="create-event" fast-link ng-show="hasCreate">
+    <a ui-sref="create-event" class="create-event" fast-link ng-show="hasCreate">
       <img src="images/icon-create.png" alt="MeetUp">
     </a>
     <a href="#/create-event/time" class="next" fast-link ng-show="hasNext">

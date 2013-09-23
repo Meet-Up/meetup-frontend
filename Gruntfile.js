@@ -58,6 +58,7 @@ module.exports = function (grunt) {
         ]
       }
     },
+
     autoprefixer: {
       options: ['last 1 version'],
       dist: {
@@ -69,6 +70,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     connect: {
       options: {
         port: 9000,
@@ -107,11 +109,13 @@ module.exports = function (grunt) {
         }
       }
     },
+
     open: {
       server: {
         url: 'http://localhost:<%= connect.options.port %>'
       }
     },
+
     clean: {
       dist: {
         files: [{
@@ -125,6 +129,7 @@ module.exports = function (grunt) {
       },
       server: '.tmp'
     },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -134,6 +139,7 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
+
     coffee: {
       options: {
         sourceMap: true,
@@ -158,6 +164,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -182,11 +189,13 @@ module.exports = function (grunt) {
         }
       }
     },
+
     // not used since Uglify task does concat,
     // but still available if needed
     /*concat: {
       dist: {}
     },*/
+
     rev: {
       dist: {
         files: {
@@ -198,12 +207,14 @@ module.exports = function (grunt) {
         }
       }
     },
+
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
     },
+
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -211,6 +222,7 @@ module.exports = function (grunt) {
         dirs: ['<%= yeoman.dist %>']
       }
     },
+
     imagemin: {
       dist: {
         files: [{
@@ -221,6 +233,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     svgmin: {
       dist: {
         files: [{
@@ -231,6 +244,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     cssmin: {
       // By default, your `index.html` <!-- Usemin Block --> will take care of
       // minification. This option is pre-configured if you do not wish to use
@@ -244,6 +258,7 @@ module.exports = function (grunt) {
       //   }
       // }
     },
+
     htmlmin: {
       dist: {
         options: {
@@ -265,6 +280,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     // Put files not handled in other tasks here
     copy: {
       dist: {
@@ -296,6 +312,7 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
+
     concurrent: {
       server: [
         'coffee:dist',
@@ -316,6 +333,7 @@ module.exports = function (grunt) {
         'htmlmin'
       ]
     },
+
     karma: {
       options: {
         browsers: ['Firefox']
@@ -329,11 +347,13 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
+
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
+
     ngmin: {
       dist: {
         files: [{
@@ -344,6 +364,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     uglify: {
       dist: {
         files: {
@@ -353,6 +374,7 @@ module.exports = function (grunt) {
         }
       }
     },
+
     ngtemplates: {
       dist: {
         src: '{partials,views}/{,*/}*.html',

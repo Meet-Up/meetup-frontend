@@ -6,7 +6,7 @@ describe 'meetupApp', ->
   logoSelector = 'a[href="#/"]'
 
   linkCases = [
-    path: '/'
+    path: '/#/'
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.create-event']
     hiddenLinks: generateTitleBarLinks ['a.next']
   ,
@@ -26,4 +26,3 @@ describe 'meetupApp', ->
       browser().navigateTo c.path
       for s in c.hiddenLinks
         expect(element("#{s}:visible").count()).toBe 0
-

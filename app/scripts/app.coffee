@@ -1,16 +1,18 @@
 angular.module('meetupApp', [
+  'ui.router'
   'meetupControllers'
   'meetupDirectives'
-]).config ($routeProvider) ->
-    $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'HomeCtrl'
-      .when '/create-event',
-        templateUrl: 'views/create-event.html'
-        controller: 'CreateEventCtrl'
-      .when '/create-event/select-dates',
-        templateUrl: 'views/select-dates.html'
-        controller: 'SelectDatesCtrl'
-      .otherwise
-        redirectTo: '/'
+]).config ($stateProvider, $urlRouterProvider) ->
+  $urlRouterProvider.otherwise '/'
+
+  $stateProvider
+    .state('home', {
+      url: '/'
+      templateUrl: 'views/main.html'
+      controller: 'HomeCtrl'
+    })
+    .state('create-event', {
+      url: '/create-event'
+      templateUrl: 'views/create-event.html'
+      controller: 'CreateEventCtrl'
+    })
