@@ -8,11 +8,15 @@ describe 'meetupApp', ->
   linkCases = [
     path: '/#/'
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.create-event']
-    hiddenLinks: generateTitleBarLinks ['a.next']
+    hiddenLinks: generateTitleBarLinks ['a.next', 'a.previous']
   ,
     path: '/#/create-event'
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.next']
-    hiddenLinks: generateTitleBarLinks ['a.create-event']
+    hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.previous']
+  ,
+    path: '/#/create-event/select-time'
+    visibleLinks: generateTitleBarLinks [logoSelector, 'a.previous']
+    hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.next']
   ]
 
   it 'should display visible links in titlebar', ->

@@ -3,8 +3,11 @@ angular.module('meetupDirectives')
     restrict: 'A'
     link: ($scope, $elem, $attr) ->
       $elem.fastClick (e) =>
-        if 'href' of $attr
+        e.preventDefault()
+        if 'uiSref' of $attr
+          $scope.$apply () -> $state.go $attr.uiSref
+        else if 'dsref' of $attr
+          $scope.$apply () -> $state.go $attr.dsref
+        else if 'href' of $attr
           href = $attr.href.replace '#', ''
           $scope.$apply () -> $location.path href
-        else if 'uiSref' of $attr
-          $scope.$apply () -> $state.go $attr.uiSref

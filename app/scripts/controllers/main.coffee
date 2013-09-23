@@ -1,6 +1,7 @@
-angular.module('meetupControllers', ['meetupServices', 'meetupDirectives'])
-  .controller 'MainCtrl', ($scope) ->
-    $scope.$on 'titleBarUpdate', (attrs, properties) ->
-      $scope.hasNext = properties.hasNext ? false
-      $scope.hasCreate = properties.hasCreate ? false
-      $scope.hasPrevious = properties.hasPrevious ? false
+angular.module('meetupControllers', ['ui.router', 'meetupServices', 'meetupDirectives'])
+  .controller 'MainCtrl', ($scope, $state) ->
+    $scope.$on '$stateChangeSuccess', ->
+      if $state.current.data?.titleBar?
+        $scope.titleBar = $state.current.data.titleBar
+      else
+        $scope.titleBar = {}

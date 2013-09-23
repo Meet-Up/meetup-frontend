@@ -10,6 +10,9 @@ angular.module('meetupApp', [
       url: '/'
       templateUrl: 'views/main.html'
       controller: 'HomeCtrl'
+      data:
+        titleBar:
+          hasCreate: true
     })
     .state('create-event', {
       url: '/create-event'
@@ -20,8 +23,16 @@ angular.module('meetupApp', [
     .state('create-event.index', {
       url: ''
       templateUrl: 'partials/create-event/general.html'
+      data:
+        titleBar:
+          hasNext: true
+          nextState: 'create-event.select-time'
     })
     .state('create-event.select-time', {
-      url: 'select-time'
+      url: '/select-time'
       templateUrl: 'partials/create-event/select-time.html'
+      data:
+        titleBar:
+          hasPrevious: true
+          previousState: 'create-event.index'
     })
