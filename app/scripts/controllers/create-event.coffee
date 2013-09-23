@@ -25,7 +25,11 @@ angular.module('meetupControllers')
 
     $scope.toggleDate = (date) ->
       key = date.toString 'yyMMdd'
-      oldStatus = $scope.event.dates[key] ? false
-      $scope.event.dates[key] = not oldStatus
-
-
+      if $scope.event.dates[key]
+        delete $scope.event.dates[key]
+      else
+        eventDate = new EventDate({
+          start: date.set { hours: 0, minute: 0 }
+          end: date.clone().last().minute()
+        })
+        $scope.event.dates[key] = eventDate
