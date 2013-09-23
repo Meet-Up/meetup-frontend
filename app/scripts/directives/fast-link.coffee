@@ -8,4 +8,3 @@ angular.module('meetupDirectives')
           $scope.$apply () -> $location.path href
         else if 'uiSref' of $attr
           $scope.$apply () -> $state.go $attr.uiSref
-

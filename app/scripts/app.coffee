@@ -15,4 +15,13 @@ angular.module('meetupApp', [
       url: '/create-event'
       templateUrl: 'views/create-event.html'
       controller: 'CreateEventCtrl'
+      abstract: true
+    })
+    .state('create-event.index', {
+      url: ''
+      templateUrl: 'partials/create-event/general.html'
+    })
+    .state('create-event.select-time', {
+      url: 'select-time'
+      templateUrl: 'partials/create-event/select-time.html'
     })
