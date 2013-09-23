@@ -58,29 +58,24 @@ describe 'Service: DateHelper', ->
 
 
   describe 'function to get cells per day', ->
-    it 'should count cells correctly with when minutes is not set', ->
-      start = Date.today().set { hour: 14, minute: 0 }
-      end = Date.today().set { hour: 18, minute: 0 }
-      expectedCellsNumber = 4 * cellsPerDay / 24
-      computedCellsNumber = dateHelper.getCellsNumberInDay start, end
+    makeTest = (sHour, sMin, eHour, eMin, expected) ->
+      start = Date.today().set { hour: sHour, minute: sMin }
+      end = Date.today().set { hour: eHour, minute: eMin }
+      expectedCellsNumber = expected * cellsPerDay / 24
+      computedCellsNumber = dateHelper.getCellsNumberInInterval start, end
       expect(computedCellsNumber).toBe expectedCellsNumber
+
+
+    it 'should count cells correctly with when minutes is not set', ->
+      makeTest 14, 0, 18, 0, 4
 
     it 'should count cells correctly when minutes are 0 or 30', ->
-      start = Date.today().set { hour: 14, minute: 30 }
-      end = Date.today().set { hour: 18, minute: 0 }
-      expectedCellsNumber = 3.5 * cellsPerDay / 24
-      computedCellsNumber = dateHelper.getCellsNumberInDay start, end
-      expect(computedCellsNumber).toBe expectedCellsNumber
+      makeTest 14, 30, 18, 0, 3.5
+      makeTest 14, 0, 18, 30, 4.5
 
-      start.set { hour: 14, minute: 0 }
-      end.set { hour: 18, minute: 30 }
-      expectedCellsNumber = 4.5 * cellsPerDay / 24
-      computedCellsNumber = dateHelper.getCellsNumberInDay start, end
-      expect(computedCellsNumber).toBe expectedCellsNumber
+    it 'should take last cell for non integer cells number', ->
+      makeTest 14, 30, 18, 35, 4.5
 
-    it 'should throw ignore last cell for non integer cells number', ->
-      start = Date.today().set { hour: 14, minute: 30 }
-      end = Date.today().set { hour: 18, minute: 35 }
-      expectedCellsNumber = 4 * cellsPerDay / 24
-      computedCellsNumber = dateHelper.getCellsNumberInDay start, end
-      expect(computedCellsNumber).toBe expectedCellsNumber
+    it 'should support a full day', ->
+      makeTest 0, 0, 23, 59, 24
+
