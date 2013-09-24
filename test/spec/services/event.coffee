@@ -8,6 +8,20 @@ describe 'Service: Event', ->
     Evt = Event
     EvtDate = EventDate
 
+  describe 'attributes', ->
+    it 'should add events correctly', ->
+      evt = new Evt()
+      evt.addDate new Date()
+      expect(evt.dates.length).toBe 1
+
+    it 'should remove events correctly', ->
+      evt = new Evt()
+      date = new Date()
+      evt.addDate date
+      evt.removeDate date
+      expect(evt.dates.length).toBe 0
+
+
   describe 'event dates methods', ->
     getEvent = ->
       evt = new Evt()

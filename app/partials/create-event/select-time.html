@@ -1,4 +1,7 @@
 <h3>Select time</h3>
 
 <table>
+  <tr ng-repeat="date in event.dates">
+    <td class="cell" ng-repeat="item in event.neededRowsArray()"></td>
+  </tr>
 </table>
