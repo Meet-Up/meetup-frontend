@@ -9,8 +9,8 @@ angular.module('meetupDirectives')
       else $elem.addClass 'future'
 
     addSelectedClass = (key, $scope, $elem) ->
-      return unless $scope.event?.dates?
-      if $scope.event.dates[key]
+      return unless $scope.dates?
+      if $scope.dates[key]
         $elem.addClass 'selected'
       else
         $elem.removeClass 'selected'
@@ -25,6 +25,6 @@ angular.module('meetupDirectives')
       addStatusClass cellDate, $scope, $elem
 
       key = cellDate.toString('yyMMdd')
-      $scope.$watch "event.dates[#{key}]", () ->
+      $scope.$watch "dates[#{key}]", () ->
         addSelectedClass key, $scope, $elem
       , true

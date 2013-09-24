@@ -26,14 +26,19 @@ angular.module('meetupServices')
 
     Event::addDate = (date) ->
       eventDate = new EventDate()
-      eventDate.start = date.clone().set { hour: 0, minute: 0 }
-      eventDate.end = date.clone().set { hour: 23, minute: 59 }
+      eventDate.start = date
+      eventDate.end = date.clone().addHours 2
       @addEventDate eventDate
 
     Event::addEventDate = (eventDate) ->
       key = eventDate.start.toISOString()
       datesIndexes[key] = @dates.length
       @dates.push EventDate
+
+    Event::hasDate = (date) ->
+      if date instanceof EventDate
+        date = date.start
+      date.toISOString() of datesIndexes
 
     Event::removeDate = (date) ->
       key = ''

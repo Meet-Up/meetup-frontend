@@ -11,7 +11,9 @@ describe 'Service: Event', ->
   describe 'attributes', ->
     it 'should add events correctly', ->
       evt = new Evt()
-      evt.addDate new Date()
+      date = new Date()
+      evt.addDate date
+      expect(evt.hasDate date).toBe true
       expect(evt.dates.length).toBe 1
 
     it 'should remove events correctly', ->
