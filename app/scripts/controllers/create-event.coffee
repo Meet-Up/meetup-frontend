@@ -10,8 +10,6 @@ angular.module('meetupControllers')
         weeks: DateHelper.getWeeksInMonth date
       }
 
-    $scope.dates = {}
-
     setDate Date.today()
 
     $scope.saveEvent = ->
@@ -26,8 +24,9 @@ angular.module('meetupControllers')
       setDate newDate
 
     $scope.toggleDate = (date) ->
-      key = date.toString 'yyMMdd'
-      if key of $scope.dates
-        delete $scope.dates[key]
+      date = date.clone().set { hour: 0, minute: 0 }
+      if $scope.event.hasDate date
+        delete $scope.event.removeDate date
       else
-        $scope.dates[key] = date
+        end = date.clone().set { hour: 23, minute: 59}
+        $scope.event.addDate date, end

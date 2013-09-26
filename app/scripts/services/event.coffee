@@ -24,10 +24,13 @@ angular.module('meetupServices')
 
     Event::dates = []
 
-    Event::addDate = (date) ->
+    Event::dateContainer = (date) ->
+      datesIndexes[date.toISOString()]
+
+    Event::addDate = (date, end) ->
       eventDate = new EventDate()
       eventDate.start = date
-      eventDate.end = date.clone().addHours 2
+      eventDate.end = end ? date.clone().addHours 2
       @addEventDate eventDate
 
     Event::addEventDate = (eventDate) ->
