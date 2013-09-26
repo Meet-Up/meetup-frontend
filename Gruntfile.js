@@ -32,11 +32,11 @@ module.exports = function (grunt) {
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/**/*.coffee'],
-        tasks: ['coffee:dist', 'karma:unitContinuous', 'karma:e2eContinuous']
+        tasks: ['coffee:dist', 'karma']
       },
       coffeeTest: {
         files: ['test/**/*.coffee'],
-        tasks: ['coffee:test', 'karma:unitContinuous', 'karma:e2eContinuous']
+        tasks: ['coffee:test', 'karma']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
       },
       karma: {
         files: ['<%= yeoman.app %>/{views,partials}/**/*.html'],
-        tasks: ['karma:unitContinuous', 'karma:e2eContinuous']
+        tasks: ['karma']
       },
       livereload: {
         options: {
@@ -340,7 +340,7 @@ module.exports = function (grunt) {
 
     karma: {
       options: {
-        browsers: ['Firefox'],
+        browsers: ['PhantomJS'],
         singleRun: true
       },
       unit: {
@@ -348,14 +348,6 @@ module.exports = function (grunt) {
       },
       e2e: {
         configFile: 'config/karma-e2e.conf.js',
-      },
-      unitContinuous: {
-        configFile: 'config/karma.conf.js',
-        browsers: ['PhantomJS']
-      },
-      e2eContinuous: {
-        configFile: 'config/karma-e2e.conf.js',
-        browsers: ['PhantomJS']
       }
     },
 
@@ -418,13 +410,17 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
-  ]);
+  grunt.registerTask('test', function () {
+    grunt.config('karma.options.browsers', ['Firefox']);
+
+    grunt.task.run([
+      'clean:server',
+      'concurrent:test',
+      'autoprefixer',
+      'connect:test',
+      'karma'
+    ]);
+  });
 
   grunt.registerTask('build', [
     'clean:dist',
