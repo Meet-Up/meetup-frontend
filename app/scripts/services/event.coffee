@@ -36,7 +36,7 @@ angular.module('meetupServices')
     Event::addEventDate = (eventDate) ->
       key = eventDate.start.toISOString()
       datesIndexes[key] = @dates.length
-      @dates.push EventDate
+      @dates.push eventDate
 
     Event::hasDate = (date) ->
       if date instanceof EventDate
