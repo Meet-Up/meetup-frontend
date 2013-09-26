@@ -44,13 +44,12 @@ angular.module('meetupServices')
       date.toISOString() of datesIndexes
 
     Event::removeDate = (date) ->
-      key = ''
-      if date instanceof Date
-        key = date.toISOString()
-      else if date instanceof EventDate
-        key = date.start.toISOString()
-      else
-        throw new Exception('unsupported type')
+      key = if date instanceof Date
+              date.toISOString()
+            else if date instanceof EventDate
+              date.start.toISOString()
+            else
+              throw new Exception('unsupported type')
       index = datesIndexes[key]
       @dates.splice index, 1
       delete datesIndexes[key]

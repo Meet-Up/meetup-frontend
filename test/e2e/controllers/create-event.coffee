@@ -1,6 +1,5 @@
 describe 'Controller: CreateEventCtrl', ->
   beforeEach ->
-    browser().navigateTo '#/'
     browser().navigateTo '#/create-event'
 
   formatDate = (date) -> date.toString 'MM/yy'
@@ -38,5 +37,6 @@ describe 'Controller: CreateEventCtrl', ->
     testDateTransition 'previous', currentDate.last().month()
 
   it 'should go to next month when next is pressed', ->
+    browser().reload()
     currentDate = checkCurrentDate()
     testDateTransition 'next', currentDate.next().month()
