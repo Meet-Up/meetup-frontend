@@ -32,11 +32,11 @@ module.exports = function (grunt) {
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/**/*.coffee'],
-        tasks: ['coffee:dist', 'karma']
+        tasks: ['coffee:dist', 'continuousTest'],
       },
       coffeeTest: {
         files: ['test/**/*.coffee'],
-        tasks: ['coffee:test', 'karma']
+        tasks: ['coffee:test', 'continuousTest']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
       },
       karma: {
         files: ['<%= yeoman.app %>/{views,partials}/**/*.html'],
-        tasks: ['karma']
+        tasks: ['continuousTest']
       },
       livereload: {
         options: {
@@ -341,13 +341,13 @@ module.exports = function (grunt) {
     karma: {
       options: {
         browsers: ['PhantomJS'],
-        singleRun: true
+        singleRun: true,
       },
       unit: {
-        configFile: 'config/karma.conf.js',
+        configFile: 'config/karma.conf.js'
       },
       e2e: {
-        configFile: 'config/karma-e2e.conf.js',
+        configFile: 'config/karma-e2e.conf.js'
       }
     },
 
@@ -409,6 +409,11 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+  grunt.registerTask('continuousTest', [
+    'karma:unit:run',
+    'karma:e2e:run'
+  ]);
 
   grunt.registerTask('test', function () {
     grunt.config('karma.options.browsers', ['Firefox']);

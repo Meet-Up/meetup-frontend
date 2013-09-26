@@ -30,7 +30,7 @@ angular.module('meetupApp', [
     })
     .state('create-event.select-time', {
       url: '/select-time'
-      templateUrl: 'partials/create-event/select-time.html'
+      templateUrl: 'partials/create-event/time-selection.html'
       data:
         titleBar:
           hasPrevious: true
