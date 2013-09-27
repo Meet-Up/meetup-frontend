@@ -5,6 +5,6 @@ angular.module('meetupDirectives')
     transclude: false
     templateUrl: 'partials/create-event/select-time.html'
     controller: ($scope, $element, $attrs) ->
-      console.log $scope.event
+      $scope.rows = $scope.event.neededRowsArray()
 
 
