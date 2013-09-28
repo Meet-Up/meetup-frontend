@@ -10,10 +10,11 @@ angular.module('meetupDirectives')
         $scope.calendar.weeks = DateHelper.getWeeksInMonth date
 
       $scope.daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-      $scope.hasToolbar = true
 
-      $scope.calendar ?=
-        toggable: true
+      $scope.noToolbar = $parse($attrs.noToolbar)() ? false
+
+      $scope.calendar =
+        toggable: $parse($attrs.toggable)() ? false
         selectedDates: {}
 
       setDate Date.today()

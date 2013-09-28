@@ -14,10 +14,9 @@ angular.module('meetupDirectives')
       dateKey = generateKey date
       if dateKey of calendar.selectedDates
         delete calendar.selectedDates[dateKey]
-        updateClass false, $elem
       else
         calendar.selectedDates[dateKey] = date
-        updateClass true, $elem
+      updateClass dateKey of calendar.selectedDates, $elem
 
     updateClass = (isSelected, $elem) ->
       if isSelected
@@ -25,21 +24,23 @@ angular.module('meetupDirectives')
       else
         $elem.removeClass 'selected'
 
-    restrict: 'A'
+    return {
+      restrict: 'A'
 
-    link: ($scope, $elem, $attr) ->
-      return unless $scope.calendar?
+      link: ($scope, $elem, $attr) ->
+        return unless $scope.calendar?
 
-      calendar = $scope.calendar
+        calendar = $scope.calendar
 
-      $elem.addClass 'day-cell'
+        $elem.addClass 'day-cell'
 
-      cellDate = $parse($attr.calendarCell)($scope)
+        cellDate = $parse($attr.calendarCell)($scope)
 
-      addStatusClass cellDate, $scope, $elem
+        addStatusClass cellDate, $scope, $elem
 
-      if $scope.calendar.toggable
-        $elem.fastClick (event) ->
-          toggleDate cellDate, calendar, $elem
-        dateKey = generateKey cellDate
-        updateClass dateKey of calendar.selectedDates, $elem
+        if $scope.calendar.toggable
+          $elem.fastClick (event) ->
+            toggleDate cellDate, calendar, $elem
+          dateKey = generateKey cellDate
+          updateClass dateKey of calendar.selectedDates, $elem
+    }
