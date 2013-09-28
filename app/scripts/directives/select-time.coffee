@@ -6,5 +6,3 @@ angular.module('meetupDirectives')
     templateUrl: 'partials/create-event/select-time.html'
     controller: ($scope, $element, $attrs) ->
       $scope.rows = $scope.event.neededRowsArray()
-
-

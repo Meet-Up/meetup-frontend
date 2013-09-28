@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         tasks: ['copy:styles', 'autoprefixer']
       },
       karma: {
-        files: ['<%= yeoman.app %>/{views,partials}/**/*.html'],
+        files: ['{.tmp,<%= yeoman.app %>}/{views,partials}/**/*.html'],
         tasks: ['continuousTest']
       },
       livereload: {
@@ -418,6 +418,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', function () {
     grunt.config('karma.options.browsers', ['Firefox']);
+    grunt.config('karma.options.background', false);
 
     grunt.task.run([
       'clean:server',

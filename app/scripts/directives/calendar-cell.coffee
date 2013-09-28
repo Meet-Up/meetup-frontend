@@ -1,6 +1,8 @@
 angular.module('meetupDirectives')
   .directive 'calendarCell', ($parse) ->
 
+    generateKey = (date) -> date.toString 'yyyyMMdd'
+
     addStatusClass = (cellDate, $scope, $elem) ->
       scopeDate = $scope.calendar.date
       status = cellDate.getMonth() - scopeDate.getMonth()
@@ -8,22 +10,37 @@ angular.module('meetupDirectives')
       else if status == 0 then $elem.addClass 'current'
       else $elem.addClass 'future'
 
-    addSelectedClass = (date, $scope, $elem) ->
-      return unless $scope.event?
-      if $scope.event.hasDate date
+    toggleDate = (date, calendar, $elem) ->
+      dateKey = generateKey date
+      if dateKey of calendar.selectedDates
+        delete calendar.selectedDates[dateKey]
+      else
+        calendar.selectedDates[dateKey] = date
+      updateClass dateKey of calendar.selectedDates, $elem
+
+    updateClass = (isSelected, $elem) ->
+      if isSelected
         $elem.addClass 'selected'
       else
         $elem.removeClass 'selected'
 
-    restrict: 'A'
-    link: ($scope, $elem, $attr) ->
-      $elem.addClass 'day-cell'
-      return unless $scope.calendar?
+    return {
+      restrict: 'A'
 
-      cellDate = $parse($attr.calendarCell)($scope)
+      link: ($scope, $elem, $attr) ->
+        return unless $scope.calendar?
 
-      addStatusClass cellDate, $scope, $elem
+        calendar = $scope.calendar
 
-      $scope.$watch "event.dates", () ->
-        addSelectedClass cellDate, $scope, $elem
-      , true
+        $elem.addClass 'day-cell'
+
+        cellDate = $parse($attr.calendarCell)($scope)
+
+        addStatusClass cellDate, $scope, $elem
+
+        if $scope.calendar.toggable
+          $elem.fastClick (event) ->
+            toggleDate cellDate, calendar, $elem
+          dateKey = generateKey cellDate
+          updateClass dateKey of calendar.selectedDates, $elem
+    }

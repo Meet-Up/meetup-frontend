@@ -15,6 +15,8 @@ describe 'Controller: CreateEventCtrl', ->
     expect(date).toBe formatDate(currentDate)
     currentDate
 
+  firstCell = -> element('.calendar-body tbody td:first')
+
   testDateTransition = (selector, expected) ->
     element(".calendar button.#{selector}").click()
     date = getDatePromise()
@@ -27,10 +29,19 @@ describe 'Controller: CreateEventCtrl', ->
     expect(title.text()).toBe 'foobar'
 
   it 'should react on calendar click', ->
-    firstCell = element '.calendar-body tbody td:first'
-    expect(firstCell.attr('class')).not().toContain 'selected'
-    firstCell.click()
-    expect(firstCell.attr('class')).toContain 'selected'
+    cell = firstCell()
+    expect(cell.attr('class')).not().toContain 'selected'
+    cell.click()
+    expect(cell.attr('class')).toContain 'selected'
+
+  it 'should save selected dates', ->
+    browser().reload()
+    expect(firstCell().attr('class')).not().toContain 'selected'
+    firstCell().click()
+    element(".calendar button.previous").click()
+    element(".calendar button.next").click()
+    expect(firstCell().attr('class')).toContain 'selected'
+
 
   it 'should go to previous month when previous is pressed', ->
     currentDate = checkCurrentDate()
