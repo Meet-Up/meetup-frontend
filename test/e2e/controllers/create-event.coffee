@@ -29,6 +29,7 @@ describe 'Controller: CreateEventCtrl', ->
     expect(title.text()).toBe 'foobar'
 
   it 'should react on calendar click', ->
+    browser().reload()
     cell = firstCell()
     expect(cell.attr('class')).not().toContain 'selected'
     cell.click()

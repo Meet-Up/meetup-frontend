@@ -6,22 +6,22 @@ describe 'meetupApp', ->
   logoSelector = 'a[href="#/"]'
 
   linkCases = [
-    gotoPath: () ->
+    gotoPath: ->
       browser().navigateTo '/#/'
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.create-event']
     hiddenLinks: generateTitleBarLinks ['a.next', 'a.previous']
   ,
-    gotoPath: () ->
+    gotoPath: ->
       browser().navigateTo '/#/create-event'
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.next']
     hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.previous']
-  ,
-    gotoPath: () ->
-      browser().navigateTo '/#/create-event'
-      element('a.next').click()
-    path: '/#/create-event/select-time'
-    visibleLinks: generateTitleBarLinks [logoSelector, 'a.previous']
-    hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.next']
+  # ,
+  #   gotoPath: ->
+  #     browser().navigateTo '/#/create-event'
+  #     element('.calendar-body tbody td:first').click()
+  #     element('a.next').click()
+  #   visibleLinks: generateTitleBarLinks [logoSelector, 'a.previous']
+  #   hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.next']
   ]
 
   it 'should display visible links in titlebar', ->
