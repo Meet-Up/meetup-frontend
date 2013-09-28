@@ -1,16 +1,16 @@
 angular.module('meetupDirectives')
-  .directive 'calendarCell', ($parse) ->
+  .directive 'calendarCell', ($parse, calendarModel) ->
+    calendar = calendarModel
 
     generateKey = (date) -> date.toString 'yyyyMMdd'
 
-    addStatusClass = (cellDate, $scope, $elem) ->
-      scopeDate = $scope.calendar.date
-      status = cellDate.getMonth() - scopeDate.getMonth()
+    addStatusClass = (cellDate, $elem) ->
+      status = cellDate.getMonth() - calendar.date.getMonth()
       if status < 0 then $elem.addClass 'past'
       else if status == 0 then $elem.addClass 'current'
       else $elem.addClass 'future'
 
-    toggleDate = (date, calendar, $elem) ->
+    toggleDate = (date, $elem) ->
       dateKey = generateKey date
       if dateKey of calendar.selectedDates
         delete calendar.selectedDates[dateKey]
@@ -28,19 +28,16 @@ angular.module('meetupDirectives')
       restrict: 'A'
 
       link: ($scope, $elem, $attr) ->
-        return unless $scope.calendar?
-
-        calendar = $scope.calendar
-
         $elem.addClass 'day-cell'
 
         cellDate = $parse($attr.calendarCell)($scope)
 
-        addStatusClass cellDate, $scope, $elem
+        addStatusClass cellDate, $elem
 
-        if $scope.calendar.toggable
+        if calendar.toggable
           $elem.fastClick (event) ->
-            toggleDate cellDate, calendar, $elem
+            toggleDate cellDate, $elem
+            $scope.$apply()
           dateKey = generateKey cellDate
           updateClass dateKey of calendar.selectedDates, $elem
     }

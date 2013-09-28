@@ -18,11 +18,8 @@ describe 'meetupApp', ->
     hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.previous']
   ,
     gotoPath: ->
-      browser().reload()
       browser().navigateTo '/#/create-event'
-      expect(element('.calendar-body tbody td:first').count()).toBe 1
-      expect(element('a.next').count()).toBe 1
-      element('.calendar-body tbody td:first').click()
+      element('.calendar-body tbody td:last').click()
       element('a.next').click()
     visibleLinks: generateTitleBarLinks [logoSelector, 'a.previous']
     hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.next']

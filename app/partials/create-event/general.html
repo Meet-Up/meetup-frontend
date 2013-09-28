@@ -13,7 +13,7 @@
   <textarea id="event-content" cols="30" rows="10" ng-model="event.description"></textarea>
 </div>
 
-<a ui-sref="create-event.select-time" fast-link>Select dates</a>
+<button ui-sref="create-event.select-time" fast-link ng-disabled="calendar.selectedDates | isEmpty">Select dates</button>
 
 <calendar toggable="true">
 </calendar>
