@@ -1,5 +1,5 @@
 angular.module('meetupServices')
-  .factory 'TimeContainer',  (EventDate, CELLS_PER_DAY) ->
+  .factory 'TimeContainer',  (EventDate, DateHelper, CELLS_PER_DAY) ->
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
@@ -13,7 +13,7 @@ angular.module('meetupServices')
         @setOpened opened ? false
         @setAvailable available ? false
 
-      setStatus: (active, type) ->
+      updateStatus: (active, type) ->
         if active then @status |= type else @status &= ~type
       getStatus: (type) -> @status & type != 0
 
