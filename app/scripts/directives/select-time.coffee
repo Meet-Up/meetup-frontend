@@ -1,19 +1,16 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $location, TimeContainer) ->
+  .directive 'selectTime', ($parse, $state, TimeContainer) ->
     getDates = ($scope, $attrs) ->
       selectionTarget = $attrs.selectionTarget ? 'possibilities'
       if selectionTarget == 'availabilities'
-        if 'event' of $scope
-          return $scope.event.dates
-        else
-          $location.path '/'
-          return
+        return $scope.event.dates if 'event' of $scope
+        $state.go 'home'
       else if selectionTarget == 'possibilities'
         if 'calendar' of $scope
-          return (date for k, date of $scope.calendar.selectedDates)
-        else
-          $location.path '/create-event'
-          return
+          dates = (date for k, date of $scope.calendar.selectedDates)
+          return dates if dates.length > 0
+        $state.go 'create-event.index'
+      return
 
     restrict: 'E'
     replace: true
