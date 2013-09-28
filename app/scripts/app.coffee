@@ -2,6 +2,7 @@ angular.module('meetupApp', [
   'ui.router'
   'meetupControllers'
   'meetupDirectives'
+  'meetupFilters'
 ]).config ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise '/'
 

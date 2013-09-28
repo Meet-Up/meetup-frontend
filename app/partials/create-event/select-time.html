@@ -1,5 +1,8 @@
 <table>
-  <tr ng-repeat="date in event.dates">
-    <td class="cell" ng-repeat="item in rows"></td>
+  <tr ng-repeat="i in timeContainer.rows()">
+    <td class="cell time-cell" ng-bind="i|timeFromIndex">
+    </td>
+    <td class="cell" ng-repeat="date in timeContainer.dates">
+    </td>
   </tr>
 </table>

@@ -9,7 +9,7 @@ angular.module('meetupServices')
 
       status: 0
 
-      constructor: (opened, available) ->
+      constructor: (@index, opened, available) ->
         @setOpened opened ? false
         @setAvailable available ? false
 
@@ -17,8 +17,8 @@ angular.module('meetupServices')
         if active then @status |= type else @status &= ~type
       getStatus: (type) -> @status & type != 0
 
-      isOpened: -> @getStatus @OPENED
-      isAvailable: -> @getStatus @AVAILABLE
+      isOpened: -> @getStatus TimeCell.OPENED
+      isAvailable: -> @getStatus TimeCell.AVAILABLE
       setOpened: (b) -> @updateStatus b, TimeCell.OPENED
       setAvailable: (b) -> @updateStatus b, TimeCell.AVAILABLE
 
@@ -27,8 +27,11 @@ angular.module('meetupServices')
       constructor: (eventDates) ->
         @reset eventDates
 
+      rows: -> [@minRow..@maxRow]
+
       reset: (eventDates) ->
         @dates = {}
+        [@minRow, @maxRow] = [CELLS_PER_DAY - 1, 0]
         for eventDate in eventDates
           [start, end] = @_getInterval eventDate
           @_initializeDates start, end
@@ -46,12 +49,15 @@ angular.module('meetupServices')
         for date in dates
           key = getDateKey date
           continue if key of @dates
-          @dates[key] = (new TimeCell() for _ in [1..CELLS_PER_DAY])
+          @dates[key] = (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
 
       _initializeDateStatus: (start, end) ->
         key = getDateKey start
         startInfo = DateHelper.getDateIndexInfo start
-        endInfo = DateHelper.getDateIndexInfo start
-        endIndex = end.index - (if endInfo.exact then 1 else 0)
+        endInfo = DateHelper.getDateIndexInfo end
+        endIndex = endInfo.index - (if endInfo.exact then 1 else 0)
         for i in [startInfo.index..endIndex]
           @dates[key][i].setOpened true
+
+        @minRow = startInfo.index if startInfo.index < @minRow
+        @maxRow = endIndex if endIndex > @maxRow

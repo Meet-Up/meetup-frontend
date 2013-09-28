@@ -22,8 +22,5 @@ angular.module('meetupDirectives')
     controller: ($scope, $element, $attrs) ->
       dates = getDates $scope, $attrs
       return unless dates?
-      console.log dates
 
-      timeContainer = new TimeContainer(dates)
-
-      console.log timeContainer
+      $scope.timeContainer = new TimeContainer(dates)
