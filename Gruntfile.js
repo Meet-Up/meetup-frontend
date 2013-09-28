@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         tasks: ['copy:styles', 'autoprefixer']
       },
       karma: {
-        files: ['<%= yeoman.app %>/{views,partials}/**/*.html'],
+        files: ['{.tmp,<%= yeoman.app %>}/{views,partials}/**/*.html'],
         tasks: ['continuousTest']
       },
       livereload: {
