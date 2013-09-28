@@ -6,13 +6,15 @@ angular.module('meetupDirectives')
     templateUrl: 'partials/calendar/full.html'
     controller: ($scope, $element, $attrs) ->
       setDate = (date) ->
-        $scope.calendar =
-          date: date
-          weeks: DateHelper.getWeeksInMonth date
+        $scope.calendar.date = date
+        $scope.calendar.weeks = DateHelper.getWeeksInMonth date
 
       $scope.daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-
       $scope.hasToolbar = true
+
+      $scope.calendar ?=
+        toggable: true
+        selectedDates: {}
 
       setDate Date.today()
 
