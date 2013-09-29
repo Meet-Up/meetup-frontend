@@ -27,6 +27,7 @@ angular.module('meetupApp', [
       data:
         titleBar:
           hasNext: true
+          nextDisabled: true
           nextState: 'create-event.select-time'
     })
     .state('create-event.select-time', {
