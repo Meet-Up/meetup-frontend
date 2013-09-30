@@ -1,16 +1,16 @@
 
-describe 'Controller: MainCtrl', () ->
+describe 'Controller: AppCtrl', () ->
 
   # load the controller's module
   beforeEach module 'meetupControllers'
 
-  MainCtrl = {}
+  AppCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    MainCtrl = $controller 'MainCtrl', {
+    AppCtrl = $controller 'AppCtrl', {
       $scope: scope
     }
 
