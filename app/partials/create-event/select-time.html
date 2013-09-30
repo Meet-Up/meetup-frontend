@@ -1,8 +1,8 @@
 <table class="time-selection">
   <tr ng-repeat="i in timeContainer.rows()">
-    <td class="cell time-cell" ng-bind="i|timeFromIndex">
+    <td class="cell time-label" ng-bind="i|timeFromIndex">
     </td>
-    <td class="cell" ng-repeat="date in timeContainer.dates">
+    <td class="cell" ng-init="time=date[i]" ng-repeat="date in timeContainer.dates" ng-class="{selected: time.isOpened()}">
     </td>
   </tr>
 </table>

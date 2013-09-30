@@ -1,27 +1,7 @@
 angular.module('meetupServices')
-  .factory 'TimeContainer',  (EventDate, DateHelper, CELLS_PER_DAY) ->
+  .factory 'TimeContainer',  (EventDate, DateHelper, TimeCell, CELLS_PER_DAY) ->
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'
-
-    class TimeCell
-      @OPENED:     0x01
-      @AVAILABLE:  0x02
-
-      status: 0
-
-      constructor: (@index, opened, available) ->
-        @setOpened opened ? false
-        @setAvailable available ? false
-
-      updateStatus: (active, type) ->
-        if active then @status |= type else @status &= ~type
-      getStatus: (type) -> @status & type != 0
-
-      isOpened: -> @getStatus TimeCell.OPENED
-      isAvailable: -> @getStatus TimeCell.AVAILABLE
-      setOpened: (b) -> @updateStatus b, TimeCell.OPENED
-      setAvailable: (b) -> @updateStatus b, TimeCell.AVAILABLE
-
 
     class TimeContainer
       constructor: (eventDates) ->
