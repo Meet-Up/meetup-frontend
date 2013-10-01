@@ -1,4 +1,3 @@
-
 describe 'Controller: AppCtrl', () ->
 
   # load the controller's module

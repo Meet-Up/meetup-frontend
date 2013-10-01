@@ -29,7 +29,9 @@ angular.module('meetupServices')
         for date in dates
           key = getDateKey date
           continue if key of @dates
-          @dates[key] = (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
+          @dates[key] =
+            date: date
+            times: (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
 
       _initializeDateStatus: (start, end) ->
         key = getDateKey start
@@ -37,7 +39,7 @@ angular.module('meetupServices')
         endInfo = DateHelper.getDateIndexInfo end
         endIndex = endInfo.index - (if endInfo.exact then 1 else 0)
         for i in [startInfo.index..endIndex]
-          @dates[key][i].setOpened true
+          @dates[key].times[i].setOpened true
 
         @minRow = startInfo.index if startInfo.index < @minRow
         @maxRow = endIndex if endIndex > @maxRow
