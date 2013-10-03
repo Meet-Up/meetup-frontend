@@ -32,7 +32,7 @@ describe 'Service: Event', ->
         eventDate = new EvtDate()
         eventDate.start = dateInfo.start
         eventDate.end = dateInfo.end
-        evt.dates.push eventDate
+        evt.addEventDate eventDate
       evt
 
     evt = {}

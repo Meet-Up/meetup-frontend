@@ -20,6 +20,7 @@ module.exports = function(config) {
       'app/scripts/app.coffee',
       'app/scripts/config.coffee',
       'app/scripts/services/main.coffee',
+      'app/scripts/filters/main.coffee',
       'app/scripts/directives/main.coffee',
       'app/scripts/controllers/main.coffee',
       'app/scripts/*.coffee',
@@ -32,7 +33,7 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 8081,
+    port: 8082,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -40,7 +41,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // Start these browsers, currently available:

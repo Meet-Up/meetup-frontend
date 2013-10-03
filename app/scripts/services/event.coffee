@@ -24,16 +24,19 @@ angular.module('meetupServices')
 
     Event::dates = []
 
-    Event::addDate = (date) ->
+    Event::dateContainer = (date) ->
+      datesIndexes[date.toISOString()]
+
+    Event::addDate = (date, end) ->
       eventDate = new EventDate()
       eventDate.start = date
-      eventDate.end = date.clone().addHours 2
+      eventDate.end = end ? date.clone().addHours 2
       @addEventDate eventDate
 
     Event::addEventDate = (eventDate) ->
       key = eventDate.start.toISOString()
       datesIndexes[key] = @dates.length
-      @dates.push EventDate
+      @dates.push eventDate
 
     Event::hasDate = (date) ->
       if date instanceof EventDate
@@ -41,13 +44,12 @@ angular.module('meetupServices')
       date.toISOString() of datesIndexes
 
     Event::removeDate = (date) ->
-      key = ''
-      if date instanceof Date
-        key = date.toISOString()
-      else if date instanceof EventDate
-        key = date.start.toISOString()
-      else
-        throw new Exception('unsupported type')
+      key = if date instanceof Date
+              date.toISOString()
+            else if date instanceof EventDate
+              date.start.toISOString()
+            else
+              throw new Exception('unsupported type')
       index = datesIndexes[key]
       @dates.splice index, 1
       delete datesIndexes[key]
