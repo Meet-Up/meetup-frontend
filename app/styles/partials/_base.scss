@@ -4,4 +4,11 @@
 $header-height: 42px;
 $main-content-width: 60%;
 
+$dark-green: #339933;
+$light-grey: #DCDDDD;
+
+$selected-cell-color: $dark-green;
+$closed-cell-color: $light-grey;
+
+
 @import "modules/all";

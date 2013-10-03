@@ -8,9 +8,9 @@
 }
 
 .selected {
-  background-color: #339933
+  background-color: $selected-cell-color;
 }
 
 .unselected {
-  background-color: #DCDDDD;
+  background-color: $light-grey;
 }

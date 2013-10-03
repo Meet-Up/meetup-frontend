@@ -20,6 +20,7 @@ module.exports = function(config) {
       'app/scripts/app.coffee',
       'app/scripts/config.coffee',
       'app/scripts/services/main.coffee',
+      'app/scripts/filters/main.coffee',
       'app/scripts/directives/main.coffee',
       'app/scripts/controllers/main.coffee',
       'app/scripts/*.coffee',

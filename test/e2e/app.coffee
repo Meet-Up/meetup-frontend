@@ -5,28 +5,34 @@ describe 'meetupApp', ->
 
   logoSelector = 'a[href="#/"]'
 
+
   linkCases = [
-    path: '/#/'
-    visibleLinks: generateTitleBarLinks [logoSelector, 'a.create-event']
-    hiddenLinks: generateTitleBarLinks ['a.next', 'a.previous']
+    gotoPath: ->
+      browser().navigateTo '/#/'
+    visibleLinks: generateTitleBarLinks [logoSelector, '.create-event']
+    hiddenLinks: generateTitleBarLinks ['.next', '.previous']
   ,
-    path: '/#/create-event'
-    visibleLinks: generateTitleBarLinks [logoSelector, 'a.next']
-    hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.previous']
+    gotoPath: ->
+      browser().navigateTo '/#/create-event'
+    visibleLinks: generateTitleBarLinks [logoSelector, '.next']
+    hiddenLinks: generateTitleBarLinks ['.create-event', '.previous']
   ,
-    path: '/#/create-event/select-time'
-    visibleLinks: generateTitleBarLinks [logoSelector, 'a.previous']
-    hiddenLinks: generateTitleBarLinks ['a.create-event', 'a.next']
+    gotoPath: ->
+      browser().navigateTo '/#/create-event'
+      element('.calendar-body tbody td:last').click()
+      element('.next').click()
+    visibleLinks: generateTitleBarLinks [logoSelector, '.previous']
+    hiddenLinks: generateTitleBarLinks ['.create-event', '.next']
   ]
 
   it 'should display visible links in titlebar', ->
     for c in linkCases
-      browser().navigateTo c.path
+      c.gotoPath()
       for s in c.visibleLinks
         expect(element("#{s}:visible").count()).toBe 1
 
   it 'should not display hidden links in titlebar', ->
     for c in linkCases
-      browser().navigateTo c.path
+      c.gotoPath()
       for s in c.hiddenLinks
         expect(element("#{s}:visible").count()).toBe 0

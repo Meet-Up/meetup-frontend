@@ -27,13 +27,9 @@
 
     <!-- Application content -->
 
-    <div id="wrapper" ng-controller="MainCtrl">
-      <header class="global" ng-include="" src="'partials/header.html'"></header>
-
-      <div class="container main-content" ui-view=""></div>
-
-      <footer class="global main-content" ng-include="" src="'partials/footer.html'"></footer>
+    <div id="wrapper" ng-include="" src="'views/app.html'" ng-controller="AppCtrl">
     </div>
+
 
     <!-- Application content ends -->
 
@@ -68,7 +64,16 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/config.js"></script>
+        <script src="scripts/services/main.js"></script>
+        <script src="scripts/services/event.js"></script>
+        <script src="scripts/services/event-date.js"></script>
+        <script src="scripts/services/date-helper.js"></script>
+        <script src="scripts/services/serializers/event-serializer.js"></script>
+        <script src="scripts/services/time-container.js"></script>
+        <script src="scripts/services/time-cell.js"></script>
+        <script src="scripts/services/calendar.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/app.js"></script>
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/create-event.js"></script>
         <script src="scripts/controllers/select-dates.js"></script>
@@ -79,11 +84,10 @@
         <script src="scripts/directives/calendar-cell.js"></script>
         <script src="scripts/directives/select-time.js"></script>
         <script src="scripts/directives/calendar.js"></script>
-        <script src="scripts/services/main.js"></script>
-        <script src="scripts/services/event.js"></script>
-        <script src="scripts/services/event-date.js"></script>
-        <script src="scripts/services/date-helper.js"></script>
-        <script src="scripts/services/serializers/event-serializer.js"></script>
+        <script src="scripts/filters/main.js"></script>
+        <script src="scripts/filters/sub-array.js"></script>
+        <script src="scripts/filters/time-from-index.js"></script>
+        <script src="scripts/filters/is-empty.js"></script>
         <!-- endbuild -->
 
 </body>
