@@ -1,7 +1,7 @@
 <div id="title-bar" class="main-content">
-  <a href="#" class="previous" dsref="{{titleBar.previousState}}" fast-link="" ng-show="titleBar.hasPrevious">
+  <button href="#" class="previous" dsref="{{titleBar.previousState}}" fast-link="" ng-show="titleBar.hasPrevious" ng-disabled="titleBar.previousDisabled">
     Previous
-  </a>
+  </button>
   <div id="header-logo">
     <a ui-sref="home" fast-link>
       <img src="images/logo.png" alt="MeetUp">
@@ -11,8 +11,8 @@
     <a ui-sref="create-event.index" class="create-event" fast-link ng-show="titleBar.hasCreate">
       <img src="images/icon-create.png" alt="MeetUp">
     </a>
-    <a href="#" dsref="{{titleBar.nextState}}" class="next" fast-link ng-show="titleBar.hasNext">
+    <button href="#" dsref="{{titleBar.nextState}}" class="next" fast-link ng-show="titleBar.hasNext" ng-disabled="titleBar.nextDisabled">
       Next
-    </a>
+    </button>
   </div>
 </div>
