@@ -6,3 +6,14 @@ angular.module('meetupDirectives')
 
       startRow = $parse(attr.startRow)() ? 0
       startColumn = $parse(attr.startColumn)() ? 0
+
+      [startX, startY] = [-1, -1]
+      isActivated = true
+      isSelecting = false
+
+      moveStart = (e, x, y) ->
+        return if isActivated
+        startX = x
+        startY = y
+        isActivated = true
+        isSelecting = not $scope.isSelected(x, y)
