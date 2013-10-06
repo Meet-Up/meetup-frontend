@@ -1,7 +1,14 @@
-<h3>Select time</h3>
-
-<table>
-  <tr ng-repeat="date in event.dates">
-    <td class="cell" ng-repeat="item in event.neededRowsArray()"></td>
+<table class="time-selection">
+  <tr>
+    <td></td>
+    <td ng-repeat="dateInfo in timeContainer.dates">
+      {{ dateInfo.date.toString('MM/dd') }}
+    </td>
+  </tr>
+  <tr ng-repeat="i in timeContainer.rows()">
+    <td class="cell time-label" ng-bind="i|timeFromIndex">
+    </td>
+    <td class="cell" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" ng-class="{selected: time.isOpened()}">
+    </td>
   </tr>
 </table>

@@ -32,11 +32,11 @@ module.exports = function (grunt) {
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/**/*.coffee'],
-        tasks: ['coffee:dist']
+        tasks: ['coffee:dist', 'continuousTest'],
       },
       coffeeTest: {
-        files: ['test/spec/{,*/}*.coffee'],
-        tasks: ['coffee:test']
+        files: ['test/**/*.coffee'],
+        tasks: ['coffee:test', 'continuousTest']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/**/*.{scss,sass}'],
@@ -45,6 +45,10 @@ module.exports = function (grunt) {
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
+      },
+      karma: {
+        files: ['{.tmp,<%= yeoman.app %>}/{views,partials}/**/*.html'],
+        tasks: ['continuousTest']
       },
       livereload: {
         options: {
@@ -336,15 +340,15 @@ module.exports = function (grunt) {
 
     karma: {
       options: {
-        browsers: ['Firefox']
+        browsers: ['PhantomJS'],
+        singleRun: true,
+        background: true
       },
       unit: {
-        configFile: 'config/karma.conf.js',
-        singleRun: true
+        configFile: 'config/karma.conf.js'
       },
       e2e: {
-        configFile: 'config/karma-e2e.conf.js',
-        singleRun: true
+        configFile: 'config/karma-e2e.conf.js'
       }
     },
 
@@ -407,13 +411,23 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
+  grunt.registerTask('continuousTest', [
+    'karma:unit:run',
+    'karma:e2e:run'
   ]);
+
+  grunt.registerTask('test', function () {
+    grunt.config('karma.options.browsers', ['Firefox']);
+    grunt.config('karma.options.background', false);
+
+    grunt.task.run([
+      'clean:server',
+      'concurrent:test',
+      'autoprefixer',
+      'connect:test',
+      'karma'
+    ]);
+  });
 
   grunt.registerTask('build', [
     'clean:dist',

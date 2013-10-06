@@ -18,7 +18,17 @@ angular.module('meetupServices')
 
     getTimeOnly: (date) -> date.clone().set({ year: 1970, month: 1, day: 1 })
 
-    getCellsNumberInInterval: (start, end) ->
-      minutesDiff = (@getTimeOnly(end) - @getTimeOnly(start)) / 60000
+    getDateIndexInfo: (date) ->
+      minutesDiff = date.getHours() * 60 + date.getMinutes()
       minutesPerCell = 24 * 60 / CELLS_PER_DAY
-      Math.ceil(minutesDiff / minutesPerCell)
+
+      index: Math.floor(minutesDiff / minutesPerCell)
+      exact: minutesDiff % minutesPerCell == 0
+
+    getCellsNumberFromInfo: (startInfo, endInfo) ->
+      endInfo.index - startInfo.index + (if endInfo.exact then 0  else 1)
+
+    getCellsNumberInInterval: (start, end) ->
+      startInfo = @getDateIndexInfo start
+      endInfo = @getDateIndexInfo end
+      @getCellsNumberFromInfo startInfo, endInfo

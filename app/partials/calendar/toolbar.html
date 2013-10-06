@@ -1,9 +1,9 @@
-<button class="previous" fast-click="toLastMonth()">
+<button class="previous" fast-click="calendar.toLastMonth()">
   Previous
 </button>
 <span class="current-month">
   {{ calendar.date | date: 'yyyy/MM'}}
 </span>
-<button class="next" fast-click="toNextMonth()">
+<button class="next" fast-click="calendar.toNextMonth()">
   Next
 </button>
