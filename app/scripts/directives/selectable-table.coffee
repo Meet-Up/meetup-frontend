@@ -9,12 +9,11 @@ angular.module('meetupDirectives')
       startRow = $parse(attr.startRow)() ? 0
       startColumn = $parse(attr.startColumn)() ? 0
 
-      [startX, startY] = [-1, -1]
       activated = false
 
       rows = {}
 
-      $scope.$on 'ngRepeatFinished', ->
+      initialize = ->
         rows = elem.find(childRow).slice(startRow)
         rows.each (y) ->
           $(this).find(childCell).slice(startColumn).each (x) ->
@@ -25,6 +24,10 @@ angular.module('meetupDirectives')
             $(this).on 'touchmove', handleTouchMove
             $(this).on 'mouseup touchend', (e) ->
               handleMoveEnd e, x, y
+
+      initialize()
+      $scope.$on 'ngRepeatFinished', ->
+        initialize()
 
       lastEvent = new Date()
 
@@ -40,19 +43,18 @@ angular.module('meetupDirectives')
 
       handleMoveStart = (e, x, y) ->
         return if activated
-        startX = x
-        startY = y
         activated = true
-        console.log "START"
+        $scope.$emit 'moveStart', x, y
         false
 
       handleMove = (e, x, y) ->
         return if not activated
+        $scope.$emit 'move', x, y
         false
 
       handleMoveEnd = (e, x, y) ->
         return if not activated
         activated = false
-        console.log "END"
+        $scope.$emit 'moveEnd', x, y
         false
 
