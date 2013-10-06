@@ -220,7 +220,7 @@ module.exports = function (grunt) {
     },
 
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         dirs: ['<%= yeoman.dist %>']
@@ -381,7 +381,7 @@ module.exports = function (grunt) {
 
     ngtemplates: {
       dist: {
-        src: '{partials,views}/{,*/}*.html',
+        src: '{partials,views}/**/*.html',
         dest: '.tmp/scripts/templates.js',
         cwd: '<%= yeoman.app %>',
         options: {

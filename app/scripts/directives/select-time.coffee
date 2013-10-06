@@ -1,5 +1,5 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, TimeContainer) ->
+  .directive 'selectTime', ($parse, $state, TimeContainer, DEVICE) ->
     getDates = ($scope, $attrs) ->
       selectionTarget = $attrs.selectionTarget ? 'possibilities'
       if selectionTarget == 'availabilities'
@@ -15,7 +15,7 @@ angular.module('meetupDirectives')
     restrict: 'E'
     replace: true
     transclude: false
-    templateUrl: 'partials/desktop/create-event/select-time.html'
+    templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
     controller: ($scope, $element, $attrs) ->
       dates = getDates $scope, $attrs
       return unless dates?

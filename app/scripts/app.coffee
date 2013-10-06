@@ -3,13 +3,14 @@ angular.module('meetupApp', [
   'meetupControllers'
   'meetupDirectives'
   'meetupFilters'
-]).config ($stateProvider, $urlRouterProvider) ->
+  'meetupConfig'
+]).config(($stateProvider, $urlRouterProvider, DEVICE) ->
   $urlRouterProvider.otherwise '/'
 
   $stateProvider
     .state('home', {
       url: '/'
-      templateUrl: 'views/desktop/main.html'
+      templateUrl: "views/#{DEVICE}/main.html"
       controller: 'HomeCtrl'
       data:
         titleBar:
@@ -17,13 +18,13 @@ angular.module('meetupApp', [
     })
     .state('create-event', {
       url: '/create-event'
-      templateUrl: 'views/desktop/create-event.html'
+      templateUrl: "views/#{DEVICE}/create-event.html"
       controller: 'CreateEventCtrl'
       abstract: true
     })
     .state('create-event.index', {
       url: ''
-      templateUrl: 'partials/desktop/create-event/general.html'
+      templateUrl: "partials/#{DEVICE}/create-event/general.html"
       data:
         titleBar:
           hasNext: true
@@ -32,9 +33,12 @@ angular.module('meetupApp', [
     })
     .state('create-event.select-time', {
       url: '/select-time'
-      templateUrl: 'partials/desktop/create-event/time-selection.html'
+      templateUrl: "partials/#{DEVICE}/create-event/time-selection.html"
       data:
         titleBar:
           hasPrevious: true
           previousState: 'create-event.index'
     })
+  ).run ($rootScope, DEVICE) ->
+    $rootScope.device = DEVICE
+
