@@ -5,7 +5,7 @@
       {{ dateInfo.date.toString('MM/dd') }}
     </td>
   </tr>
-  <tr ng-repeat="i in timeContainer.rows()">
+  <tr ng-repeat="i in timeContainer.rows()" emit-on-render>
     <td class="cell time-label" ng-bind="i|timeFromIndex">
     </td>
     <td class="cell" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" ng-class="{selected: time.isOpened()}">
