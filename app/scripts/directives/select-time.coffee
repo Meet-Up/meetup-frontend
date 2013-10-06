@@ -15,7 +15,7 @@ angular.module('meetupDirectives')
     restrict: 'E'
     replace: true
     transclude: false
-    templateUrl: 'partials/create-event/select-time.html'
+    templateUrl: 'partials/desktop/create-event/select-time.html'
     controller: ($scope, $element, $attrs) ->
       dates = getDates $scope, $attrs
       return unless dates?

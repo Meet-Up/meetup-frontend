@@ -3,7 +3,7 @@ angular.module('meetupDirectives')
     restrict: 'E'
     replace: true
     transclude: false
-    templateUrl: 'partials/calendar/full.html'
+    templateUrl: 'partials/desktop/calendar/full.html'
     controller: ($scope, $element, $attrs) ->
       $scope.calendar = calendarModel
       $scope.calendar.noToolbar = $parse($attrs.noToolbar)() ? false
