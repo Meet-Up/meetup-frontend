@@ -45,6 +45,7 @@ First, clone the repository
 
 ```
 $ git clone https://github.com/Meet-Up/meetup-frontend.git
+$ cd meetup-frontend
 ```
 
 and then install the dependencies.
@@ -61,6 +62,8 @@ You can run the application using Grunt
 ```
 $ grunt server
 ```
+
+this should also auto-watch Coffee and SCSS files to rebuild and livereload on change.
 
 and run the tests with
 
