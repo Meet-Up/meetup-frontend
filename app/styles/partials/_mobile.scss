@@ -2,3 +2,42 @@
 
 }
 
+/*
+header {
+  width: 100%;
+  height: $header-height;
+  background: image-url("common/header.png") repeat-x;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+
+  #title-bar {
+    margin: auto;
+  }
+
+  #header-logo {
+    float: left;
+    margin-top:8px;
+    margin-left:6px;
+    img {
+      width:120px;
+      height: 100%;
+    }
+  }
+
+  #header-icon {
+    float: right;
+    margin-top:8px;
+    margin-right:10px;
+    img {
+      width:27px;
+      height: 100%;
+    }
+  }
+}
+
+.container {
+  margin: auto;
+  margin-top: $header-height;
+}
+*/
