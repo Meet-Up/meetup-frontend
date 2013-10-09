@@ -8,7 +8,7 @@
   <tr ng-repeat="i in timeContainer.rows()" emit-on-render>
     <td class="cell time-label" ng-bind="i|timeFromIndex">
     </td>
-    <td class="cell" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" ng-class="{selected: time.isOpened()}">
+    <td class="cell" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" ng-class="{selected: time.isOpened()}" emit-on-render="parent">
     </td>
   </tr>
 </table>

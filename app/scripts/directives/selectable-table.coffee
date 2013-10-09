@@ -17,12 +17,14 @@ angular.module('meetupDirectives')
         rows = elem.find(childRow).slice(startRow)
         rows.each (y) ->
           $(this).find(childCell).slice(startColumn).each (x) ->
-            $(this).on 'mousedown touchstart', (e) ->
+            $elem = $(this)
+            $elem.off()
+            $elem.on 'mousedown touchstart', (e) ->
               handleMoveStart e, x, y
-            $(this).on 'mousemove', (e) ->
+            $elem.on 'mousemove', (e) ->
               handleMove e, x, y
-            $(this).on 'touchmove', handleTouchMove
-            $(this).on 'mouseup touchend', (e) ->
+            $elem.on 'touchmove', handleTouchMove
+            $elem.on 'mouseup touchend', (e) ->
               handleMoveEnd e, x, y
 
       initialize()

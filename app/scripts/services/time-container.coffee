@@ -28,7 +28,7 @@ angular.module('meetupServices')
           @dates.push @datesObj[dateKey]
         @dates.sort (a, b) -> a.date - b.date
 
-      rows: -> [@minRow..@maxRow]
+      rows: -> if @dates.length > 0 then [@minRow..@maxRow] else []
 
       getTimeCell: (x, y) -> @dates[x].times[y]
 

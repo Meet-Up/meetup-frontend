@@ -6,9 +6,8 @@ angular.module('meetupDirectives')
       else if statusNumber == TimeCell.OPENED
         if 'calendar' of $scope
           dates = (date for k, date of $scope.calendar.selectedDates)
-          return dates if dates.length > 0
-      $state.go if statusNumber == TimeCell.OPENED then 'create-event.index' else 'home'
-      return
+          return dates
+      return []
 
     restrict: 'E'
     replace: true
@@ -17,8 +16,12 @@ angular.module('meetupDirectives')
 
     controller: ($scope, $element, $attrs) ->
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
+      allowEmpty = $parse($attrs.allowEmpty)()
+
       dates = getDates $scope, statusNumber
-      return unless dates?
+      if dates.length == 0 && !allowEmpty
+        $state.go if statusNumber == TimeCell.OPENED then 'create-event.index' else 'home'
+        return
 
       $scope.timeContainer.updateDates dates
 
