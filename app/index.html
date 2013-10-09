@@ -9,13 +9,23 @@
     <title>Welcome to Meet-Up</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-</head>
-  <body ng-app="meetupApp">
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+
+        document.createElement('calendar');
+        document.createElement('select-time');
+      </script>
+    <![endif]-->
+  </head>
+  <body ng-app="meetupApp" id="ng-app">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -25,73 +35,67 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Application content -->
-
     <div id="wrapper" ng-include="" src="'views/app.html'" ng-controller="AppCtrl">
     </div>
 
 
-    <!-- Application content ends -->
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+   </script>
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="vendors/jQueryFastClick/jQuery.fastClick.js"></script>
-        <script src="bower_components/jquery-nearest/jquery.nearest.js"></script>
-        <script src="vendors/datejs/date.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/plugins.js -->
+    <script src="vendors/jQueryFastClick/jQuery.fastClick.js"></script>
+    <script src="bower_components/jquery-nearest/jquery.nearest.js"></script>
+    <script src="vendors/datejs/date.js"></script>
+    <!-- endbuild -->
 
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angularjs-rails-resource/angularjs-rails-resource.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- build:js scripts/modules.js -->
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angularjs-rails-resource/angularjs-rails-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endbuild -->
 
-        <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/config.js"></script>
-        <script src="scripts/services/main.js"></script>
-        <script src="scripts/services/event.js"></script>
-        <script src="scripts/services/event-date.js"></script>
-        <script src="scripts/services/date-helper.js"></script>
-        <script src="scripts/services/serializers/event-serializer.js"></script>
-        <script src="scripts/services/time-container.js"></script>
-        <script src="scripts/services/time-cell.js"></script>
-        <script src="scripts/services/calendar.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/app.js"></script>
-        <script src="scripts/controllers/home.js"></script>
-        <script src="scripts/controllers/create-event.js"></script>
-        <script src="scripts/controllers/select-dates.js"></script>
-        <script src="scripts/directives/main.js"></script>
-        <script src="scripts/directives/back.js"></script>
-        <script src="scripts/directives/fast-click.js"></script>
-        <script src="scripts/directives/fast-link.js"></script>
-        <script src="scripts/directives/calendar-cell.js"></script>
-        <script src="scripts/directives/select-time.js"></script>
-        <script src="scripts/directives/calendar.js"></script>
-        <script src="scripts/directives/selectable-table.js"></script>
-        <script src="scripts/directives/emit-on-render.js"></script>
-        <script src="scripts/filters/main.js"></script>
-        <script src="scripts/filters/sub-array.js"></script>
-        <script src="scripts/filters/time-from-index.js"></script>
-        <script src="scripts/filters/is-empty.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/services/main.js"></script>
+    <script src="scripts/services/event.js"></script>
+    <script src="scripts/services/event-date.js"></script>
+    <script src="scripts/services/date-helper.js"></script>
+    <script src="scripts/services/serializers/event-serializer.js"></script>
+    <script src="scripts/services/time-container.js"></script>
+    <script src="scripts/services/time-cell.js"></script>
+    <script src="scripts/services/calendar.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/app.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/create-event.js"></script>
+    <script src="scripts/controllers/select-dates.js"></script>
+    <script src="scripts/directives/main.js"></script>
+    <script src="scripts/directives/back.js"></script>
+    <script src="scripts/directives/fast-click.js"></script>
+    <script src="scripts/directives/fast-link.js"></script>
+    <script src="scripts/directives/calendar-cell.js"></script>
+    <script src="scripts/directives/select-time.js"></script>
+    <script src="scripts/directives/calendar.js"></script>
+    <script src="scripts/directives/selectable-table.js"></script>
+    <script src="scripts/directives/emit-on-render.js"></script>
+    <script src="scripts/filters/main.js"></script>
+    <script src="scripts/filters/sub-array.js"></script>
+    <script src="scripts/filters/time-from-index.js"></script>
+    <script src="scripts/filters/is-empty.js"></script>
+    <!-- endbuild -->
 
 </body>
 </html>
