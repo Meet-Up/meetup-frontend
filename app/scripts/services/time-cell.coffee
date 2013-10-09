@@ -12,7 +12,7 @@ angular.module('meetupServices')
 
       updateStatus: (active, type) ->
         if active then @status |= type else @status &= ~type
-      getStatus: (type) -> @status & type != 0
+      getStatus: (type) -> (@status & type) != 0
 
       isOpened: -> @getStatus TimeCell.OPENED
       isAvailable: -> @getStatus TimeCell.AVAILABLE

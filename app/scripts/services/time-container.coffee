@@ -4,8 +4,9 @@ angular.module('meetupServices')
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
     class TimeContainer
-      constructor: (eventDates) ->
+      constructor: (eventDates, @isOpened) ->
         @reset eventDates
+        @isOpened ?= false
 
       rows: -> [@minRow..@maxRow]
 
@@ -46,7 +47,7 @@ angular.module('meetupServices')
         endIndex = endInfo.index - (if endInfo.exact then 1 else 0)
         for i in [startInfo.index..endIndex]
           time = date.times[i]
-          time.setOpened true
+          time.setOpened @isOpened
 
         @minRow = startInfo.index if startInfo.index < @minRow
         @maxRow = endIndex if endIndex > @maxRow
