@@ -1,15 +1,14 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, TimeContainer) ->
-    getDates = ($scope, $attrs) ->
-      selectionTarget = $attrs.selectionTarget ? 'possibilities'
-      if selectionTarget == 'availabilities'
+  .directive 'selectTime', ($parse, $state, TimeContainer, TimeCell) ->
+    getDates = ($scope, statusNumber) ->
+      if statusNumber == TimeCell.AVAILABLE
         return $scope.event.dates if 'event' of $scope
-        $state.go 'home'
-      else if selectionTarget == 'possibilities'
+      else if statusNumber == TimeCell.OPENED
         if 'calendar' of $scope
           dates = (date for k, date of $scope.calendar.selectedDates)
           return dates if dates.length > 0
         $state.go 'create-event.index'
+      $state.go 'home'
       return
 
     restrict: 'E'
@@ -18,10 +17,19 @@ angular.module('meetupDirectives')
     templateUrl: 'partials/create-event/select-time.html'
 
     controller: ($scope, $element, $attrs) ->
-      dates = getDates $scope, $attrs
+      statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
+      dates = getDates $scope, statusNumber
       return unless dates?
 
       $scope.timeContainer = new TimeContainer(dates)
 
-      $scope.isSelected = (x, y) ->
+      [startX, startY] = [-1, -1]
+      [lastX, lastY] = [-1, -1]
+
+      $scope.$on 'moveStart', (e, x, y) ->
+        [startX, startY] = [x, y]
+
+      $scope.$on 'move', (e, x, y) ->
+        return if x == lastX && y == lastY
+        [lastX, lastY] = [x, y]
 

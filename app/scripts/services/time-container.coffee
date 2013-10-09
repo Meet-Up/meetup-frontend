@@ -3,6 +3,8 @@ angular.module('meetupServices')
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
+    datesArray = []
+
     class TimeContainer
       constructor: (eventDates) ->
         @reset eventDates
@@ -16,6 +18,8 @@ angular.module('meetupServices')
           [start, end] = @_getInterval eventDate
           @_initializeDates start, end
           @_initializeDateStatus start, end
+
+      getTimeCell: (x, y) -> datesArray[x].times[y]
 
       _getInterval: (eventDate) ->
         if eventDate instanceof EventDate
@@ -32,6 +36,7 @@ angular.module('meetupServices')
           @dates[key] =
             date: date
             times: (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
+          datesArray.push @dates[key]
 
       _initializeDateStatus: (start, end) ->
         date = @dates[getDateKey start]

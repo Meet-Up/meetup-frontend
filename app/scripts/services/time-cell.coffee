@@ -18,3 +18,9 @@ angular.module('meetupServices')
       isAvailable: -> @getStatus TimeCell.AVAILABLE
       setOpened: (b) -> @updateStatus b, TimeCell.OPENED
       setAvailable: (b) -> @updateStatus b, TimeCell.AVAILABLE
+
+      @getStatusFromName: (name) -> switch name
+        when 'possibilities' then TimeCell.OPENED
+        when 'availabilities' then TimeCell.AVAILABLE
+        else 0
+
