@@ -20,7 +20,7 @@ angular.module('meetupDirectives')
       dates = getDates $scope, statusNumber
       return unless dates?
 
-      $scope.timeContainer = new TimeContainer(dates)
+      $scope.timeContainer.updateDates dates
 
       getCell = (x, y) -> $scope.timeContainer.getTimeCell x, y
 
@@ -34,7 +34,6 @@ angular.module('meetupDirectives')
         isSelecting = !getCell(x, y).getStatus(statusNumber)
         onMove e, x, y
 
-
       onMove = (e, x, y) ->
         return if x == lastX && y == lastY
         [lastX, lastY] = [x, y]
@@ -46,4 +45,3 @@ angular.module('meetupDirectives')
       $scope.$on 'moveEnd', (e, x, y) ->
         $scope.timeContainer.comfirmCellsUpdate()
         [lastX, lastY] = [-1, -1]
-

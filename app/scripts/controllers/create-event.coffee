@@ -1,9 +1,11 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, calendarModel, $filter) ->
+  .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, calendarModel, $filter) ->
 
     $scope.event = new Event({ datesIndexes: {}, dates: [] })
 
     $scope.calendar = calendarModel
+
+    $scope.timeContainer = new TimeContainer()
 
     $scope.hasSelectedDates = ->
       !$filter('isEmpty')($scope.calendar.selectedDates)
