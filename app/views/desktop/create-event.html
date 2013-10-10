@@ -6,14 +6,17 @@
     </h1>
     <div class="create-book" ui-view=""></div>
 
-    <input class="create-event" type="image" src="images/desktop/btn-create-event-long.png" fast-click="saveEvent()">
-
-    <div class="time-ouptut">
+    <div class="time-output">
+      <p class="label" for="event-name"><small>*</small>日時候補</p>
+      <div class="overnavi">
+        <div class="overnavi-left"></div>
+        <div class="overnavi-right"></div>
+      </div>
       <select-time selection-target="possibilities" allow-empty="true">
       </select-time>
     </div>
 
-    <br>
+    <input class="create-event" type="image" src="images/desktop/btn-create-event-long.png" fast-click="saveEvent()">
 
   </div>
 </div>

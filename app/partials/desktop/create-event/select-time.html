@@ -1,8 +1,8 @@
 <table class="time-selection" selectable-table="" start-column="1" start-row="1">
-  <tr>
+  <tr class="datesonweek">
     <td></td>
     <td ng-repeat="dateInfo in timeContainer.dates">
-      {{ dateInfo.date.toString('MM/dd') }}
+      {{ dateInfo.date.toString('MM/d（曜）') }}
     </td>
   </tr>
   <tr ng-repeat="i in timeContainer.rows()" emit-on-render ng-init="show=i % 2 == 0">
