@@ -1,19 +1,21 @@
-<div class="time-output" ng-init="page=1">
+<div class="time-output">
   <p class="label" for="event-name"><small>*</small>日時候補</p>
-  <div class="overnavi">
-    <div class="overnavi-left" ng-click="page = page - 1" ng-disabled="page<=1"></div>
-    <div class="overnavi-right" ng-click="page = page + 1" ng-disabled="page >= maxPage"></div>
+  <div ng-switch="datesNumber > daysPerPage">
+    <div ng-switch-when="true" class="overnavi">
+      <div class="overnavi-left" fast-click="previousPage()" ng-disabled="page <= 1"></div>
+      <div class="overnavi-right" fast-click="nextPage()" ng-disabled="page >= maxPage()"></div>
+    </div>
   </div>
   <table class="time-selection" selectable-table="" start-column="1" start-row="1">
     <tr class="days-of-week">
       <td></td>
-      <td ng-repeat="dateInfo in timeContainer.dates">
+      <td ng-repeat="dateInfo in dates">
         {{ dateInfo.date | date:'MM/d（EEE曜）' }}
       </td>
     </tr>
-    <tr ng-repeat="i in timeContainer.rows()" emit-on-render ng-init="show=i % 2 == 0">
+    <tr ng-repeat="i in rows" emit-on-render ng-init="show=i % 2 == 0">
       <td class="cell even-time-{{i % 4 == 0}}" ng-class="{'time-label': show}" ng-bind="{true: (i|timeFromIndex), false: ''}[show]"></td>
-      <td class="cell selected-{{time.isOpened()}}" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" emit-on-render="parent">
+      <td class="cell selected-{{time.isOpened()}}" ng-init="time=date.times[i]" ng-repeat="date in dates" emit-on-render="parent">
       </td>
     </tr>
   </table>
