@@ -1,10 +1,58 @@
 .time-selection {
-  .cell {
-    width: 10%;
-    height: 20px;
-
-    &.time-label {
-      width: 5%;
+  width: 800px;
+  margin-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 1px;
+  tr {
+    &.datesonweek {
+      td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+    td {
+      text-align: center;
+      color: $main-color;
+      font-weight: bold;
+      &.cell {
+        width: 10%;
+        height: 20px;
+        cursor: image-url("common/cursor/pointer-pen.png") no-repeat;
+        &.time-label {
+          width: 1%;
+          padding-left: 2%;
+          padding-right: 1%;
+          text-align: right;
+          font-size: 13px;
+          color: #535353;
+          background: #FFF4E1;
+          cursor: default;
+        }
+      }
     }
   }
+  /* オリジナルスクロールバー
+  ::-webkit-scrollbar {
+      width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: rgba(255,0,0,0.8);
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
+  }
+  */
+
 }
+
