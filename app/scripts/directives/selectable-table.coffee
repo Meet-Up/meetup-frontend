@@ -1,7 +1,6 @@
 angular.module('meetupDirectives')
   .directive 'selectableTable', ($parse) ->
     restrict: 'A'
-    terminal: true
 
     link: ($scope, elem, attr) ->
       [childRow, childCell] = if elem.is 'table' then ['tr', 'td'] else ['.row', '.cell']

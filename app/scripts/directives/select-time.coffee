@@ -1,5 +1,7 @@
 angular.module('meetupDirectives')
   .directive 'selectTime', ($parse, $state, TimeContainer, TimeCell, DEVICE) ->
+    DAYS_PER_PAGE = 5
+
     getDates = ($scope, statusNumber) ->
       if statusNumber == TimeCell.AVAILABLE
         return $scope.event.dates if 'event' of $scope
@@ -15,6 +17,8 @@ angular.module('meetupDirectives')
     templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
 
     controller: ($scope, $element, $attrs) ->
+      $scope.daysPerPage = DAYS_PER_PAGE
+
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
 
