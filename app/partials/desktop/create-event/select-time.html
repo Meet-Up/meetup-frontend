@@ -2,8 +2,8 @@
   <p class="label" for="event-name"><small>*</small>日時候補</p>
   <div ng-switch="datesNumber > daysPerPage">
     <div ng-switch-when="true" class="overnavi">
-      <div class="overnavi-left" fast-click="previousPage()" ng-disabled="page <= 1"></div>
-      <div class="overnavi-right" fast-click="nextPage()" ng-disabled="page >= maxPage()"></div>
+      <div class="overnavi-left" fast-click="previousPage()" ng-disabled="page <= 1" ng-class="{disabled: page <= 1}"></div>
+      <div class="overnavi-right" fast-click="nextPage()" ng-disabled="page >= maxPage()" ng-class="{disabled: page >= maxPage()}"></div>
     </div>
   </div>
   <table class="time-selection" selectable-table="" start-column="1" start-row="1">
