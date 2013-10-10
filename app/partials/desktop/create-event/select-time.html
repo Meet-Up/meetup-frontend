@@ -2,11 +2,11 @@
   <tr class="datesonweek">
     <td></td>
     <td ng-repeat="dateInfo in timeContainer.dates">
-      {{ dateInfo.date.toString('MM/d（曜）') }}
+      {{ dateInfo.date | date:'MM/d（EEE曜）' }}
     </td>
   </tr>
   <tr ng-repeat="i in timeContainer.rows()" emit-on-render ng-init="show=i % 2 == 0">
-    <td class="cell" ng-class="{'time-label': show}" ng-bind="{true: (i|timeFromIndex), false: ''}[show]"></td>
+    <td class="cell even-time-{{i % 4 == 0}}" ng-class="{'time-label': show}" ng-bind="{true: (i|timeFromIndex), false: ''}[show]"></td>
     <td class="cell selected-{{time.isOpened()}}" ng-init="time=date.times[i]" ng-repeat="date in timeContainer.dates" emit-on-render="parent">
     </td>
   </tr>
