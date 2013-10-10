@@ -23,14 +23,20 @@
         cursor: image-url("common/cursor/pointer-pen.png") no-repeat;
         &.time-label {
           width: 1%;
+          max-width: 1%;
           padding-left: 20px;
           padding-right: 10px;
           text-align: right;
           font-size: 13px;
           color: #535353;
-          background: #FFF4E1;
           cursor: default;
         }
+          &.even-time-true {
+            background: #FFF4E1;
+          }
+          &.even-time-false {
+            background: #D5EEDA;
+          }
       }
     }
   }

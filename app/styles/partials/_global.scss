@@ -380,8 +380,12 @@ input.create-event {
       width: 35px;
       height: 27px;
       background: image-url("desktop/overnavi-left.png") no-repeat;
+      &:hover {
+        background: image-url("desktop/overnavi-left-hover.png") no-repeat;
+      }
       &.disabled {
         background: image-url("desktop/overnavi-left-die.png") no-repeat;
+        cursor: default;
       }
     }
     .overnavi-right {
@@ -391,8 +395,12 @@ input.create-event {
       width: 35px;
       height: 27px;
       background: image-url("desktop/overnavi-right.png") no-repeat;
+      &:hover {
+        background: image-url("desktop/overnavi-right-hover.png") no-repeat;
+      }
       &.disabled {
         background: image-url("desktop/overnavi-right-die.png") no-repeat;
+        cursor: default;
       }
     }
   }
