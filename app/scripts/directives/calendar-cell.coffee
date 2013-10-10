@@ -20,9 +20,9 @@ angular.module('meetupDirectives')
 
     updateClass = (isSelected, $elem) ->
       if isSelected
-        $elem.addClass 'selected'
+        $elem.addClass 'selected-true'
       else
-        $elem.removeClass 'selected'
+        $elem.removeClass 'selected-true'
 
     return {
       restrict: 'A'

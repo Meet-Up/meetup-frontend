@@ -7,11 +7,11 @@
   margin-left: 0;
 }
 
-.selected {
+.selected-true {
   background-color: $selected-cell-color;
 }
 
-.unselected {
+.selected-false {
   background-color: $light-grey;
 }
 
