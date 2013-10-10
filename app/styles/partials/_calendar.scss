@@ -50,23 +50,34 @@
   }
 }
 
+.calendar-toolbar {
+  height: 50px;
+}
+
 .calendar {
-  width: 347px;
+  width: 346px;
   margin-top:5px;
   background: image-url("common/back-green-main.png");
   color: white;
   font-size:25px;
+  overflow: hidden;
   table {
-    width: 346px;
+    width: 345px;
+    float: left;
+    margin-left: 0.5px;
     background: image-url("common/back-green-sub.png");
-    td {
-      border: 1px solid #339933;
-      color: #444;
-      font-size: 19px;
-      font-weight: bold;
-      text-align: center;
-      padding-top: 8px;
-      padding-bottom: 8px;
+    thead {
+    }
+    tbody {
+      td {
+        border: 1px solid #339933;
+        color: #444;
+        font-size: 19px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
     }
   }
 }
