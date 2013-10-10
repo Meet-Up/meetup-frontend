@@ -40,19 +40,21 @@ angular.module('meetupDirectives')
         [lastX, lastY] = [-1, -1]
 
     updateScopeData = ($scope) ->
-      $scope.rows = $scope.timeContainer.rows()
       $scope.dates = $filter('paginate')($scope.timeContainer.dates, $scope.page, DAYS_PER_PAGE)
       $scope.datesNumber = $scope.timeContainer.dates.length
 
     restrict: 'E'
     replace: true
     transclude: false
+    terminal: true
     templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE
+      $scope.daysIndexes = [0..DAYS_PER_PAGE - 1]
       $scope.page = 1
       $scope.dates = []
+      $scope.rows = $scope.timeContainer.rows()
 
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
@@ -63,6 +65,11 @@ angular.module('meetupDirectives')
         return
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
+
+      $scope.isSelected = (x, y) ->
+        x += ($scope.page - 1) * DAYS_PER_PAGE
+        return false if x >= $scope.timeContainer.dates.length
+        $scope.timeContainer.getTimeCell(x, y).getStatus statusNumber
 
       $scope.previousPage = ->
         $scope.page -= 1

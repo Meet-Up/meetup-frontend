@@ -13,9 +13,11 @@
         {{ dateInfo.date | date:'MM/d（EEE曜）' }}
       </td>
     </tr>
-    <tr ng-repeat="i in rows" emit-on-render ng-init="show=i % 2 == 0">
-      <td class="cell even-time-{{i % 4 == 0}}" ng-class="{'time-label': show}" ng-bind="{true: (i|timeFromIndex), false: ''}[show]"></td>
-      <td class="cell selected-{{time.isOpened()}}" ng-init="time=date.times[i]" ng-repeat="date in dates" emit-on-render="parent">
+    <tr ng-repeat="y in rows" emit-on-render ng-init="show=y % 2 == 0">
+      <td class="cell even-time-{{y % 4 == 0}}"
+          ng-class="{'time-label': show, hidden: dates.length == 0}"
+          ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
+      <td class="cell selected-{{isSelected(x, y)}}" ng-repeat="x in daysIndexes" emit-on-render="parent" ng-class="{hidden: x >= dates.length}">
       </td>
     </tr>
   </table>
