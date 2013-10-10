@@ -1,5 +1,5 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, TimeContainer, TimeCell) ->
+  .directive 'selectTime', ($parse, $state, TimeContainer, TimeCell, DEVICE) ->
     getDates = ($scope, statusNumber) ->
       if statusNumber == TimeCell.AVAILABLE
         return $scope.event.dates if 'event' of $scope
@@ -12,7 +12,7 @@ angular.module('meetupDirectives')
     restrict: 'E'
     replace: true
     transclude: false
-    templateUrl: 'partials/create-event/select-time.html'
+    templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
 
     controller: ($scope, $element, $attrs) ->
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget

@@ -13,6 +13,8 @@ angular.module('meetupDirectives')
 
       rows = {}
 
+      elem.on 'mouseleave', handleMoveEnd
+
       initialize = ->
         rows = elem.find(childRow).slice(startRow)
         rows.each (y) ->
