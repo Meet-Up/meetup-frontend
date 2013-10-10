@@ -13,9 +13,8 @@ angular.module('meetupDirectives')
 
       rows = {}
 
-      elem.on 'mouseleave', handleMoveEnd
-
       initialize = ->
+        elem.off()
         rows = elem.find(childRow).slice(startRow)
         rows.each (y) ->
           $(this).find(childCell).slice(startColumn).each (x) ->
@@ -28,6 +27,8 @@ angular.module('meetupDirectives')
             $elem.on 'touchmove', handleTouchMove
             $elem.on 'mouseup touchend', (e) ->
               handleMoveEnd e, x, y
+        elem.on 'mouseleave', handleMoveEnd
+
 
       initialize()
       $scope.$on 'ngRepeatFinished', ->
