@@ -43,16 +43,6 @@ angular.module('meetupApp', [
       url: '/events'
       templateUrl: "views/#{DEVICE}/events.html"
       controller: 'CreateEventCtrl'
-      abstract: true
-    })
-    .state('events.index', {
-      url: ''
-      templateUrl: "partials/#{DEVICE}/events/general.html"
-      data:
-        titleBar:
-          hasNext: true
-          nextDisabled: true
-          nextState: 'create-event.select-time'
     })
   ).run ($rootScope, DEVICE) ->
     $rootScope.device = DEVICE
