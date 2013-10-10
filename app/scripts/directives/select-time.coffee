@@ -26,11 +26,13 @@ angular.module('meetupDirectives')
       getCell = (x, y) -> $scope.timeContainer.getTimeCell x, y
 
       $scope.$on 'moveStart', (e, x, y) ->
+        x += ($scope.page - 1) * DAYS_PER_PAGE
         [startX, startY] = [x, y]
         isSelecting = !getCell(x, y).getStatus(statusNumber)
         onMove e, x, y, $scope
 
       $scope.$on 'move', (e, x, y) ->
+        x += ($scope.page - 1) * DAYS_PER_PAGE
         onMove e, x, y, $scope
 
       $scope.$on 'moveEnd', (e, x, y) ->
