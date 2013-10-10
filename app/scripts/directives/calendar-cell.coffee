@@ -1,6 +1,6 @@
 angular.module('meetupDirectives')
-  .directive 'calendarCell', ($parse, calendarModel) ->
-    calendar = calendarModel
+  .directive 'calendarCell', ($parse) ->
+    calendar = {}
 
     generateKey = (date) -> date.toString 'yyyyMMdd'
 
@@ -28,6 +28,7 @@ angular.module('meetupDirectives')
       restrict: 'A'
 
       link: ($scope, $elem, $attr) ->
+        calendar = $scope.calendar
         $elem.addClass 'day-cell'
 
         cellDate = $parse($attr.calendarCell)($scope)
