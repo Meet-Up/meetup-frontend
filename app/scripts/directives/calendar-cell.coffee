@@ -1,6 +1,6 @@
 angular.module('meetupDirectives')
-  .directive 'calendarCell', ($parse, calendarModel) ->
-    calendar = calendarModel
+  .directive 'calendarCell', ($parse) ->
+    calendar = {}
 
     generateKey = (date) -> date.toString 'yyyyMMdd'
 
@@ -20,14 +20,15 @@ angular.module('meetupDirectives')
 
     updateClass = (isSelected, $elem) ->
       if isSelected
-        $elem.addClass 'selected'
+        $elem.addClass 'selected-true'
       else
-        $elem.removeClass 'selected'
+        $elem.removeClass 'selected-true'
 
     return {
       restrict: 'A'
 
       link: ($scope, $elem, $attr) ->
+        calendar = $scope.calendar
         $elem.addClass 'day-cell'
 
         cellDate = $parse($attr.calendarCell)($scope)
