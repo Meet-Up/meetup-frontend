@@ -46,6 +46,8 @@ angular.module('meetupDirectives')
         handleMove e, x, y
 
       handleMoveStart = (e, x, y) ->
+        button = e.which || e.button
+        return if e.type == 'mousedown' && button != 1
         return if activated
         activated = true
         $scope.$emit 'moveStart', x, y
