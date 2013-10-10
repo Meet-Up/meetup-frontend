@@ -379,7 +379,10 @@ input.create-event {
       right: 104px;
       width: 35px;
       height: 27px;
-      background: image-url("desktop/overnavi-left-die.png") no-repeat;
+      background: image-url("desktop/overnavi-left.png") no-repeat;
+      &.disabled {
+        background: image-url("desktop/overnavi-left-die.png") no-repeat;
+      }
     }
     .overnavi-right {
       position: absolute;
@@ -388,6 +391,9 @@ input.create-event {
       width: 35px;
       height: 27px;
       background: image-url("desktop/overnavi-right.png") no-repeat;
+      &.disabled {
+        background: image-url("desktop/overnavi-right-die.png") no-repeat;
+      }
     }
   }
 }
@@ -806,4 +812,8 @@ input.create-event {
 
 .clear {
   clear: both;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,15 +1,11 @@
 angular.module('meetupServices')
-  .factory 'calendarModel', (DateHelper) ->
+  .factory 'CalendarModel', (DateHelper) ->
     class CalendarModel
-      date: Date.today()
-      selectedDates: {}
-      toggable: false
-      noToolbar: false
-
-      daysOfWeek: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-
       constructor: () ->
+        @selectedDates = {}
         @setDate Date.today()
+        @toggable = false
+        @noToolbar = false
 
       setDate: (date) ->
         @date = date
@@ -20,6 +16,3 @@ angular.module('meetupServices')
 
       toNextMonth: ->
         @setDate @date.next().month()
-
-
-    new CalendarModel()

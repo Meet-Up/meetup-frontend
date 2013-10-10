@@ -1,9 +1,8 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, calendarModel, $filter) ->
+  .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, CalendarModel, $filter) ->
 
     $scope.event = new Event({ datesIndexes: {}, dates: [] })
-
-    $scope.calendar = calendarModel
+    $scope.calendar = new CalendarModel()
 
     $scope.timeContainer = new TimeContainer()
 

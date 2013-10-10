@@ -1,7 +1,6 @@
 angular.module('meetupDirectives')
   .directive 'selectableTable', ($parse) ->
     restrict: 'A'
-    terminal: true
 
     link: ($scope, elem, attr) ->
       [childRow, childCell] = if elem.is 'table' then ['tr', 'td'] else ['.row', '.cell']
@@ -13,9 +12,8 @@ angular.module('meetupDirectives')
 
       rows = {}
 
-      elem.on 'mouseleave', handleMoveEnd
-
       initialize = ->
+        elem.off()
         rows = elem.find(childRow).slice(startRow)
         rows.each (y) ->
           $(this).find(childCell).slice(startColumn).each (x) ->
@@ -28,6 +26,8 @@ angular.module('meetupDirectives')
             $elem.on 'touchmove', handleTouchMove
             $elem.on 'mouseup touchend', (e) ->
               handleMoveEnd e, x, y
+        elem.on 'mouseleave', handleMoveEnd
+
 
       initialize()
       $scope.$on 'ngRepeatFinished', ->
@@ -46,6 +46,8 @@ angular.module('meetupDirectives')
         handleMove e, x, y
 
       handleMoveStart = (e, x, y) ->
+        button = e.which || e.button
+        return if e.type == 'mousedown' && button != 1
         return if activated
         activated = true
         $scope.$emit 'moveStart', x, y
