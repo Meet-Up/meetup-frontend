@@ -15,6 +15,5 @@ angular.module('meetupControllers')
       $scope.$emit 'titleBar.update', { nextDisabled: !$scope.hasSelectedDates() }
     , true
 
-
     $scope.saveEvent = ->
       $scope.event.save()
