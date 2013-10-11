@@ -1,6 +1,5 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeCell, DEVICE) ->
-    DAYS_PER_PAGE = 5
+  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeCell, DEVICE, DAYS_PER_PAGE) ->
 
     [startX, startY] = [-1, -1]
     [lastX, lastY] = [-1, -1]

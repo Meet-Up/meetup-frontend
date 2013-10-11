@@ -15,11 +15,14 @@
     </tr>
     <tr class="even-time-{{y % 4 < 2}}"
         ng-repeat="y in rows"
-        emit-on-render ng-init="show=y % 2 == 0">
+        ng-init="show=y % 2 == 0"
+        emit-on-render>
       <td class="cell"
           ng-class="{'time-label': show, hidden: dates.length == 0}"
           ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
-      <td class="cell selected-{{isSelected(x, y)}}" ng-repeat="x in daysIndexes" emit-on-render="parent" ng-class="{hidden: x >= dates.length}">
+      <td class="cell selected-{{isSelected(x, y)}}"
+          ng-repeat="x in daysIndexes"
+          ng-class="{hidden: x >= dates.length}">
       </td>
     </tr>
   </table>
