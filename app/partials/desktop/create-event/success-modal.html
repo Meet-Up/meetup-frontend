@@ -1,0 +1,9 @@
+<h1>Sucess</h1>
+<div>{{event.title}}</div>
+<div>{{event.duration}}</div>
+<div>{{event.description}}</div>
+<span ng-repeat="dateInfo in timeContainer.dates">
+  {{ dateInfo.date | date:'MM/d（EEE曜）' }}
+</span>
+
+

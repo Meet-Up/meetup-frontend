@@ -6,15 +6,6 @@ angular.module('meetupDirectives')
     isSelecting = false
     statusNumber = 0
 
-    getDates = ($scope, statusNumber) ->
-      if statusNumber == TimeCell.AVAILABLE
-        return $scope.event.dates if 'event' of $scope
-      else if statusNumber == TimeCell.OPENED
-        if 'calendar' of $scope
-          dates = (date for k, date of $scope.calendar.selectedDates)
-          return dates
-      return []
-
     onMove = (e, x, y, $scope) ->
       return if x == lastX && y == lastY
       [lastX, lastY] = [x, y]
@@ -58,11 +49,6 @@ angular.module('meetupDirectives')
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
 
-      dates = getDates $scope, statusNumber
-      if dates.length == 0 && !allowEmpty
-        $state.go if statusNumber == TimeCell.OPENED then 'create-event.index' else 'home'
-        return
-
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 
       $scope.isSelected = (x, y) ->
@@ -76,8 +62,6 @@ angular.module('meetupDirectives')
       $scope.nextPage = ->
         $scope.page += 1
         updateScopeData($scope)
-
-      $scope.timeContainer.updateDates dates
 
       initializeEvents $scope, statusNumber
 

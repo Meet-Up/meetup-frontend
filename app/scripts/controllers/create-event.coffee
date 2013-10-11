@@ -1,5 +1,8 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, CalendarModel, $filter) ->
+  .controller 'CreateEventCtrl', ($scope, $filter, Event, TimeContainer, CalendarModel, createDialog) ->
+
+    # DELETE ME
+    $scope.foo = -> createDialog($scope, 'partials/desktop/create-event/success-modal.html')
 
     $scope.event = new Event({ datesIndexes: {}})
     $scope.calendar = new CalendarModel()
