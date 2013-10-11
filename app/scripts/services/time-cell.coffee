@@ -6,7 +6,7 @@ angular.module('meetupServices')
 
       status: 0
 
-      constructor: (@index, opened, available) ->
+      constructor: (opened, available) ->
         @setOpened opened ? false
         @setAvailable available ? false
 
