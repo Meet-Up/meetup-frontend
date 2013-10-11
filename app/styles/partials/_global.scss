@@ -5,3 +5,24 @@ body {
 .white {
   background: white;
 }
+
+hr {
+  margin:0;
+  padding:0;
+  border:none;
+  &.green {
+    width: 100%;
+    border-top: 1px dotted $main-color;
+  }
+  &.event-horizen {
+    margin-top: 30px;
+    width: 842px;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px dotted $main-color;
+    border-left: none;
+    border-right: none;
+    padding-bottom:7px;
+  }
+}
