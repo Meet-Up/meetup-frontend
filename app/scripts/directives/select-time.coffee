@@ -46,7 +46,7 @@ angular.module('meetupDirectives')
     replace: true
     transclude: false
     terminal: true
-    templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
+    templateUrl: "partials/#{DEVICE}/select-time/main.html"
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE
