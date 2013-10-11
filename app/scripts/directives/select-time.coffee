@@ -1,6 +1,5 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeCell, DEVICE) ->
-    DAYS_PER_PAGE = 5
+  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeCell, DEVICE, DAYS_PER_PAGE) ->
 
     [startX, startY] = [-1, -1]
     [lastX, lastY] = [-1, -1]
@@ -47,7 +46,7 @@ angular.module('meetupDirectives')
     replace: true
     transclude: false
     terminal: true
-    templateUrl: "partials/#{DEVICE}/create-event/select-time.html"
+    templateUrl: "partials/#{DEVICE}/select-time/main.html"
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE

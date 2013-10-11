@@ -2,8 +2,13 @@ angular.module('meetupDirectives')
   .directive 'selectableTable', ($parse) ->
     restrict: 'A'
 
-    link: ($scope, elem, attr) ->
-      [childRow, childCell] = if elem.is 'table' then ['tr', 'td'] else ['.row', '.cell']
+    link: ($scope, element, attr) ->
+      isTable = element.is 'table'
+      [childRow, childCell] = if isTable then ['tr', 'td'] else ['.row', '.cell']
+
+      elem = if isTable then element.find 'tbody' else element
+      headerSelector = if isTable then 'theader' else 'header'
+      header = elem.children headerSelector
 
       startRow = $parse(attr.startRow)() ? 0
       startColumn = $parse(attr.startColumn)() ? 0
@@ -14,20 +19,28 @@ angular.module('meetupDirectives')
 
       initialize = ->
         elem.off()
-        rows = elem.find(childRow).slice(startRow)
-        rows.each (y) ->
-          $(this).find(childCell).slice(startColumn).each (x) ->
+        header.off()
+        rows = elem.find(childRow)
+        rows.each (j) ->
+          $(this).find(childCell).each (i) ->
             $elem = $(this)
             $elem.off()
-            $elem.on 'mousedown touchstart', (e) ->
-              handleMoveStart e, x, y
-            $elem.on 'mousemove', (e) ->
-              handleMove e, x, y
-            $elem.on 'touchmove', handleTouchMove
-            $elem.on 'mouseup touchend', (e) ->
-              handleMoveEnd e, x, y
-        elem.on 'mouseleave', handleMoveEnd
+            if i < startColumn || j < startRow
+              $elem.on 'mouseenter', handleMoveEnd
+            else
+              [x, y] = [i - startColumn, j - startRow]
+              $elem.on 'mousedown touchstart', (e) ->
+                handleMoveStart e, x, y
+              $elem.on 'mousemove', (e) ->
+                handleMove e, x, y
+              $elem.on 'touchmove', handleTouchMove
+              $elem.on 'mouseup touchend', (e) ->
+                handleMoveEnd e, x, y
 
+        rows = rows.slice(startRow)
+
+        elem.on 'mouseleave', handleMoveEnd
+        header.on 'mouseenter', handleMoveEnd
 
       initialize()
       $scope.$on 'ngRepeatFinished', ->

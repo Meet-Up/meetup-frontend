@@ -1,5 +1,5 @@
 angular.module('meetupServices')
-  .factory 'TimeContainer',  (EventDate, DateHelper, TimeCell, CELLS_PER_DAY) ->
+  .factory 'TimeContainer',  (DateHelper, TimeCell, CELLS_PER_DAY) ->
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
@@ -12,33 +12,46 @@ angular.module('meetupServices')
 
       constructor: (@isOpened) ->
         @isOpened ?= false
+        if @isOpened
+          @minRow = 0
+          @maxRow = CELLS_PER_DAY - 1
 
       updateDates: (dates) ->
         tmpDates = @datesObj
         @datesObj = {}
         @dates = []
-        for eventDate in dates
-          [start, end] = @_getInterval eventDate
-          dateKey = getDateKey start
-          if dateKey of tmpDates
-            @datesObj[dateKey] = tmpDates[dateKey]
+        for date in dates
+          key = getDateKey date
+          if key of tmpDates
+            @datesObj[key] = tmpDates[key]
           else
-            @_initializeDate start
-            @_initializeDateStatus start, end
-          @dates.push @datesObj[dateKey]
+            @_initializeDate date
+          @dates.push @datesObj[key]
         @dates.sort (a, b) -> a.date - b.date
+        @setRows() unless @isOpened
 
-      rows: -> if @dates.length > 0 then [@minRow..@maxRow] else [0..CELLS_PER_DAY - 1]
+      rows: -> [@minRow..@maxRow]
+
+      getFirstRow: (start, end, step, condition) ->
+        for i in [start..end] by step
+          date = @dates[i]
+          for time, j in date.times
+            if time.isOpened() && condition(j)
+              return j
+
+      setMinRow: ->
+        minRow = @getFirstRow 0, @dates.length - 1, 1, (j) => j < @minRow
+        @minRow = minRow if minRow?
+
+      setMaxRow: ->
+        maxRow = @getFirstRow @dates.length - 1, 0, -1, (j) => j > @maxRow
+        @maxRow = maxRow if maxRow?
+
+      setRows: ->
+        @setMinRow()
+        @setMaxRow()
 
       getTimeCell: (x, y) -> @dates[x].times[y]
-
-      _getInterval: (eventDate) ->
-        if eventDate instanceof EventDate
-          [eventDate.start, eventDate.end]
-        else
-          start = eventDate.clone().set({ hour: 0, minute: 0})
-          end = eventDate.clone().set({ hour: 23, minute: 59})
-          [start, end]
 
       _initializeDate: (date) ->
         key = getDateKey date
@@ -47,18 +60,6 @@ angular.module('meetupServices')
           date: date
           times: (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
         return true
-
-      _initializeDateStatus: (start, end) ->
-        date = @datesObj[getDateKey start]
-        startInfo = DateHelper.getDateIndexInfo start
-        endInfo = DateHelper.getDateIndexInfo end
-        endIndex = endInfo.index - (if endInfo.exact then 1 else 0)
-        for i in [startInfo.index..endIndex]
-          time = date.times[i]
-          time.setOpened @isOpened
-
-        @minRow = startInfo.index if startInfo.index < @minRow
-        @maxRow = endIndex if endIndex > @maxRow
 
       _restoreStatus: (startX, endX, startY, endY, statusNumber) ->
         for k, status of @changedCells

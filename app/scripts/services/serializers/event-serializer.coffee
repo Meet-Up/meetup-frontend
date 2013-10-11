@@ -1,4 +1,4 @@
 angular.module('meetupServices')
-  .factory 'EventSerializer', (railsSerializer, EventDate) ->
+  .factory 'EventSerializer', (railsSerializer) ->
     railsSerializer ->
       @nestedAttribute 'dates'
