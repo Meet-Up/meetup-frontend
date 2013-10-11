@@ -1,5 +1,5 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, $filter, Event, TimeContainer, CalendarModel, createDialog) ->
+  .controller 'CreateEventCtrl', ($scope, $filter, $state, Event, eventContainer, TimeContainer, CalendarModel, createDialog) ->
 
     # DELETE ME
     $scope.foo = -> createDialog($scope, 'partials/desktop/create-event/success-modal.html')
@@ -20,4 +20,12 @@ angular.module('meetupControllers')
 
     $scope.saveEvent = ->
       $scope.event.setDates $scope.timeContainer
-      $scope.event.save()
+      $scope.event.save().then (evt) ->
+        createDialog($scope, 'partials/desktop/create-event/success-modal.html')
+
+    $scope.gotoEdit = ->
+      eventContainer.addEvent $scope.event
+      $state.go 'events', {
+        token: $scope.event.token
+      }
+

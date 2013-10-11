@@ -21,6 +21,9 @@ angular.module('meetupServices')
 
       $(body).append dialogElement
 
+      dialogScope.close = ->
+        dialogElement.trigger 'closeModal'
+
       dialogElement.easyModal({
         onClose: () ->
           dialogScope.$destroy()
