@@ -1,7 +1,7 @@
 angular.module('meetupControllers')
   .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, CalendarModel, $filter) ->
 
-    $scope.event = new Event({ datesIndexes: {}, dates: [] })
+    $scope.event = new Event({ datesIndexes: {}})
     $scope.calendar = new CalendarModel()
 
     $scope.timeContainer = new TimeContainer(true)
@@ -16,4 +16,5 @@ angular.module('meetupControllers')
     , true
 
     $scope.saveEvent = ->
+      $scope.event.setDates $scope.timeContainer
       $scope.event.save()
