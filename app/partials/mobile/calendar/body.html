@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <td ng-repeat="day in daysOfWeek">{{day}}</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="week in calendar.weeks">
+      <td ng-repeat="day in week" calendar-cell="day">
+        {{day.getDate()}}
+      </td>
+    </tr>
+  </tbody>
+</table>
