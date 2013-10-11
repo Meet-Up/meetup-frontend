@@ -1,16 +1,27 @@
 <div class="page">
-  <div class="content white">
+  <div class="content">
 
     <h1 class="create-event">
       イベントを作成する
     </h1>
+
     <div class="create-book" ui-view=""></div>
 
+    <div class="calendar-area">
+      <h2>
+        <span class="label" for=""><small>*</small>日程指定</span>
+      </h2>
+      <calendar toggable="true">
+      </calendar>
+    </div>
 
     <select-time selection-target="possibilities" allow-empty="true">
     </select-time>
 
-    <input class="create-event" type="image" src="images/desktop/btn-create-event-long.png" fast-click="saveEvent()">
+    <div class="btn-create-event">
+      <input class="create-event" type="image" name="おくる" src="images/mobile/btn-create-event.png" fast-click="saveEvent()">
+      <p>イベントを作成する</p>
+    </div>
 
   </div>
 </div>

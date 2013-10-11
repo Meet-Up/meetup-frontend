@@ -1,25 +1,18 @@
-<table class="book-left">
+<table class="create-basic">
   <tr class="action">
-    <th><span class="label" for="event-name"><small>*</small>イベント名</span></th>
+    <th><h2><span class="label" for="event-name"><small>*</small>イベント名</span></h2></th>
     <td><input type="text" id="event-name" ng-model="event.name"></td>
   </tr>
   <tr class="action">
-    <th><span class="label" for="event-duration"><small>*</small>所要時間</span></th>
+    <th><h2><span class="label" for="event-duration"><small>*</small>所要時間</span></h2></th>
     <td><input type="number" id="event-duration" ng-model="event.duration"></td>
   </tr>
   <tr class="action">
-    <th><span class="label" for="event-content">詳細・コメント</span></th>
-    <td><textarea id="event-content" cols="28" rows="10" ng-model="event.description"></textarea></td>
+    <th><h2><span class="label" for="event-content">　詳細<br>　コメント</span></h2></th>
+    <td><textarea id="event-content" rows="5" ng-model="event.description"></textarea></td>
   </tr>
   <tr class="action">
-    <th><span class="label" for="event-pw"><small>*</small>主催者パスワード</span></th>
+    <th><h2><span class="label" for="event-pw"><small>*</small>主催者<br>　パスワード</span></h2></th>
     <td><input type="text" id="event-pw" ng-model="event.pw"></td>
   </tr>
 </table>
-<div class="book-right">
-  <span><small>*</small>所要時間</span>
-  <calendar toggable="true">
-  </calendar>
-</div>
-
-
