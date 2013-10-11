@@ -4,7 +4,7 @@ angular.module('meetupControllers')
     $scope.event = new Event({ datesIndexes: {}, dates: [] })
     $scope.calendar = new CalendarModel()
 
-    $scope.timeContainer = new TimeContainer()
+    $scope.timeContainer = new TimeContainer(true)
 
     $scope.hasSelectedDates = ->
       !$filter('isEmpty')($scope.calendar.selectedDates)
