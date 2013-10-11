@@ -70,19 +70,28 @@
     }
     tbody {
       td {
-        border: 1px solid #339933;
+        border: 1px solid $main-color;
         color: #444;
         font-size: 19px;
         font-weight: bold;
         text-align: center;
         padding-top: 8px;
         padding-bottom: 8px;
+        &.selected-true {
+          color: white;
+        }
       }
       .past {
-        color: #AAAAAA;
+        color: #AAA;
+        &.selected-true {
+          color: #CCC;
+        }
       }
       .future {
-        color: #AAAAAA;
+        color: #AAA;
+        &.selected-true {
+          color: #CCC;
+        }
       }
     }
   }
