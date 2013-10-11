@@ -22,6 +22,7 @@ angular.module('meetupServices')
           date = Date.parse(eventDate.date)
           times = (new TimeCell(n == '1') for n in eventDate.openTimes)
           timeContainer.dates.push { date: date, times: times}
+        timeContainer._fixDates()
         timeContainer
 
       updateDates: (dates) ->
@@ -35,6 +36,9 @@ angular.module('meetupServices')
           else
             @_initializeDate date
           @dates.push @datesObj[key]
+        @_fixDates()
+
+      _fixDates: ->
         @dates.sort (a, b) -> a.date - b.date
         @setRows() unless @isOpened
 
