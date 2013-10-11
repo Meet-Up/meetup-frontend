@@ -1,7 +1,10 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, Event, TimeContainer, CalendarModel, $filter) ->
+  .controller 'CreateEventCtrl', ($scope, $filter, $state, Event, eventContainer, TimeContainer, CalendarModel, createDialog) ->
 
-    $scope.event = new Event({ datesIndexes: {}, dates: [] })
+    # DELETE ME
+    $scope.foo = -> createDialog($scope, 'partials/desktop/create-event/success-modal.html')
+
+    $scope.event = new Event({ datesIndexes: {}})
     $scope.calendar = new CalendarModel()
 
     $scope.timeContainer = new TimeContainer(true)
@@ -15,6 +18,14 @@ angular.module('meetupControllers')
       $scope.$emit 'titleBar.update', { nextDisabled: !$scope.hasSelectedDates() }
     , true
 
-
     $scope.saveEvent = ->
-      $scope.event.save()
+      $scope.event.setDates $scope.timeContainer
+      $scope.event.save().then (evt) ->
+        createDialog($scope, 'partials/desktop/create-event/success-modal.html')
+
+    $scope.gotoEdit = ->
+      eventContainer.addEvent $scope.event
+      $state.go 'events', {
+        token: $scope.event.token
+      }
+

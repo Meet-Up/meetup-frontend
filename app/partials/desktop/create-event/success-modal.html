@@ -1,0 +1,11 @@
+<h1>Sucess</h1>
+
+<div>{{event.title}}</div>
+<div>{{event.duration}}</div>
+<div>{{event.description}}</div>
+<span ng-repeat="dateInfo in timeContainer.dates">
+  {{ dateInfo.date | date:'MM/d（EEE曜）' }}
+</span>
+
+<a href="javascript:void(0)" ng-click="close()">Close</a>
+<a href="javascript:void(0)" ng-click="close(); gotoEdit()">Edit</a>

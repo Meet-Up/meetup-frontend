@@ -40,9 +40,12 @@ angular.module('meetupApp', [
           previousState: 'create-event.index'
     })
     .state('events', {
-      url: '/events'
+      url: '/events/:token'
       templateUrl: "views/#{DEVICE}/events.html"
-      controller: 'CreateEventCtrl'
+      controller: 'EventCtrl'
+      resolve:
+        event: ($stateParams, eventContainer) ->
+          eventContainer.getEvent $stateParams.token
     })
   ).run ($rootScope, DEVICE) ->
     $rootScope.device = DEVICE

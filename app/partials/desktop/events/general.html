@@ -2,12 +2,14 @@
   <div class="basic-info">
     <h2>
       <div class="duration-h">所要時間</div>
-      <div class="duration-text">約3時間</div>
+      <div class="duration-text">約{{event.duration}}時間</div>
     </h2>
     <hr>
-    <h2>
+    <h2 ng-show="event.description.length > 0">
       <div class="comment-h">コメント</div>
-      <div class="comment-text">レバ刺しを食べます。死んでも文句言わない人だけ行きましょう！</div>
+      <div class="comment-text">
+        {{event.description}}
+      </div>
     </h2>
   </div>
   <div class="input-schedule">
