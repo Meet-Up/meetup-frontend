@@ -17,12 +17,14 @@ angular.module('meetupDirectives')
 
       $scope.$on 'moveStart', (e, x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
+        y += $scope.timeContainer.minRow
         [startX, startY] = [x, y]
         isSelecting = !getCell(x, y).getStatus(statusNumber)
         onMove e, x, y, $scope
 
       $scope.$on 'move', (e, x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
+        y += $scope.timeContainer.minRow
         onMove e, x, y, $scope
 
       $scope.$on 'moveEnd', (e, x, y) ->
@@ -49,7 +51,14 @@ angular.module('meetupDirectives')
       statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
 
+      $scope.cssClass = $attrs.selectionTarget
+
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
+
+      $scope.isOpened = (x, y) ->
+        x += ($scope.page - 1) * DAYS_PER_PAGE
+        return false if x >= $scope.timeContainer.dates.length
+        $scope.timeContainer.getTimeCell(x, y).isOpened()
 
       $scope.isSelected = (x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
