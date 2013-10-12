@@ -1,5 +1,5 @@
 angular.module('meetupDirectives')
-  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeCell, DEVICE, DAYS_PER_PAGE) ->
+  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeStatus, DEVICE, DAYS_PER_PAGE) ->
 
     [startX, startY] = [-1, -1]
     [lastX, lastY] = [-1, -1]
@@ -48,7 +48,7 @@ angular.module('meetupDirectives')
       $scope.dates = []
       $scope.rows = $scope.timeContainer.rows()
 
-      statusNumber = TimeCell.getStatusFromName $attrs.selectionTarget
+      statusNumber = TimeStatus.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
 
       $scope.cssClass = $attrs.selectionTarget

@@ -1,17 +1,14 @@
 angular.module('meetupServices')
-  .factory 'TimeCell',  ->
+  .factory 'TimeCell', (TimeStatus) ->
     class TimeCell
-      @OPENED:     0x01
-      @AVAILABLE:  0x02
-
-      status: 0
 
       constructor: (opened, available) ->
+        @status = 0
         @setOpened opened ? false
         @setAvailable available ? false
 
       _canUpdateStatus: (active, type) ->
-        return false if type == TimeCell.AVAILABLE && !@isOpened()
+        return false if type == TimeStatus.AVAILABLE && !@isOpened()
         true
 
       updateStatus: (active, type) ->
@@ -19,14 +16,10 @@ angular.module('meetupServices')
         if active then @status |= type else @status &= ~type
       getStatus: (type) -> (@status & type) != 0
 
-      isOpened: -> @getStatus TimeCell.OPENED
-      isAvailable: -> @getStatus TimeCell.AVAILABLE
-      setOpened: (b) -> @updateStatus b, TimeCell.OPENED
+      isOpened: -> @getStatus TimeStatus.OPENED
+      isAvailable: -> @getStatus TimeStatus.AVAILABLE
+      setOpened: (b) -> @updateStatus b, TimeStatus.OPENED
       setAvailable: (b) ->
-        @updateStatus b, TimeCell.AVAILABLE
+        @updateStatus b, TimeStatus.AVAILABLE
 
-      @getStatusFromName: (name) -> switch name
-        when 'possibilities' then TimeCell.OPENED
-        when 'availabilities' then TimeCell.AVAILABLE
-        else 0
 
