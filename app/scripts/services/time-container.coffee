@@ -16,6 +16,15 @@ angular.module('meetupServices')
           @minRow = 0
           @maxRow = CELLS_PER_DAY - 1
 
+      @fromEventDates: (eventDates) ->
+        timeContainer = new TimeContainer()
+        for eventDate in eventDates
+          date = Date.parse(eventDate.date)
+          times = (new TimeCell(n == '1') for n in eventDate.openTimes)
+          timeContainer.dates.push { date: date, times: times}
+        timeContainer._fixDates()
+        timeContainer
+
       updateDates: (dates) ->
         tmpDates = @datesObj
         @datesObj = {}
@@ -27,6 +36,9 @@ angular.module('meetupServices')
           else
             @_initializeDate date
           @dates.push @datesObj[key]
+        @_fixDates()
+
+      _fixDates: ->
         @dates.sort (a, b) -> a.date - b.date
         @setRows() unless @isOpened
 
@@ -58,7 +70,7 @@ angular.module('meetupServices')
         return false if key of @datesObj
         @datesObj[key] =
           date: date
-          times: (new TimeCell(i) for i in [0..CELLS_PER_DAY - 1])
+          times: (new TimeCell() for i in [0..CELLS_PER_DAY - 1])
         return true
 
       _restoreStatus: (startX, endX, startY, endY, statusNumber) ->

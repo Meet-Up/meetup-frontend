@@ -6,18 +6,24 @@ angular.module('meetupServices')
 
       status: 0
 
-      constructor: (@index, opened, available) ->
+      constructor: (opened, available) ->
         @setOpened opened ? false
         @setAvailable available ? false
 
+      _canUpdateStatus: (active, type) ->
+        return false if type == TimeCell.AVAILABLE && !@isOpened()
+        true
+
       updateStatus: (active, type) ->
+        return unless @_canUpdateStatus(active, type)
         if active then @status |= type else @status &= ~type
       getStatus: (type) -> (@status & type) != 0
 
       isOpened: -> @getStatus TimeCell.OPENED
       isAvailable: -> @getStatus TimeCell.AVAILABLE
       setOpened: (b) -> @updateStatus b, TimeCell.OPENED
-      setAvailable: (b) -> @updateStatus b, TimeCell.AVAILABLE
+      setAvailable: (b) ->
+        @updateStatus b, TimeCell.AVAILABLE
 
       @getStatusFromName: (name) -> switch name
         when 'possibilities' then TimeCell.OPENED

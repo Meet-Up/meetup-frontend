@@ -39,6 +39,21 @@
       }
     }
   }
+
+  &.availabilities {
+    td {
+      &.selected-false {
+        background: #cdcdcd;
+      }
+      &.opened {
+        background: #dcdddd;
+      }
+      &.selected-true {
+        background: $selected-cell-color;
+      }
+    }
+  }
+
   /* オリジナルスクロールバー
   ::-webkit-scrollbar {
       width: 12px;

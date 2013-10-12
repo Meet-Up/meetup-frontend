@@ -5,7 +5,7 @@
 
   <div ng-include src="'partials/desktop/select-time/time-select-control.html'"></div>
 
-  <table class="time-selection" selectable-table="" start-column="1">
+  <table class="time-selection {{cssClass}}" selectable-table="" start-column="1">
     <thead>
       <tr class="days-of-week">
         <td></td>
@@ -24,7 +24,7 @@
             ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
         <td class="cell selected-{{isSelected(x, y)}}"
             ng-repeat="x in daysIndexes"
-            ng-class="{hidden: x >= dates.length}">
+            ng-class="{hidden: x >= dates.length, opened: isOpened(x, y)}">
         </td>
       </tr>
     </tbody>
