@@ -30,6 +30,5 @@ angular.module('meetupServices')
           dialogElement.remove()
       })
 
-      dialogElement.css 'left', ("#{options.left ? '40'}%")
       dialogElement.trigger 'openModal'
 

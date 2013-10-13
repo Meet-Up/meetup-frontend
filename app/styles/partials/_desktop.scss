@@ -769,12 +769,33 @@ hr {
       color: white;
     }
     .share-url {
-      width: 560px;
+      position: relative;
+      width: 490px;
       padding:10px;
+      padding-right: 80px;
       margin-left: auto;
       margin-right: auto;
       background: white;
       color: #202020;
+      .btn-copy {
+        position: absolute;
+        top: 1px;
+        right: 0px;
+        width: 75px;
+        height: 36px;
+        background: image-url("common/btn-copy.png") no-repeat;
+        background-size: 73px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+        }
+        p {
+          color: white;
+          font-size: 14px;
+          text-align: center;
+          padding-top: 10px;
+        }
+      }
     }
   }
   .share-box-right {
@@ -826,5 +847,7 @@ hr {
     }
   }
 }
+
+
 
 }

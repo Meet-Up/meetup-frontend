@@ -32,6 +32,16 @@ button {
       background: image-url("mobile/h1-event-title.png") no-repeat;
     }
   }
+  h2 {
+    &.create-event {
+      color: #777777;
+      text-align: center;
+      small {
+        color: red;
+        padding-right: 2px;
+      }
+    }
+  }
 }
 header {
   width: 100%;
@@ -392,30 +402,25 @@ footer {
 
 .calendar-area {
   margin-top: 20px;
-  h2 {
-    color: #777777;
-    text-align: center;
-    small {
-      color: red;
-    }
-  }
+  overflow: hidden;
 }
 
-.btn-create-event {
+
+.btn-next-link {
   width: 280px;
+  height: 60px;
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  input.create-event {
-    width: 100%;
-    cursor: pointer;
-  }
+  background: $main-color;
+  border-radius: 5px;
+  cursor: pointer;
   p {
     clear: both;
     color: white;
     text-align: center;
-    margin-top: -46px;
-    margin-left: 50px;
+    margin-top: 0px;
+    padding-top: 19px;
     cursor: pointer;
     font-size: 20px;
   }
@@ -423,6 +428,168 @@ footer {
     opacity: 0.7;
   }
 }
+
+.time-selection-area {
+  position: relative;
+  top: 0px;
+  background: white;
+}
+
+.confirm-book-mobile {
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border: 3px solid $main-color;
+  text-align: left;
+  padding: 10px;
+  font-size: 12px;
+  table {
+    tr {
+      th {
+        width: 70px;
+        color: #777;
+        text-align: right;
+        padding-top: 8px;
+        vertical-align: top;
+      }
+      td {
+        text-align: left;
+        padding-left: 4px;
+        color: #444;
+        font-size: 15px;
+        padding-top: 4px;
+        vertical-align: top;
+        line-height: 20px;
+        hr {
+          padding-bottom: 5px;
+          width: 99%;
+        }
+        &.conf-event-title {
+          font-weight: bold;
+          color: $main-color;
+          padding-left: 8px;
+          padding-bottom: 3px;
+        }
+        &.conf-event-duration {
+          font-weight: bold;
+          color: $main-color;
+        }
+        &.conf-event-description {
+          font-weight: normal;
+          font-size: 14px;
+        }
+        &.conf-event-dates {
+          font-weight: normal;
+          font-size: 13px;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+.share-url {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  .share-box {
+    width: 300px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    input {
+      width: 200px;
+      margin-top: 12px;
+      height: 25px;
+      float: left;
+    }
+    .copy-box {
+      float: left;
+      margin-left: 5px;
+      width: 70px;
+      height: 40px;
+      margin-top: 10px;
+      background: image-url("mobile/btn-green.png") no-repeat;
+      background-size: 70px;
+      p {
+        color: white;
+        text-align: center;
+        padding-top: 11px;
+        padding-left: 2px;
+        font-size: 15px;
+      }
+    }
+  }
+  .share-sns {
+    margin-top: 13px;
+    width:290px;
+    margin-left: auto;
+    margin-right: auto;
+    p {
+      color: white;
+      font-size: 12px;
+      padding-top: 8px;
+      padding-left: 42px;
+      line-height: 1.3em;
+    }
+    .share-line {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-line.png") no-repeat;
+      background-size: 90px;
+    }
+    .share-twitter {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-twitter.png") no-repeat;
+      background-size: 90px;
+    }
+    .share-facebook {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-facebook.png") no-repeat;
+      background-size: 90px;
+      p {
+        padding-left: 30px;
+      }
+    }
+  }
+}
+
+
+
+.btn-goinput {
+  width: 280px;
+  height: 80px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background: $main-color;
+  border-radius: 4px;
+  p {
+    clear: both;
+    color: white;
+    text-align: center;
+    padding-top:29px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
 
 .time-output {
   margin-top: 40px;

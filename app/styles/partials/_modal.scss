@@ -1,5 +1,120 @@
 .modal {
-  background-color: #ffffff;
-  width: 30%;
-  height: 40%;
+  background: image-url("common/back-green-sub.png");
+  border-radius: 7px;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  width: 970px;
+  margin-left: -485px;
+  height: 85%;
+  overflow: scroll;
+  h2 {
+    width: 270px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background: image-url("common/logo-symbol.png") no-repeat;
+    padding-left: 10px;
+    padding-top: 2px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: $main-color;
+  }
+  .confirm-book {
+    width: 840px;
+    height: auto;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border: 3px solid $main-color;
+    text-align: left;
+    padding: 20px;
+    table {
+      tr {
+        th {
+          width: 100px;
+          color: #777;
+          text-align: right;
+          padding-top: 8px;
+          vertical-align: top;
+        }
+        td {
+          padding-left: 4px;
+          color: #444;
+          font-size: 26px;
+          font-weight: bold;
+          vertical-align: top;
+        }
+        &.basic-info-top {
+          td {
+            width: 730px;
+            font-size: 26px;
+            hr {
+              width: 100%;
+              margin-top: 6px;
+              margin-bottom: 15px;
+              border-bottom: 2px dotted $main-color;
+            }
+          }
+        }
+        &.basic-info-bottom {
+          th {
+            height: 30px;
+            margin-right: -50px;
+            &.conf-event-dates {
+              width: 60px;
+            }
+          }
+          td {
+            width: 240px;
+            padding-left: 9px;
+            font-size: 26px;
+            &.conf-event-duration {
+              font-size: 20px;
+              padding-top: 5px;
+              color: $main-color;
+            }
+            &.conf-event-dates {
+              width: 170px;
+              padding-top: 2px;
+              font-size: 18px;
+              line-height: 23px;
+              color: $main-color;
+            }
+            &.conf-event-description {
+              padding-left: 7px;
+              font-size: 17px;
+              font-weight: normal;
+              color: #444;
+              padding-top: 6px;
+              line-height: 19px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .goinput {
+    width: 339px;
+    height: 52px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background: image-url("desktop/btn-goinput.png") no-repeat;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+    p {
+      width: 339px;
+      padding-top: 16px;
+      text-align: center;
+      font-size: 21px;
+      color: white;
+    }
+  }
 }
+

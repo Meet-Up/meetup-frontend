@@ -1,5 +1,8 @@
 .time-selection {
-  width: 800px;
+  width: 90%;
+  @media only screen and (min-width: 760px) {
+    width: 800px;
+  }
   margin-top:20px;
   margin-left: auto;
   margin-right: auto;
@@ -24,7 +27,10 @@
       color: $main-color;
       font-weight: bold;
       &.cell {
-        width: 10%;
+        width: 5px;
+        @media only screen and (min-width: 760px) {
+          width: 10%;
+        }
         height: 20px;
         cursor: image-url("common/pointer-pen.png") no-repeat;
         &.time-label {

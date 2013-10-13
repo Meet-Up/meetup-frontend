@@ -1,11 +1,84 @@
-<h1>Sucess</h1>
+<h2>作成イベントの確認</h2>
 
-<div>{{event.title}}</div>
-<div>{{event.duration}}</div>
-<div>{{event.description}}</div>
-<span ng-repeat="dateInfo in timeContainer.dates">
-  {{ dateInfo.date | date:'MM/d（EEE曜）' }}
-</span>
+<div class="confirm-book">
 
-<a href="javascript:void(0)" ng-click="close()">Close</a>
-<a href="javascript:void(0)" ng-click="close(); gotoEdit()">Edit</a>
+<table>
+  <tr class="basic-info-top">
+    <th colspan="1">
+      イベント名：
+    </th>
+    <td colspan="3">
+      {{event.title}}
+    </td>
+  </tr>
+  <tr class="basic-info-top">
+    <td colspan="4">
+      <hr>
+    </td>
+  </tr>
+  <tr class="basic-info-bottom">
+    <th>
+      所要時間：
+    </th>
+    <td class="conf-event-duration">
+      {{event.duration}} 時間くらい
+    </td>
+    <th rowspan="2" class="conf-event-dates">
+      日程候補：
+    </th>
+    <td rowspan="2" class="conf-event-dates">
+      <span ng-repeat="dateInfo in timeContainer.dates">
+        {{ dateInfo.date | date:'MM/d（EEE）' }}
+      </span>
+    </td>
+  </tr>
+  <tr class="basic-info-bottom">
+    <th>
+      コメント：
+    </th>
+    <td class="conf-event-description">
+      {{event.description}}
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<div class="organizer-area">
+  <div class="gide-arrow"></div>
+  <div class="share-box-left">
+    <div class="share-h">
+      <p>下記URLをコピーして参加者に共有してください。</p>
+    </div>
+    <div class="share-url">
+      <p>http://meetup.co.jp/list.php?id=20131005082551_jrjpjj</p>
+      <div class="btn-copy">
+        <p>コピー！</p>
+      </div>
+    </div>
+  </div>
+  <div class="share-box-right">
+    <div class="share-mail">
+      <p>メール</p>
+    </div>
+    <div class="share-twitter">
+      <img src="images/desktop/btn-mail.png" alt="">
+    </div>
+    <div class="share-facebook">
+      <img src="images/desktop/btn-mail.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="gide-arrow"></div>
+
+<div class="goinput">
+  <p>自分の予定を入力する</p>
+</div>
+
+<!--
+  <a href="javascript:void(0)" ng-click="close()">Close</a>
+  <a href="javascript:void(0)" ng-click="close(); gotoEdit()">Edit</a>
+  -->
