@@ -10,35 +10,10 @@
       <div class="comment-text">レバ刺しを食べます。死んでも文句言わない人だけ行きましょう！</div>
     </h2>
   </div>
-  <div class="input-schedule">
-    <p>予定を入力する</p>
-  </div>
-  <div class="recommend-area">
-    <div class="recommend-h">
-      <p>オススメ日程</p>
-    </div>
-    <div class="recommend-days">
-      <ul class="recommend-no1">
-        <li class="rank no1">No.1</li>
-        <li>9/7（木） 19:30 〜 22:30</li>
-        <li>9/7（木） 18:30 〜 21:30</li>
-      </ul>
-      <ul class="recommend-no2">
-        <li class="rank no2">No.2</li>
-        <li>9/3（日） 14:30 〜 17:30</li>
-      </ul>
-      <ul class="recommend-no3">
-        <li class="rank no3">No.3</li>
-        <li>9/4（月） 13:00 〜 16:00</li>
-        <li>9/4（月） 14:00 〜 17:00</li>
-        <li>9/5（火） 13:00 〜 16:00</li>
-      </ul>
-      </ul>
-    </div>
-  </div>
   <div class="people-inputed-area">
     <div class="people-inputed-h">
-      <p>入力した人</p>
+      <h2>入力した人</h2>
+      <p><small>*</small>タップすると予定を修正できます</p>
     </div>
     <div class="people-inputed-contents">
       <ul>
@@ -47,64 +22,120 @@
         <li>そねお</li>
         <li>さそー</li>
         <li>くわこ</li>
+        <li>Daniel Perez</li>
+        <li>はじぴょん</li>
+        <li>そねお</li>
+        <li>さそー</li>
+        <li>くわこ</li>
+        <li>Daniel Perez</li>
+        <li>はじぴょん</li>
+        <li>そねお</li>
+        <li>さそー</li>
+        <li>くわこ</li>
+        <li>Daniel Perez</li>
+        <li>はじぴょん</li>
+        <li>そねお</li>
+        <li>さそー</li>
+        <li>くわこ</li>
+        <li>Daniel Perez</li>
+        <li>はじぴょん</li>
+        <li>そねお</li>
+        <li>さそー</li>
+        <li>くわこ</li>
       </ul>
-      <p><small>*</small>名前をクリックすると予定を修正できます。</p>
     </div>
   </div>
-</div>
-<hr class="event-horizen">
-<div class="heatmap-area">
-  <h2>みんなの予定</h2>
-  <div class="overnavi">
-    <div class="overnavi-left"></div>
-    <div class="overnavi-right"></div>
+  <div class="recommend-area">
+    <div class="recommend-h">
+      <h2>オススメ日程</h2>
+    </div>
+    <table class="recommend-days">
+      <tr class="recommend-no1">
+        <th class="no1">
+          No.1
+        </th>
+        <td>
+          <ul>
+            <li>9/7（木） 19:30 〜 22:30 ,</li>
+            <li>9/7（木） 18:30 〜 21:30</li>
+          </ul>
+        </td>
+      </tr>
+      <tr class="recommend-no2">
+        <th class="no2">
+          No.2
+        </th>
+        <td>
+          <ul>
+            <li>9/3（日） 14:30 〜 17:30</li>
+          </ul>
+        </td>
+      </tr>
+      <tr class="recommend-no3">
+        <th class="no3">
+          No.3
+        </th>
+        <td>
+          <ul>
+            <li>9/4（月） 13:00 〜 16:00 ,</li>
+            <li>9/4（月） 14:00 〜 17:00 ,</li>
+            <li>9/5（火） 13:00 〜 16:00</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
   </div>
-  <div class="heatmap">
-    <img src="images/sample-heatmap.png">
-  </div>
-  <p class="help-mydates">* 橙色の枠部分は自分が参加できる日時です。</p>
-  <p class="help-select">* 色のついたボックスを選択すると、その日時に参加できる人が表示されます。</p>
+
+      <calendar toggable="true">
+      </calendar>
+
 </div>
-<hr class="event-horizen">
-<div class="area-selected">
-  <div class="area-selected-info">
-    <ul>
-      <li>Daniel Perez</li>
-      <li>はじぴょん</li>
-      <li>そねお</li>
-      <li>さそー</li>
-      <li>くわこ</li>
-    </ul>
+
+
+<div class="notches"></div>
+
+<div class="clear"></div>
+
+<div class="input-area">
+
+  <div class="tabs">
+    <div class="tab-input">
+      <p>自分の予定</p>
+    </div>
+    <div class="tab-heatmap">
+      <p>みんなの予定</p>
+    </div>
+  </div>
+
+  <div class="input-schedule">
+
+    <select-time selection-target="possibilities" allow-empty="true">
+    </select-time>
+
+  </div>
+
+  <div class="area-selected">
+    <div class="area-selected-info">
+      <h3>
+        9/2(土) 18:00 〜 18:30
+      </h3>
+      <hr>
+      <div class="clear"></div>
+      <ul>
+        <li>Daniel Perez</li>
+        <li>はじぴょん</li>
+        <li>そねお</li>
+        <li>さそー</li>
+        <li>くわこ</li>
+        <li>くわこ</li>
+      </ul>
+    </div>
     <div class="btn-decide-day">
       <p>開催日時に決定！</p>
     </div>
-  </div>
-  <div class="area-selected-close"></div>
-</div>
-<div class="organizer-area">
-  <h2>主催者の方へ</h2>
-  <div class="share-box-left">
-    <div class="share-h">
-      <p>下記URLをコピーして参加者に共有してください。</p>
-    </div>
-    <div class="share-url">
-      <p>http://meetup.co.jp/list.php?id=20131005082551_jrjpjj</p>
+    <div class="btn-close">
+      <p>閉じる</p>
     </div>
   </div>
-  <div class="share-box-right">
-    <div class="share-mail">
-      <p>メール</p>
-    </div>
-    <div class="share-twitter">
-      <img src="images/desktop/btn-mail.png" alt="">
-    </div>
-    <div class="share-facebook">
-      <img src="images/desktop/btn-mail.png" alt="">
-    </div>
-    <div class="delete-event">
-      <p><a href="">このイベントを削除する</a></p>
-    </div>
-  </div>
-</div>
 
-
+</div>
