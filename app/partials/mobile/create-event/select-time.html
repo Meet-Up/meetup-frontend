@@ -10,7 +10,7 @@
     <tr class="days-of-week">
       <td></td>
       <td ng-repeat="dateInfo in dates">
-        {{ dateInfo.date | date:'MM/d（EEE曜）' }}
+        {{ dateInfo.date | date:'MM/d（EEE）' }}
       </td>
     </tr>
     <tr ng-repeat="y in rows" emit-on-render ng-init="show=y % 2 == 0">

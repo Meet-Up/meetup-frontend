@@ -44,11 +44,16 @@
     </div>
     <div class="people-inputed-contents">
       <ul>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
+        <li
+          ng-repeat="person in persons"
+          ng-click="selectPerson(person)"
+          ng-class="{selected: selectedPerson == person}"
+        >
+          {{person}}
+          <a href="" class="edit" ng-show="selectedPerson == person">
+            edit
+          </a>
+        </li>
       </ul>
       <p><small>*</small>名前をクリックすると予定を修正できます。</p>
     </div>

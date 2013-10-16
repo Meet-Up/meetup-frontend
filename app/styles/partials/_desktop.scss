@@ -595,6 +595,17 @@ hr {
         margin-top: 3px;
         margin-left: 10px;
         line-height: 1.3em;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.6;
+        }
+        &.selected {
+          opacity: 1.0;
+          background-color: orange;
+        }
+        a.edit {
+          float: right;
+        }
       }
     }
     p {

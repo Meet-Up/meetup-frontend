@@ -3,23 +3,7 @@
 
     <span href="#" ng-click="foo()">foo</span>
 
-    <h1 class="create-event">
-      イベントを作成する
-    </h1>
-    <ng-include src="'partials/desktop/create-event/general.html'"></ng-include>
-
-    <select-time selection-target="possibilities" allow-empty="true">
-    </select-time>
-
-    <div class="btn-create-event">
-      <input
-        class="create-event"
-        type="image"
-        src="images/desktop/btn-create-event-long.png"
-        fast-click="saveEvent()"
-      >
-      <p>イベントを作成する</p>
-    </div>
+    <div ui-view=""></div>
 
   </div>
 </div>
