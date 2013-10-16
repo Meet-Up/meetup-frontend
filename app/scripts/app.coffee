@@ -17,9 +17,18 @@ angular.module('meetupApp', [
 
   desktopStates =
     'create-event':
+      abstract: true
       url: '/create-event'
-      templateUrl: 'views/desktop/create-event.html'
       controller: 'CreateEventCtrl'
+      templateUrl: 'views/desktop/create-event.html'
+
+    'create-event.index':
+      url: ''
+      templateUrl: 'partials/desktop/create-event/creation.html'
+
+    'create-event.confirm':
+      url: '/confirm'
+      templateUrl: 'partials/desktop/create-event/confirmation.html'
 
     events:
       url: '/events/:token'
@@ -28,6 +37,7 @@ angular.module('meetupApp', [
       resolve:
         event: ($stateParams, eventContainer) ->
           eventContainer.getEvent $stateParams.token
+
 
   mobileStates =
     'create-event':
