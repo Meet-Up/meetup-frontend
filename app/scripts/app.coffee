@@ -29,68 +29,44 @@ angular.module('meetupApp', [
         event: ($stateParams, eventContainer) ->
           eventContainer.getEvent $stateParams.token
 
-  # mobileStates =
-
-
-
-  $urlRouterProvider.otherwise '/'
-
-  $stateProvider
-    .state('home', {
-      url: '/'
-      templateUrl: "views/#{DEVICE}/main.html"
-      controller: 'HomeCtrl'
-      data:
-        titleBar:
-          hasCreate: true
-    })
-    .state('create-event', {
+  mobileStates =
+    'create-event':
       url: '/create-event'
-      templateUrl: "views/#{DEVICE}/create-event.html"
+      templateUrl: 'views/mobile/create-event.html'
       controller: 'CreateEventCtrl'
       abstract: true
-    })
-    .state('create-event.index', {
+    'create-event.index':
       url: ''
-      templateUrl: "partials/#{DEVICE}/create-event/general.html"
+      templateUrl: 'partials/mobile/create-event/general.html'
       data:
         titleBar:
           hasNext: true
           nextDisabled: true
           nextState: 'create-event.select-time'
-    })
-    .state('create-event.select-time', {
+    'create-event.selection-time':
       url: '/select-time'
-      templateUrl: "partials/#{DEVICE}/create-event/time-selection.html"
+      templateUrl: 'partials/mobile/create-event/time-selection.html'
       data:
         titleBar:
           hasPrevious: true
-          previousState: 'create-event.index'
-    })
-    .state('events', {
-      url: '/events'
-      templateUrl: "views/#{DEVICE}/events.html"
-      controller: 'CreateEventCtrl'
-      abstract: true
-    })
-    .state('events.index', {
-      url: ''
-      templateUrl: "partials/#{DEVICE}/events/general.html"
-      data:
-        titleBar:
           hasNext: true
           nextDisabled: true
-          nextState: 'create-event.select-time'
-    })
-    ###
-    .state('events', {
-      url: '/events'
-      templateUrl: "views/#{DEVICE}/events.html"
-      controller: 'EventCtrl'
-      resolve:
-        event: ($stateParams, eventContainer) ->
-          eventContainer.getEvent $stateParams.token
-    })
-    ###
-  )
+          nextState: 'create-event.confirm'
+    'create-event.confirm':
+      url: '/confirm'
+      templateUrl: 'partials/mobile/create-event/confirmation.html'
+      data:
+        titleBar:
+          hasPrevious: true
+          hasNext: false
 
+  otherStates = if DEVICE == 'desktop' then desktopStates else mobileStates
+
+  for stateName, stateData of _.extend({}, commonStates, otherStates)
+    $stateProvider.state stateName, stateData
+
+  $urlRouterProvider.otherwise '/'
+
+).run ($rootScope, $state) ->
+  $rootScope.$on '$stateChangeStart', (event, toState, toParams) ->
+    # console.log event, toState, toParams

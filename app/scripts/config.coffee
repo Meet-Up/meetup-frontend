@@ -5,5 +5,5 @@ angular.module('meetupConfig', [])
     $provide.constant 'CELLS_PER_DAY', 48
     $provide.constant 'DEVICE', device
     $provide.constant 'DAYS_PER_PAGE', 5
-  ).run ($rootScope, DEVICE) ->
+  ).run ($rootScope, $state, DEVICE) ->
     $rootScope.device = DEVICE
