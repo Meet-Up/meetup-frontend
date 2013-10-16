@@ -25,10 +25,11 @@ angular.module('meetupServices')
         dialogElement.trigger 'closeModal'
 
       dialogElement.easyModal({
+        onOpen: (modal) ->
+          options.onOpen(modal) if options.onOpen?
         onClose: () ->
           dialogScope.$destroy()
           dialogElement.remove()
       })
 
       dialogElement.trigger 'openModal'
-

@@ -1,6 +1,10 @@
 angular.module('meetupControllers')
   .controller 'CreateEventCtrl', ($scope, $filter, $state, Event, eventContainer, TimeContainer, CalendarModel, createDialog) ->
 
+    $scope.foo = (e) ->
+      createDialog($scope, 'partials/desktop/create-event/success-modal.html')
+
+
     $scope.event = new Event({ datesIndexes: {}})
     $scope.calendar = new CalendarModel()
 
@@ -18,7 +22,14 @@ angular.module('meetupControllers')
     $scope.saveEvent = ->
       $scope.event.setDates $scope.timeContainer
       $scope.event.save().then (evt) ->
-        createDialog($scope, 'partials/desktop/create-event/success-modal.html')
+        createDialog($scope, 'partials/desktop/create-event/success-modal.html', {
+          onOpen: (modal) ->
+            $(modal).find('.btn-copy').zclip({
+              path:'bower_components/jquery-zclip/ZeroClipboard.swf',
+              copy: evt.$url()
+              afterCopy: ->
+            })
+        })
 
     $scope.gotoEdit = ->
       eventContainer.addEvent $scope.event
