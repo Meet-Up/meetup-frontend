@@ -35,9 +35,15 @@ angular.module('meetupApp', [
       templateUrl: 'views/desktop/events.html'
       controller: 'EventCtrl'
       resolve:
-        event: ($stateParams, eventContainer) ->
-          eventContainer.getEvent $stateParams.token
-
+        event: ($stateParams, eventContainer, DEBUG) ->
+          if DEBUG
+            {
+              title: 'foo'
+              duration: 1
+              dates: []
+            }
+          else
+            eventContainer.getEvent $stateParams.token
 
   mobileStates =
     'create-event':
