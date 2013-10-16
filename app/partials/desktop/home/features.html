@@ -1,0 +1,7 @@
+<div class="beat"></div>
+<div class="content">
+  <div class="feature-box" ng-repeat="feature in features">
+    <h3>{{feature.title}}</h3>
+    <ng-include src="feature.template"></ng-include>
+  </div>
+</div>

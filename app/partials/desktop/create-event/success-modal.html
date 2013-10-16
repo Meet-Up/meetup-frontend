@@ -32,7 +32,7 @@
       </span>
     </td>
   </tr>
-  <tr class="basic-info-bottom">
+  <tr class="basic-info-bottom" ng-show="event.description">
     <th>
       コメント：
     </th>
@@ -51,7 +51,7 @@
       <p>下記URLをコピーして参加者に共有してください。</p>
     </div>
     <div class="share-url">
-      <p>http://meetup.co.jp/list.php?id=20131005082551_jrjpjj</p>
+      <p>{{event.$url()}}</p>
       <div class="btn-copy">
         <p>コピー！</p>
       </div>

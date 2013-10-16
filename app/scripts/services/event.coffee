@@ -1,7 +1,7 @@
 angular.module('meetupServices')
-  .factory 'Event', (railsResourceFactory, railsSerializer, EventSerializer, DateHelper, API_PATH) ->
+  .factory 'Event', (railsResourceFactory, railsSerializer, EventSerializer, DateHelper, API_URL, APP_URL) ->
     Event = railsResourceFactory
-      url: "#{API_PATH}/events/{{token}}"
+      url: "#{API_URL}/events/{{token}}"
       name: 'event'
       serializer: 'EventSerializer'
 
@@ -12,5 +12,7 @@ angular.module('meetupServices')
         @dates.push
           date: dateInfo.date.toString 'yyyy/MM/dd'
           open_times: open_times
+
+    Event::getUrl = -> "#{APP_URL}/events/#{@token}"
 
     Event

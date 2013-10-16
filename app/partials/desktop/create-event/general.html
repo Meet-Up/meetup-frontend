@@ -1,31 +1,44 @@
-<table class="book-left">
-  <tr class="action">
-    <th><span class="label" for="event-title"><small>*</small>イベント名</span></th>
-    <td><input type="text" id="event-title" ng-model="event.title"></td>
-  </tr>
-  <tr class="action">
-    <th><span class="label" for="event-duration"><small>*</small>所要時間</span></th>
-    <td><input type="number" id="event-duration" ng-model="event.duration"></td>
-  </tr>
-  <tr class="action">
-    <th><span class="label" for="event-description">詳細・コメント</span></th>
-    <td><textarea id="event-description" cols="28" rows="10" ng-model="event.description"></textarea></td>
-  </tr>
-  <tr class="action">
-    <th>
-      <span class="label" for="event-password">
-        <small>*</small>主催者パスワード
-      </span>
-    </th>
-    <td>
-      <input type="text" id="event-password" ng-model="event.password">
-    </td>
-  </tr>
-</table>
-<div class="book-right">
-  <span><small>*</small>所要時間</span>
-  <calendar toggable="true">
-  </calendar>
+<div class="create-book">
+  <table class="book-left">
+    <tr class="action">
+      <th>
+        <span class="label" for="event-title">
+        <small>*</small>イベント名</span></th>
+      <td>
+        <input type="text" id="event-title" ng-model="event.title">
+      </td>
+    </tr>
+    <tr class="action">
+      <th>
+        <span class="label" for="event-duration">
+        <small>*</small>所要時間</span>
+      </th>
+      <td>
+        <input type="number" id="event-duration" ng-model="event.duration">
+      </td>
+    </tr>
+    <tr class="action">
+      <th>
+        <span class="label" for="event-description">詳細・コメント</span>
+      </th>
+      <td>
+        <textarea id="event-description" cols="28" rows="10" ng-model="event.description"></textarea>
+      </td>
+    </tr>
+    <tr class="action">
+      <th>
+        <span class="label" for="event-password">
+          <small>*</small>主催者パスワード
+        </span>
+      </th>
+      <td>
+        <input type="password" id="event-password" ng-model="event.password">
+      </td>
+    </tr>
+  </table>
+  <div class="book-right">
+    <span><small>*</small>所要時間</span>
+    <calendar toggable="true">
+    </calendar>
+  </div>
 </div>
-
-

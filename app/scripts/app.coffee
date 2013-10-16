@@ -9,7 +9,7 @@ angular.module('meetupApp', [
   commonStates =
     home:
       url: '/'
-      templateUrl: "views/#{DEVICE}/main.html"
+      templateUrl: 'views/home.html'
       controller: 'HomeCtrl'
       data:
         titleBar:
