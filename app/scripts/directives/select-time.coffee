@@ -72,6 +72,12 @@ angular.module('meetupDirectives')
         $scope.page += 1
         updateScopeData($scope)
 
+      $scope.selectAll = (dateInfo) ->
+        isOpened = dateInfo.times[0].isOpened()
+        for time in dateInfo.times
+          time.setOpened !isOpened
+
+
       initializeEvents $scope, statusNumber
 
       updateScopeData $scope
