@@ -5,6 +5,34 @@ angular.module('meetupApp', [
   'meetupFilters'
   'meetupConfig'
 ]).config(($stateProvider, $urlRouterProvider, DEVICE) ->
+
+  commonStates =
+    home:
+      url: '/'
+      templateUrl: "views/#{DEVICE}/main.html"
+      controller: 'HomeCtrl'
+      data:
+        titleBar:
+          hasCreate: true
+
+  desktopStates =
+    'create-event':
+      url: '/create-event'
+      templateUrl: 'views/desktop/create-event.html'
+      controller: 'CreateEventCtrl'
+
+    events:
+      url: '/events/:token'
+      templateUrl: 'views/desktop/events.html'
+      controller: 'EventCtrl'
+      resolve:
+        event: ($stateParams, eventContainer) ->
+          eventContainer.getEvent $stateParams.token
+
+  # mobileStates =
+
+
+
   $urlRouterProvider.otherwise '/'
 
   $stateProvider
@@ -64,6 +92,5 @@ angular.module('meetupApp', [
           eventContainer.getEvent $stateParams.token
     })
     ###
-  ).run ($rootScope, DEVICE) ->
-    $rootScope.device = DEVICE
+  )
 
