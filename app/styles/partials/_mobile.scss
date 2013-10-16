@@ -9,27 +9,43 @@ button {
   height: auto;
   background: image-url("common/back-green-sub.png");
   .content {
-    padding-bottom: 70px;
+    padding-bottom: 30px;
   }
   h1 {
     font-weight: bold;
-    color: #444444;
-    width: 909px;
-    height: 93px;
-    position: relative;
-    top: 50px;
-    left: 50%;
-    margin-left: -455px;
+    color: $main-color;
+    margin-left: auto;
+    margin-right: auto;
     &.create-event {
-      font-size: 30px;
-      padding-top:10px;
-      padding-left: 65px;
-      background: image-url("desktop/h1-create.png") no-repeat;
+      width: 250px;
+      height: 70px;
+      font-size: 20px;
+      padding-top: 30px;
+      padding-left: 70px;
+      background: image-url("mobile/h1-create.png") no-repeat;
+      background-size: 290px;
+      background-position: center center;
     }
     &.events {
-      font-size:23px;
-      padding-left: 45px;
-      background: image-url("desktop/h1-event-title.png") no-repeat;
+      color: #525252;
+      width: 310px;
+      height: 40px;
+      text-align: center;
+      font-size: 16px;
+      padding-top: 17px;
+      background: image-url("mobile/h1-event-title.png") no-repeat;
+      background-size: 310px;
+      background-position: 5px 30px;
+    }
+  }
+  h2 {
+    &.create-event {
+      color: #777777;
+      text-align: center;
+      small {
+        color: red;
+        padding-right: 2px;
+      }
     }
   }
 }
@@ -43,6 +59,43 @@ header {
     margin-left: 13px;
     img {
       width: 128px;
+    }
+  }
+  .create-mode {
+    position: fixed;
+    top:0px;
+    z-index: 2;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    .logo {
+      position: absolute;
+      top: 1px;
+      left: 50%;
+      margin-left: -69px;
+    }
+    .back-link {
+      float: left;
+      padding-top: 14px;
+      padding-left: 15px;
+      img {
+        width: 14px;
+      }
+    }
+    .next-link {
+      float: right;
+      width: 110px;
+      height: 40px;
+      margin-top: 10px;
+      margin-right: -59px;
+      padding-top: 7px;
+      padding-left: 14px;
+      background: image-url("mobile/btn-green.png") no-repeat;
+      background-size: 60px;
+      p {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -101,7 +154,6 @@ footer {
         padding-left: 60px;
         padding-top: -40px;
         font-size: 18px;
-        cursor: pointer;
         &:hover {
           opacity: 0.7;
         }
@@ -221,13 +273,14 @@ footer {
     margin-left: auto;
     margin-right: auto;
     .arrow {
-      width:300px;
+      min-width: 300px;
+      width: 80%;
       margin-left: auto;
       margin-right: auto;
       height:33px;
       background: image-url("mobile/h3-arrow.png") no-repeat;
-      background-size: 300px;
-      background-position: center 5px;
+      background-size: 100%;
+      background-position: center 10%;
       h3 {
         font-size: 26px;
         font-weight: bold;
@@ -300,7 +353,6 @@ footer {
         padding-left: 60px;
         padding-top: -40px;
         font-size: 18px;
-        cursor: pointer;
         &:hover {
           opacity: 0.7;
         }
@@ -310,65 +362,238 @@ footer {
 }
 
 .create-book {
-  width: 923px;
-  height: 360px;
-  margin-top: 15px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-  background: image-url("desktop/book-create-event.png") no-repeat;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: white;
+  border: 4px solid $main-color;
   small {
     color: red;
     padding-right: 6px;
   }
 }
-.book-left {
-  float: left;
-  margin-top: 56px;
-  margin-left: 35px;
+.create-basic {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 3.1em;
   tr {
     th {
-      text-align: right;
-      vertical-align: top;
+      width: 80px;
+      text-align: left;
+      vertical-align: middle;
       color: #777777;
+      font-size: 12px;
+      line-height: 1.3em;
     }
     td {
       text-align: left;
-      padding-left: 30px;
+      padding-left: 15px;
       input {
-        width: 200px;
+        width: 95%;
         height: 25px;
       }
       textarea {
-        max-width: 200px;
-        max-height: 128px;
+        width: 95%;
         margin-bottom: -20px;
         resize:none;
       }
     }
   }
 }
-.book-right {
-  float: right;
-  margin-top: 40px;
-  margin-right: 68px;
-  vertical-align: top;
-  color: #777777;
+
+.calendar-area {
+  margin-top: 20px;
+  overflow: hidden;
 }
-input.create-event {
-  width: 749px;
-  height: 51px;
-  margin-top:0px;
-  margin-left: 130px;
-  font-size: 18px;
-  cursor: pointer;
+
+
+.btn-next-link {
+  width: 280px;
+  height: 60px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background: $main-color;
+  border-radius: 5px;
+  p {
+    clear: both;
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 19px;
+    font-size: 20px;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.time-selection-area {
+  position: relative;
+  top: 0px;
+  background: white;
+}
+
+.confirm-book-mobile {
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border: 3px solid $main-color;
+  text-align: left;
+  padding: 10px;
+  font-size: 12px;
+  table {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    tr {
+      th {
+        width: 70px;
+        color: #777;
+        text-align: right;
+        padding-top: 8px;
+        vertical-align: top;
+      }
+      td {
+        text-align: left;
+        padding-left: 4px;
+        color: #444;
+        font-size: 15px;
+        padding-top: 4px;
+        vertical-align: top;
+        line-height: 20px;
+        hr {
+          padding-bottom: 5px;
+          width: 99%;
+        }
+        &.conf-event-title {
+          font-weight: bold;
+          color: $main-color;
+          padding-left: 8px;
+          padding-bottom: 3px;
+        }
+        &.conf-event-duration {
+          font-weight: bold;
+          color: $main-color;
+        }
+        &.conf-event-description {
+          font-weight: normal;
+          font-size: 14px;
+        }
+        &.conf-event-dates {
+          font-weight: normal;
+          font-size: 13px;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+.share-url {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  overflow: hidden;
+  .share-box {
+    width: 300px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    input {
+      width: 200px;
+      margin-top: 12px;
+      height: 25px;
+      float: left;
+    }
+    .copy-box {
+      float: left;
+      margin-left: 5px;
+      width: 70px;
+      height: 40px;
+      margin-top: 10px;
+      background: image-url("mobile/btn-green.png") no-repeat;
+      background-size: 70px;
+      p {
+        color: white;
+        text-align: center;
+        padding-top: 11px;
+        padding-left: 2px;
+        font-size: 15px;
+      }
+    }
+  }
+  .share-sns {
+    margin-top: 13px;
+    width:290px;
+    margin-left: auto;
+    margin-right: auto;
+    p {
+      color: white;
+      font-size: 12px;
+      padding-top: 8px;
+      padding-left: 42px;
+      line-height: 1.3em;
+    }
+    .share-line {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-line.png") no-repeat;
+      background-size: 90px;
+    }
+    .share-twitter {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-twitter.png") no-repeat;
+      background-size: 90px;
+    }
+    .share-facebook {
+      width: 90px;
+      height: 50px;
+      float: left;
+      margin-left: 5px;
+      background: image-url("mobile/btn-send-facebook.png") no-repeat;
+      background-size: 90px;
+      p {
+        padding-left: 30px;
+      }
+    }
+  }
+}
+
+.btn-goinput {
+  width: 280px;
+  height: 80px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background: $main-color;
+  border-radius: 4px;
+  p {
+    clear: both;
+    color: white;
+    text-align: center;
+    padding-top:29px;
+    font-size: 20px;
+  }
   &:hover {
     opacity: 0.7;
   }
 }
 
 .time-output {
-  margin-top: 40px;
+  margin-top: 20px;
   p {
     text-align: center;
     color: #777777;
@@ -379,7 +604,6 @@ input.create-event {
   }
   .overnavi {
     position: relative;
-    cursor: pointer;
     .overnavi-left {
       position: absolute;
       top: -25px;
@@ -406,8 +630,31 @@ input.create-event {
 }
 
 
+.events-date {
+  margin-top: -24px;
+  width: 300px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  background: image-url("mobile/dates-header.png") no-repeat;
+  background-size: 300px;
+  background-position: center top;
+  p {
+    padding-top: 23px;
+    text-align: center;
+    small {
+      font-size: 13px;
+      color: yellow;
+    }
+    big {
+      margin-left: 10px;
+      color: white;
+    }
+  }
+}
+
 .events-info {
-  width: 923px;
+  width: 100%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -415,130 +662,114 @@ input.create-event {
 }
 
 .basic-info {
-  width:451px;
-  float: left;
-  overflow: hidden;
-  margin-top: 6px;
-  margin-left: 50px;
-  line-height: 1.7em;
-  hr {
-    border: none;
-    border-bottom: 1px dotted $main-color;
-  }
+  width: 90%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.3em;
   h2 {
-    margin-top: 5px;
     overflow: hidden;
     clear: both;
-    padding: 10px;
+    padding: 5px;
     .duration-h {
       float: left;
-      width: 80px;
+      width: 60px;
       color: #777777;
-      font-size: 15px;
+      font-size: 13px;
     }
     .duration-text {
       float: left;
-      width:330px;
-      margin-top: -2px;
-      margin-left: 20px;
+      width: 70%;
+      margin-top: -1px;
+      margin-left: 10px;
       color: $main-color;
       font-weight: bold;
-      font-size: 21px;
+      font-size: 16px;
     }
     .comment-h {
       float: left;
-      width: 80px;
+      width: 60px;
       color: #777777;
-      font-size: 15px;
+      font-size: 13px;
     }
     .comment-text {
       float: left;
-      width:330px;
-      margin-top: -2px;
-      margin-left: 20px;
+      width: 75%;
+      margin-left: 10px;
       color: #333333;
-      font-size: 17px;
+      font-size: 14px;
     }
   }
 }
 
-.input-schedule {
-  float: left;
-  width: 250px;
-  height: 71px;
-  background: image-url("desktop/btn-input.png") no-repeat;
-  margin-top: 30px;
-  margin-left: 50px;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
-  p {
-    color: white;
-    font-size: 22px;
-    padding-top: 27px;
-    padding-left: 58px;
-  }
-}
 
 .recommend-area {
-  float: left;
-  width: 366px;
+  overflow: hidden;
+  width: 91%;
+  max-width: 500px;
   height: auto;
-  background: image-url("common/back-orange-sub.png");
-  margin-top: 20px;
-  margin-left: 65px;
-  border: 1px solid #D93600;
-  hr {
-    border: 1px dotted #D93600;
-  }
+  margin-left: auto;
+  margin-right: auto;
   .recommend-h {
-    width: 100%;
-    height: 32px;
-    background: image-url("common/back-orange-main.png");
-    color: white;
-    text-align: center;
-    line-height: 2.0em;
+    border-bottom: 1px dotted #D93600;
+    overflow: hidden;
+    h2 {
+      float: left;
+      width: 80px;
+      height: 32px;
+      color: #D93600;
+      text-align: center;
+      font-weight: bold;
+      line-height: 2.0em;
+      margin-left: 5px;
+    }
   }
-  .recommend-days {
-    padding: 15px;
-    padding-right: 16px;
-    font-size: 17px;
+  table.recommend-days {
+    padding: 5px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
     text-align: left;
-    ul {
+    tr {
       overflow: hidden;
-      padding-top: 5px;
+      margin-top: 35px;
       padding-bottom: 5px;
-      &.recommend-no1 {
-        border-bottom: 1px dotted #D93600;
-      }
-      &.recommend-no2 {
-        border-bottom: 1px dotted #D93600;
-      }
-      li {
-        float: right;
-        margin-right: 20px;
-        margin-top: 2px;
-        line-height: 1.3em;
-        &.rank {
-          float: left;
-          width: 18px;
-          height: 19px;
-          margin-top: 2px;
-          margin-left: 20px;
-          padding-top: 4px;
-          padding-left: 25px;
-          font-size: 15px;
-          font-weight: bold;
-        }
+      th {
+        width: 15%;
+        height: 12px;
+        padding-top: 16px;
+        padding-left: 31px;
+        font-size: 11px;
+        font-weight: bold;
+        vertical-align: top;
         &.no1 {
           background: image-url("common/icon-rank-1.png") no-repeat;
+          background-size: 13px;
+          background-position: 15px 15px;
         }
         &.no2 {
           background: image-url("common/icon-rank-2.png") no-repeat;
+          background-size: 13px;
+          background-position: 15px 15px;
         }
         &.no3 {
           background: image-url("common/icon-rank-3.png") no-repeat;
+          background-size: 13px;
+          background-position: 15px 15px;
+        }
+      }
+      td {
+        width: 80%;
+        padding-top: 8px;
+        padding-left: 25px;
+        line-height: 1.8em;
+        vertical-align: top;
+        ul {
+          li {
+            float: left;
+            margin-right: 20px;
+          }
         }
       }
     }
@@ -546,51 +777,30 @@ input.create-event {
 }
 
 .people-inputed-area {
-  float: left;
   overflow: hidden;
-  width: 366px;
+  width: 91%;
+  max-width: 500px;
   height: auto;
-  background: image-url("common/back-green-sub.png");
-  margin-top: 20px;
-  margin-left: 65px;
-  border: 1px solid $main-color;
-  hr {
-    border: 1px dotted #D93600;
-  }
+  margin-left: auto;
+  margin-right: auto;
   .people-inputed-h {
-    width: 100%;
-    height: 32px;
-    background: image-url("common/back-green-main.png");
-    color: white;
-    text-align: center;
-    line-height: 2.0em;
-  }
-  .people-inputed-contents {
-    padding: 15px;
-    padding-right: 16px;
-    font-size: 16px;
-    text-align: left;
-    ul {
-      overflow: hidden;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      li {
-        float: left;
-        width: 130px;
-        height: 27px;
-        background: image-url("common/icon-person-black.png") no-repeat;
-        background-size: 15px;
-        padding-left: 25px;
-        padding-top: -1px;
-        margin-top: 3px;
-        margin-left: 10px;
-        line-height: 1.3em;
-      }
+    border-bottom: 1px dotted $main-color;
+    overflow: hidden;
+    h2 {
+      float: left;
+      width: 80px;
+      height: 32px;
+      color: $main-color;
+      text-align: center;
+      font-weight: bold;
+      line-height: 2.0em;
+      margin-left: 5px;
     }
     p {
-      font-size: 15px;
-      margin-top: 10px;
-      margin-left: 12px;
+      float: right;
+      font-size: 10px;
+      margin-top: 13px;
+      margin-right: 5px;
       color: #777777;
       small {
         color: red;
@@ -598,136 +808,192 @@ input.create-event {
       }
     }
   }
+  .people-inputed-contents {
+    padding: 5px;
+    font-size: 12px;
+    text-align: left;
+    ul {
+      overflow: hidden;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      li {
+        float: left;
+        width: 74px;
+        height: 19px;
+        background: image-url("common/icon-person-black.png") no-repeat;
+        background-size: 12px;
+        padding-left: 14px;
+        padding-top: -1px;
+        margin-top: 10px;
+        margin-left: 5px;
+        line-height: 1.3em;
+      }
+    }
+  }
 }
 
-.heatmap-area {
-  position: relative;
-  margin-top: 30px;
-  h2 {
-    width: 220px;
+.notches {
+  margin-top: 10px;
+  width: 100%;
+  height: 3px;
+  background: image-url("common/notches.png") repeat-x;
+  background-size: 7px;
+}
+
+.input-area {
+  padding-top: 30px;
+  background: white;
+  .tabs {
+    width: 240px;
+    height: 36px;
     margin-left: auto;
     margin-right: auto;
-    background: image-url("common/logo-symbol.png") no-repeat;
-    padding-bottom: 3px;
-    font-size: 25px;
+    background: image-url("mobile/tab-off.png") no-repeat;
+    background-size: 240px;
+    font-size: 17px;
+    color: white;
     text-align: center;
+    .tab-input {
+      float: left;
+      width: 119px;
+      height: 31px;
+      background: image-url("mobile/tab-input.png") no-repeat;
+      background-size: 0px;
+      &:hover {
+        opacity: 0.7;
+      }
+      p {
+        color: white;
+        padding-top: 8px;
+      }
+    }
+    .tab-heatmap {
+      float: right;
+      width: 119px;
+      height: 31px;
+      background: image-url("mobile/tab-heatmap.png") no-repeat;
+      background-size: 120px;
+      &:hover {
+        opacity: 0.7;
+      }
+      p {
+        color: #777;
+        padding-top: 8px;
+      }
+    }
   }
   .overnavi {
     position: relative;
-    cursor: pointer;
     .overnavi-left {
       position: absolute;
-      top: -25px;
-      right: 104px;
+      top: 0px;
+      left: 10px;
       width: 35px;
       height: 27px;
-      background: image-url("desktop/overnavi-left-die.png") no-repeat;
+      background: image-url("mobile/overnavi-left.png") no-repeat;
+      background-size: 35px;
     }
     .overnavi-right {
       position: absolute;
-      top: -25px;
-      right: 70px;
+      top: 0px;
+      right: 10px;
       width: 35px;
       height: 27px;
-      background: image-url("desktop/overnavi-right.png") no-repeat;
-    }
-  }
-  .heatmap {
-    margin-top: 30px;
-    overflow: hidden;
-    width: 830px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  p {
-    margin-top: 40px;
-    margin-left: 60px;
-    font-size: 15px;
-    &.help-mydates {
-      color: $friendly-orange;
-    }
-    &.help-select {
-      margin-top: 10px;
-      color: $dark-green;
+      background: image-url("mobile/overnavi-right.png") no-repeat;
+      background-size: 35px;
     }
   }
 }
 
 
 .area-selected {
-  position: absolute;
-  top: 810px;
-  left: 500px;
+  position: fixed;
+  top: 100px;
+  left: 100%;
+  width: 90%;
+  height: auto;
+  margin-left: -95%;
+  background: #222;
+  border-radius: 5px;
+  padding-bottom: 10px;
+  opacity: 0.95;
   z-index: 9999;
   .area-selected-info {
-    position: relative;
-    background: image-url("common/back-green-main.png");
-    opacity: 0.9;
-    height: auto;
-    max-height: 160px;
-    width: 300px;
-    margin-bottom: 20px;
-    border: 1px solid white;
     padding: 10px;
-    border-radius: 7px;
-    &:after {
-      content: '';
-      position: absolute;
-      border-top: 10px solid $main-color;
-      border-right: 7px solid transparent;
-      border-left: 7px solid transparent;
-      bottom: -7px;
-      left: 150px;
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    h3 {
+      text-align: center;
+      color: yellow;
+      font-size: 14px;
+      font-weight: bold;
+      margin-left: -5%;
     }
-    &:before {
-      content: '';
-      position: absolute;
-      border-top: 10px solid white;
-      border-right: 7px solid transparent;
-      border-left: 7px solid transparent;
-      bottom: -10px;
-      left: 150px;
+    hr {
+      float: left;
+      width:95%;
+      margin-top: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      border-top: 1px dotted yellow;
     }
     ul {
       overflow: hidden;
       padding-top: 5px;
       padding-bottom: 5px;
-      color: white;
+      font-size: 12px;
       li {
         float: left;
-        width: 115px;
-        height: 27px;
+        width: 74px;
+        height: 19px;
         background: image-url("common/icon-person-white.png") no-repeat;
-        background-size: 15px;
-        padding-left: 25px;
+        background-size: 12px;
+        padding-left: 14px;
         padding-top: -1px;
-        margin-left: 10px;
+        margin-top: 10px;
+        margin-left: 5px;
         line-height: 1.3em;
+        color: white;
       }
     }
-    .btn-decide-day {
-      width: 160px;
-      height: 39px;
-      color: white;
-      font-size: 16px;
-      line-height: 2.5em;
-      text-align: center;
-      background: #B20000;
-      border-radius: 7px;
-      border: 1px solid #821E15;
-      margin-left: auto;
-      margin-right: auto;
-      cursor: pointer;
+  }
+  .btn-close {
+    float: left;
+    width: 45%;
+    height: 34px;
+    color: white;
+    font-size: 13px;
+    line-height: 2.6em;
+    text-align: center;
+    background: #444;
+    border-radius: 7px;
+    border: 1px solid white;
+    margin-left: 3%;
+    p {
+      width: 100%;
+      height:100%;
+      padding-left: 5%;
+      background: image-url("mobile/modal-close.png") no-repeat;
+      background-size: 15px;
+      background-position: 25% 9px;
     }
   }
-  .area-selected-close {
-    position: absolute;
-    top: -18px;
-    right: -18px;
-    width: 44px;
-    height: 44px;
-    background: image-url("desktop/modal-close-reverse.png") no-repeat;
-    cursor: pointer;
+  .btn-decide-day {
+    float: right;
+    width: 45%;
+    height: 34px;
+    color: white;
+    font-size: 13px;
+    line-height: 2.6em;
+    text-align: center;
+    background: #B20000;
+    border-radius: 7px;
+    border: 1px solid white;
+    margin-right: 3%;
+    p {
+      padding-left: 5%;
+    }
   }
 }
 .organizer-area {
@@ -781,7 +1047,6 @@ input.create-event {
         font-weight: bold;
         padding-top: 5px;
         padding-left: 22px;
-        cursor: pointer;
         &:hover {
           opacity: 0.7;
         }
@@ -817,52 +1082,5 @@ input.create-event {
   }
 }
 
-.clear {
-  clear: both;
 }
 
-.hidden {
-  display: none;
-}
-
-}
-
-/*
-header {
-  width: 100%;
-  height: $header-height;
-  background: image-url("common/header.png") repeat-x;
-  position: fixed;
-  top: 0px;
-  z-index: 2;
-
-  #title-bar {
-    margin: auto;
-  }
-
-  #header-logo {
-    float: left;
-    margin-top:8px;
-    margin-left:6px;
-    img {
-      width:120px;
-      height: 100%;
-    }
-  }
-
-  #header-icon {
-    float: right;
-    margin-top:8px;
-    margin-right:10px;
-    img {
-      width:27px;
-      height: 100%;
-    }
-  }
-}
-
-.container {
-  margin: auto;
-  margin-top: $header-height;
-}
-*/

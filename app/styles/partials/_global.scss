@@ -25,4 +25,17 @@ hr {
     border-right: none;
     padding-bottom:7px;
   }
+  &.create-event {
+    margin-top: 20px;
+    width: 100%;
+    border-top: 1px dotted $main-color;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+.hidden {
+  display: none;
 }
