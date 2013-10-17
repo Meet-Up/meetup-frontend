@@ -70,6 +70,7 @@ angular.module('meetupApp', [
           hasNext: true
           nextDisabled: true
           nextState: 'create-event.confirm'
+          nextText: '作成'
     'create-event.confirm':
       url: '/confirm'
       templateUrl: 'partials/mobile/create-event/confirmation.html'

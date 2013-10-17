@@ -3,6 +3,7 @@ angular.module('meetupControllers')
     $scope.$on '$stateChangeSuccess', ->
       if $state.current.data?.titleBar?
         $scope.titleBar = $state.current.data.titleBar
+        $scope.titleBar.nextText ?= '次へ'
       else
         $scope.titleBar = {}
 
