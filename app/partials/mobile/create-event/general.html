@@ -12,6 +12,12 @@
 
 <div class="clear"></div>
 
-<div class="btn-next-link">
-  <a ui-sref="^.select-time">次へ</a>
+<div class="btn-next-link"
+     ng-class="{disabled: !calendar.hasSelectedDates()}">
+  <a href="javascript:void(0)"
+     dsref="^.select-time"
+     ng-class="{disabled: !calendar.hasSelectedDates()}"
+     fast-link>
+     次へ
+    </a>
 </div>

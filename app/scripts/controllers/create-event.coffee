@@ -1,5 +1,5 @@
 angular.module('meetupControllers')
-  .controller 'CreateEventCtrl', ($scope, $filter, $state, Event,
+  .controller 'CreateEventCtrl', ($scope, $state, Event,
         eventContainer, TimeContainer, CalendarModel, createDialog, DEBUG) ->
 
     $scope.event = new Event({ datesIndexes: {}})
@@ -7,13 +7,10 @@ angular.module('meetupControllers')
 
     $scope.timeContainer = new TimeContainer(true)
 
-    $scope.hasSelectedDates = ->
-      !$filter('isEmpty')($scope.calendar.selectedDates)
-
     $scope.$watch 'calendar.selectedDates', ->
       dates = (date for k, date of $scope.calendar.selectedDates)
       $scope.timeContainer.updateDates dates
-      $scope.$emit 'titleBar.update', { nextDisabled: !$scope.hasSelectedDates() }
+      $scope.$emit 'titleBar.update', { nextDisabled: !$scope.calendar.hasSelectedDates() }
     , true
 
     $scope.saveEvent = ->

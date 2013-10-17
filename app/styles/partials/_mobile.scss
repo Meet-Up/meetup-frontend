@@ -428,6 +428,9 @@ footer {
     margin-top: 0px;
     padding-top: 19px;
     font-size: 20px;
+    &.disabled {
+      cursor: default;
+    }
   }
   &:hover {
     opacity: 0.7;
