@@ -5,7 +5,7 @@ angular.module('meetupDirectives')
       $elem.fastClick (e) =>
         e.preventDefault()
         e.stopImmediatePropagation()
-        return if $(e.target).attr('disabled') == 'disabled' || $(e.target).hasClass('disabled')
+        return if $elem.attr('disabled') == 'disabled' || $elem.hasClass('disabled')
         if 'uiSref' of $attr
           $scope.$apply () -> $state.go $attr.uiSref
         else if 'dsref' of $attr
