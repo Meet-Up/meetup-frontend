@@ -54,6 +54,7 @@ angular.module('meetupApp', [
     'create-event.index':
       url: ''
       templateUrl: 'partials/mobile/create-event/general.html'
+      controller: 'EventInfoCtrl'
       data:
         titleBar:
           hasNext: true
@@ -62,6 +63,7 @@ angular.module('meetupApp', [
     'create-event.select-time':
       url: '/select-time'
       templateUrl: 'partials/mobile/create-event/time-selection.html'
+      controller: 'SelectTimeCtrl'
       data:
         titleBar:
           hasPrevious: true

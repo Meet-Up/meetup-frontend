@@ -11,6 +11,7 @@ angular.module('meetupServices')
       maxRow: 0
 
       constructor: (@isOpened) ->
+        @hasValidTimes = false
         @isOpened ?= false
         if @isOpened
           @minRow = 0
@@ -102,3 +103,11 @@ angular.module('meetupServices')
 
       comfirmCellsUpdate: ->
         @changedCells = {}
+        @hasValidTimes = @getValidTimeStatus()
+        @onValidTimesChange() if @onValidTimesChange?
+
+      getValidTimeStatus: ->
+        return true unless @isOpened
+        for date in @dates
+          return false if _.filter(date.times, (time) -> time.isOpened()).length == 0
+        return true

@@ -2,13 +2,14 @@
   イベントを作成する
 </h1>
 <div class="create-book">
+  <form novalidate class="css-form">
   <table class="book-left">
     <tr class="action">
       <th>
         <span class="label" for="event-title">
         <small>*</small>イベント名</span></th>
       <td>
-        <input type="text" id="event-title" ng-model="event.title">
+        <input type="text" id="event-title" ng-model="event.title" required>
       </td>
     </tr>
     <tr class="action">
@@ -17,7 +18,7 @@
         <small>*</small>所要時間</span>
       </th>
       <td>
-        <input type="number" id="event-duration" ng-model="event.duration">
+        <input type="number" id="event-duration" ng-model="event.duration" required>
       </td>
     </tr>
     <tr class="action">
@@ -35,9 +36,10 @@
         </span>
       </th>
       <td>
-        <input type="password" id="event-password" ng-model="event.password">
+        <input type="password" id="event-password" ng-model="event.password" required>
       </td>
     </tr>
+    </form>
   </table>
   <div class="book-right">
     <span><small>*</small>所要時間</span>
