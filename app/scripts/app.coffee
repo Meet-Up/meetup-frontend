@@ -54,23 +54,27 @@ angular.module('meetupApp', [
     'create-event.index':
       url: ''
       templateUrl: 'partials/mobile/create-event/general.html'
+      controller: 'EventInfoCtrl'
       data:
         titleBar:
           hasNext: true
           nextDisabled: true
           nextState: 'create-event.select-time'
-    'create-event.selection-time':
+    'create-event.select-time':
       url: '/select-time'
       templateUrl: 'partials/mobile/create-event/time-selection.html'
+      controller: 'SelectTimeCtrl'
       data:
         titleBar:
           hasPrevious: true
           hasNext: true
           nextDisabled: true
-          nextState: 'create-event.confirm'
+          nextText: '作成'
+          nextEvent: 'createEvent'
     'create-event.confirm':
       url: '/confirm'
       templateUrl: 'partials/mobile/create-event/confirmation.html'
+      controller: 'ConfirmEventCtrl'
       data:
         titleBar:
           hasPrevious: true

@@ -6,9 +6,10 @@ angular.module('meetupDirectives')
 
     addStatusClass = (cellDate, $elem) ->
       status = cellDate.getMonth() - calendar.date.getMonth()
-      if status < 0 then $elem.addClass 'past'
-      else if status == 0 then $elem.addClass 'current'
-      else $elem.addClass 'future'
+      if status < 0 then $elem.addClass 'previous-month'
+      else if status == 0 then $elem.addClass 'current-month'
+      else $elem.addClass 'next-month'
+      $elem.addClass 'past' if cellDate < Date.today()
 
     toggleDate = (date, $elem) ->
       dateKey = generateKey date
@@ -36,9 +37,10 @@ angular.module('meetupDirectives')
         addStatusClass cellDate, $elem
 
         if calendar.toggable
-          $elem.fastClick (event) ->
-            toggleDate cellDate, $elem
-            $scope.$apply()
-          dateKey = generateKey cellDate
-          updateClass dateKey of calendar.selectedDates, $elem
+          if calendar.allowPastDates || cellDate >= Date.today()
+            $elem.fastClick (event) ->
+              toggleDate cellDate, $elem
+              $scope.$apply()
+            dateKey = generateKey cellDate
+            updateClass dateKey of calendar.selectedDates, $elem
     }

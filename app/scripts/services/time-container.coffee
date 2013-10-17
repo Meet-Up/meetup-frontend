@@ -11,6 +11,7 @@ angular.module('meetupServices')
       maxRow: 0
 
       constructor: (@isOpened) ->
+        @hasValidTimes = false
         @isOpened ?= false
         if @isOpened
           @minRow = 0
@@ -80,16 +81,24 @@ angular.module('meetupServices')
           @getTimeCell(x, y).updateStatus status, statusNumber
 
       _handleCellSelection: (startX, endX, startY, endY, isSelecting, statusNumber) ->
+        toUpdate = []
         if startX == endX && startY == endY
           cell = @getTimeCell(startX, startY)
           cell.updateStatus(!cell.getStatus(statusNumber), statusNumber)
+          toUpdate.push({x: startX, y: startY, selected: cell.getStatus statusNumber})
         else
           for x in [startX..endX]
             for y in [startY..endY]
               cell = @getTimeCell(x, y)
               @changedCells[[x, y]] = cell.getStatus statusNumber unless [x, y] of @changedCells
               cell.updateStatus isSelecting, statusNumber
-        return
+              toUpdate.push({x: x, y: y, selected: isSelecting})
+
+          for k, status of @changedCells
+            [x, y] = k.split ','
+            if x < startX || x > endX || y < startY || y > endY
+              toUpdate.push({x: parseInt(x, 10), y: parseInt(y, 10), selected: status})
+        toUpdate
 
       updateCells: (startPoint, endPoint, isSelecting, statusNumber) ->
         [startX, startY] = startPoint
@@ -102,3 +111,11 @@ angular.module('meetupServices')
 
       comfirmCellsUpdate: ->
         @changedCells = {}
+        @hasValidTimes = @getValidTimeStatus()
+        @onValidTimesChange() if @onValidTimesChange?
+
+      getValidTimeStatus: ->
+        return true unless @isOpened
+        for date in @dates
+          return false if _.filter(date.times, (time) -> time.isOpened()).length == 0
+        return true

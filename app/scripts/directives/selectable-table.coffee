@@ -12,6 +12,9 @@ angular.module('meetupDirectives')
 
       startRow = $parse(attr.startRow)() ? 0
       startColumn = $parse(attr.startColumn)() ? 0
+      [startX, startY] = [-1, -1]
+      [startTouchX, startTouchY] = [-1, -1]
+      [cellWidth, cellHeight] = [-1, -1]
 
       activated = false
 
@@ -29,7 +32,10 @@ angular.module('meetupDirectives')
               $elem.on 'mouseenter', handleMoveEnd
             else
               [x, y] = [i - startColumn, j - startRow]
-              $elem.on 'mousedown touchstart', (e) ->
+              $elem.on 'touchstart', (e) ->
+                handleTouchStart e
+                handleMoveStart e, x, y
+              $elem.on 'mousedown', (e) ->
                 handleMoveStart e, x, y
               $elem.on 'mousemove', (e) ->
                 handleMove e, x, y
@@ -45,35 +51,39 @@ angular.module('meetupDirectives')
       initialize()
       $scope.$on 'ngRepeatFinished', ->
         initialize()
+        cellWidth = $('.cell').width()
+        cellHeight = $('.cell').height()
+
+      handleTouchStart = (e) ->
+        startTouchX = e.originalEvent.changedTouches[0].pageX
+        startTouchY = e.originalEvent.changedTouches[0].pageY
 
       lastEvent = new Date()
 
       handleTouchMove = (e) ->
-        return if not activated
-        return false if new Date() - lastEvent < 150
+        e.preventDefault()
+        return if new Date() - lastEvent < 50
         lastEvent = new Date()
-        changedTouches = e.originalEvent.changedTouches
-        [xPos, yPos] = [changedTouches[0].pageX, changedTouches[0].pageY]
-        nearestCell = $.nearest({x: xPos, y: yPos}, childCell)
-        [x, y] = [nearestCell.index() - startColumn, rows.index nearestCell.parent('tr')]
-        handleMove e, x, y
+        return if not activated
+        cellCols = Math.floor((e.originalEvent.changedTouches[0].pageX - startTouchX + cellWidth / 2) / cellWidth)
+        cellRows = Math.floor((e.originalEvent.changedTouches[0].pageY - startTouchY + cellHeight / 2) / cellHeight)
+        handleMove e, cellCols + startX, cellRows + startY
 
       handleMoveStart = (e, x, y) ->
+        e.preventDefault()
+        [startX, startY] = [x, y]
         button = e.which || e.button
         return if e.type == 'mousedown' && button != 1
         return if activated
         activated = true
         $scope.$emit 'moveStart', x, y
-        false
 
       handleMove = (e, x, y) ->
         return if not activated
         $scope.$emit 'move', x, y
-        false
 
       handleMoveEnd = (e, x, y) ->
         return if not activated
         activated = false
         $scope.$emit 'moveEnd', x, y
-        false
 

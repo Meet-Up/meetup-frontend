@@ -1,5 +1,5 @@
 angular.module('meetupServices')
-  .factory 'CalendarModel', (DateHelper) ->
+  .factory 'CalendarModel', ($filter, DateHelper) ->
     class CalendarModel
       constructor: () ->
         @selectedDates = {}
@@ -16,3 +16,5 @@ angular.module('meetupServices')
 
       toNextMonth: ->
         @setDate @date.next().month()
+
+      hasSelectedDates: -> !$filter('isEmpty')(@selectedDates)

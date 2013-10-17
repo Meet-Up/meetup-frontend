@@ -6,3 +6,13 @@
   <hr class="create-event">
   <select-time selection-target="possibilities" allow-empty="true"></select-time>
 </div>
+
+<div class="btn-next-link"
+     ng-class="{disabled: !calendar.hasSelectedDates()}">
+  <a href="javascript:void(0)"
+     dsref="^.select-time"
+     ng-class="{disabled: !calendar.hasSelectedDates()}"
+     fast-click="saveEvent()">
+     作成
+    </a>
+</div>

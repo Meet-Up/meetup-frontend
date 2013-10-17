@@ -96,7 +96,13 @@
           color: #CCC;
         }
       }
-      .future {
+      .previous-month {
+        color: #AAA;
+        &.selected-true {
+          color: #CCC;
+        }
+      }
+      .next-month {
         color: #AAA;
         &.selected-true {
           color: #CCC;

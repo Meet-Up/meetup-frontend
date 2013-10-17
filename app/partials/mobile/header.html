@@ -1,18 +1,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <header class="create-mode">
-  <a ui-sref="home" fast-link>
-    <div class="back-link">
-      <img src="images/mobile/btn-back.png" alt="MeetUp">
+
+  <ng-switch on="titleBar.hasPrevious">
+    <div ng-switch-when="true">
+      <a href="javascript:void(0)" back-button>
+        <div class="back-link">
+          <img src="images/mobile/btn-back.png" alt="MeetUp">
+        </div>
+      </a>
     </div>
-  </a>
+  </ng-switch>
+
   <a ui-sref="home" fast-link>
     <div class="logo create-center">
       <img src="images/common/logo-white.png" alt="MeetUp">
     </div>
   </a>
-  <a ui-sref="home" fast-link>
-    <div class="next-link">
-      <p>次へ</p>
+
+  <ng-switch on="titleBar.hasNext">
+
+    <div ng-switch-when="true">
+      <ng-switch on="titleBar.nextEvent|isEmpty">
+        <div ng-switch-when="true">
+          <a
+            href="javascript:void(0)"
+            dsref="{{titleBar.nextState}}"
+            ng-class="{disabled: titleBar.nextDisabled}"
+            fast-link
+          >
+            <div class="next-link">
+              <p ng-bind="titleBar.nextText"></p>
+            </div>
+          </a>
+        </div>
+
+        <div ng-switch-default>
+          <a
+            href="javascript:void(0)"
+            ng-class="{disabled: titleBar.nextDisabled}"
+            fast-click="$emit('broadcast', titleBar.nextEvent)"
+          >
+            <div class="next-link">
+              <p ng-bind="titleBar.nextText"></p>
+            </div>
+          </a>
+        </div>
+      </ng-switch>
     </div>
-  </a>
+  </ng-switch>
+
 </header>

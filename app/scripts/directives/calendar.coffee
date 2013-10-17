@@ -8,3 +8,4 @@ angular.module('meetupDirectives')
     controller: ($scope, $element, $attrs) ->
       $scope.calendar.noToolbar = $parse($attrs.noToolbar)() ? false
       $scope.calendar.toggable = $parse($attrs.toggable)() ? false
+      $scope.calendar.allowPastDates = $parse($attrs.allowPastDates)() ? true
