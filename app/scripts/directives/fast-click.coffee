@@ -4,5 +4,5 @@ angular.module('meetupDirectives')
     ($scope, $elem, $attr) ->
       fn = $parse $attr.fastClick
       $elem.fastClick (event) ->
-        return if $attr.disabled
+        return if $elem.attr('disabled') == 'disabled' || $elem.hasClass('disabled')
         $scope.$apply () -> fn($scope, { $event: event })

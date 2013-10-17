@@ -21,3 +21,5 @@ angular.module('meetupControllers')
         token: $scope.event.token
       }
 
+    $scope.$on 'createEvent', $scope.saveEvent
+

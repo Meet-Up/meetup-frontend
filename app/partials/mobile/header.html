@@ -18,17 +18,35 @@
   </a>
 
   <ng-switch on="titleBar.hasNext">
+
     <div ng-switch-when="true">
-      <a
-        href="javascript:void(0)"
-        dsref="{{titleBar.nextState}}"
-        ng-class="{disabled: titleBar.nextDisabled}"
-        fast-link
-      >
-        <div class="next-link">
-          <p ng-bind="titleBar.nextText"></p>
+      <ng-switch on="titleBar.nextEvent|isEmpty">
+        <div ng-switch-when="true">
+          <a
+            href="javascript:void(0)"
+            dsref="{{titleBar.nextState}}"
+            ng-class="{disabled: titleBar.nextDisabled}"
+            fast-link
+          >
+            <div class="next-link">
+              <p ng-bind="titleBar.nextText"></p>
+            </div>
+          </a>
         </div>
-      </a>
+
+        <div ng-switch-default>
+          <a
+            href="javascript:void(0)"
+            ng-class="{disabled: titleBar.nextDisabled}"
+            fast-click="$emit('broadcast', titleBar.nextEvent)"
+          >
+            <div class="next-link">
+              <p ng-bind="titleBar.nextText"></p>
+            </div>
+          </a>
+        </div>
+      </ng-switch>
     </div>
-  </ng-switch-when>
+  </ng-switch>
+
 </header>

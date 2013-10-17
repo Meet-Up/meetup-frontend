@@ -10,3 +10,6 @@ angular.module('meetupControllers')
     $scope.$on 'titleBar.update', (e, attrs) ->
       for key, value of attrs
         $scope.titleBar[key] = value
+
+    $scope.$on 'broadcast', (e, eventName) ->
+      $scope.$broadcast eventName
