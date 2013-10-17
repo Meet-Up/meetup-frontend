@@ -418,9 +418,12 @@ footer {
   margin-right: auto;
   background: $main-color;
   border-radius: 5px;
-  p {
+  a {
+    display: block;
+    height: 100%;
     clear: both;
     color: white;
+    text-decoration: none;
     text-align: center;
     margin-top: 0px;
     padding-top: 19px;

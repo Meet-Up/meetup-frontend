@@ -59,7 +59,7 @@ angular.module('meetupApp', [
           hasNext: true
           nextDisabled: true
           nextState: 'create-event.select-time'
-    'create-event.selection-time':
+    'create-event.select-time':
       url: '/select-time'
       templateUrl: 'partials/mobile/create-event/time-selection.html'
       data:
