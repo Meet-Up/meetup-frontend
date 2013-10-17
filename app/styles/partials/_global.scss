@@ -45,3 +45,7 @@ hr {
 .hidden {
   display: none;
 }
+
+input:invalid {
+  box-shadow: none;
+}

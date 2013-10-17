@@ -13,6 +13,7 @@ angular.module('meetupServices')
           date: dateInfo.date.toString 'yyyy/MM/dd'
           open_times: open_times
 
-    Event::getUrl = -> "#{APP_URL}/events/#{@token}"
+    Event::getUrl = ->
+      @$url().replace API_URL, APP_URL
 
     Event

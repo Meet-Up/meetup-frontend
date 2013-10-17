@@ -74,6 +74,7 @@ angular.module('meetupApp', [
     'create-event.confirm':
       url: '/confirm'
       templateUrl: 'partials/mobile/create-event/confirmation.html'
+      controller: 'ConfirmEventCtrl'
       data:
         titleBar:
           hasPrevious: true

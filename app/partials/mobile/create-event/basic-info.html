@@ -1,13 +1,14 @@
 <table class="create-basic">
+  <form novalidate>
   <tr class="action">
     <th>
       <h2>
-        <span class="label" for="event-name">
+        <span class="label" for="event-title">
         <small>*</small>イベント名</span>
       </h2>
     </th>
     <td>
-      <input type="text" id="event-name" ng-model="event.name">
+      <input type="text" id="event-title" ng-model="event.title" required>
     </td>
   </tr>
 
@@ -19,7 +20,7 @@
       </h2>
     </th>
     <td>
-      <input type="number" id="event-duration" ng-model="event.duration">
+      <input type="number" id="event-duration" ng-model="event.duration" required>
     </td>
   </tr>
 
@@ -37,12 +38,13 @@
   <tr class="action">
     <th>
       <h2>
-        <span class="label" for="event-pw">
+        <span class="label" for="event-password">
         <small>*</small>主催者<br>　パスワード</span>
       </h2>
     </th>
     <td>
-      <input type="text" id="event-pw" ng-model="event.pw">
+      <input type="password" id="event-password" ng-model="event.password" required>
     </td>
   </tr>
+  </form>
 </table>
