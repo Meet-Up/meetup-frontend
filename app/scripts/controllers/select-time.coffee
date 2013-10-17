@@ -5,6 +5,9 @@ angular.module('meetupControllers')
       $state.go '^.index'
       return
 
+    dates = (date for k, date of $scope.calendar.selectedDates)
+    $scope.timeContainer.updateDates dates
+
     $scope.timeContainer.onValidTimesChange = ->
       $scope.$emit 'titleBar.update', { nextDisabled: !$scope.timeContainer.hasValidTimes }
       $scope.$apply()

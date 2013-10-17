@@ -6,11 +6,19 @@ angular.module('meetupDirectives')
     isSelecting = false
     statusNumber = 0
 
+    cells = []
+
     onMove = (e, x, y, $scope) ->
       return if x == lastX && y == lastY
       [lastX, lastY] = [x, y]
-      $scope.timeContainer.updateCells [startX, startY], [x, y], isSelecting, statusNumber
-      $scope.$apply()
+      toUpdate = $scope.timeContainer.updateCells [startX, startY], [x, y], isSelecting, statusNumber
+      for cell in toUpdate
+        if cell.selected
+          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).addClass 'selected-true'
+          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).removeClass 'selected-false'
+        else
+          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).addClass 'selected-false'
+          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).removeClass 'selected-true'
 
     initializeEvents = ($scope, statusNumber) ->
       getCell = (x, y) -> $scope.timeContainer.getTimeCell x, y
@@ -40,6 +48,10 @@ angular.module('meetupDirectives')
     transclude: false
     terminal: true
     templateUrl: "partials/#{DEVICE}/select-time/main.html"
+
+    link: ($scope, element, attr) ->
+      $scope.$on 'ngRepeatFinished', ->
+        cells = element.find('.time-cell')
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE
