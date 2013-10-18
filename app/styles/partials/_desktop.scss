@@ -338,10 +338,31 @@ hr {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
   background: image-url("desktop/book-create-event.png") no-repeat;
   small {
     color: red;
     padding-right: 6px;
+  }
+  .error {
+    position: absolute;
+    &.er-event-title {
+      top: -28px;
+      left: 172px;
+    }
+    &.er-event-duration {
+      top: 22px;
+    }
+    &.er-event-description {
+      top: 66px;
+    }
+    &.er-event-pass {
+      top: 208px;
+    }
+    &.er-event-dates {
+      top: 40px;
+      right: 80px;
+    }
   }
 }
 .book-left {
@@ -349,6 +370,7 @@ hr {
   margin-top: 56px;
   margin-left: 35px;
   line-height: 3.1em;
+  position: relative;
   tr {
     th {
       text-align: right;
@@ -358,12 +380,6 @@ hr {
     td {
       text-align: left;
       padding-left: 30px;
-      position: relative;
-      .error {
-        position: absolute;
-        top:-28px;
-        left:32px;
-      }
       input {
         width: 200px;
         height: 25px;
