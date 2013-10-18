@@ -1,4 +1,4 @@
-angular.module('meetupDirectives')
+angular.module('MeetAppDirectives')
   .directive 'emitOnRender', ($timeout) ->
     restrict: 'A'
     link: ($scope, element, attr) ->

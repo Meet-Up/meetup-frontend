@@ -1,4 +1,4 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'EventCtrl', ($scope, event, TimeContainer, DEBUG) ->
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)

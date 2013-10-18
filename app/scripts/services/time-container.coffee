@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'TimeContainer',  (DateHelper, TimeCell, CELLS_PER_DAY) ->
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'

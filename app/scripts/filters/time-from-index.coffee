@@ -1,4 +1,4 @@
-angular.module('meetupFilters')
+angular.module('MeetAppFilters')
   .filter 'timeFromIndex', (CELLS_PER_DAY) ->
     (input) ->
       minutesPerCell = 24 * 60 / CELLS_PER_DAY

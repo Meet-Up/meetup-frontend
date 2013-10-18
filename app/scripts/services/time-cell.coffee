@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'TimeCell', (TimeStatus) ->
     class TimeCell
 

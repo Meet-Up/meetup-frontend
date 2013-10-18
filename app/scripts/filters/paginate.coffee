@@ -1,4 +1,4 @@
-angular.module('meetupFilters')
+angular.module('MeetAppFilters')
   .filter 'paginate',  ->
     (input, number, elementsPerPage) ->
       start = (number - 1) * elementsPerPage

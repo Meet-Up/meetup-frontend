@@ -1,4 +1,4 @@
-angular.module('meetupConfig', [])
+angular.module('MeetAppConfig', [])
   .config(($provide, $httpProvider) ->
     device = if $(window).width() >= 1024 then 'desktop' else 'mobile'
     $provide.constant 'APP_URL', 'http://localhost:9000/#'

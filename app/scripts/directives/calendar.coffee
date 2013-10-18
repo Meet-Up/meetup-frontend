@@ -1,4 +1,4 @@
-angular.module('meetupDirectives')
+angular.module('MeetAppDirectives')
   .directive 'calendar', ($parse, DateHelper, DEVICE) ->
     restrict: 'E'
     replace: true

@@ -1,4 +1,4 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'SelectTimeCtrl', ($scope, $state, $filter) ->
     hasDates = $scope.calendar? && !$filter('isEmpty')($scope.calendar.selectedDates)
     unless hasDates && $scope.timeContainer?

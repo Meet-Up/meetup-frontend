@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'createDialog', ($compile, $document) ->
     body = $document.find 'body'
 

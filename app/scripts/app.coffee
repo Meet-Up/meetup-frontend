@@ -1,9 +1,9 @@
-angular.module('meetupApp', [
+angular.module('MeetAppApp', [
   'ui.router'
-  'meetupControllers'
-  'meetupDirectives'
-  'meetupFilters'
-  'meetupConfig'
+  'MeetAppControllers'
+  'MeetAppDirectives'
+  'MeetAppFilters'
+  'MeetAppConfig'
 ]).config(($stateProvider, $urlRouterProvider, DEVICE) ->
 
   commonStates =

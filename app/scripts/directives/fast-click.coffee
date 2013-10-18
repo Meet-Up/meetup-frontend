@@ -1,4 +1,4 @@
-angular.module('meetupDirectives')
+angular.module('MeetAppDirectives')
   .directive 'fastClick', ($parse) ->
 
     ($scope, $elem, $attr) ->

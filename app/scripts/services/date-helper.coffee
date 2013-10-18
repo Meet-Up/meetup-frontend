@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'DateHelper', (CELLS_PER_DAY)->
 
     getDaysForMonth: (date) ->

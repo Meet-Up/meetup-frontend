@@ -1,4 +1,4 @@
-angular.module('meetupDirectives')
+angular.module('MeetAppDirectives')
   .directive 'fastLink', ($parse, $location, $state) ->
     restrict: 'A'
     link: ($scope, $elem, $attr) ->

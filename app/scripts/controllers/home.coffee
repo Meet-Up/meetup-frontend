@@ -1,4 +1,4 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'HomeCtrl', ($scope) ->
     $scope.features = [
       title: '1.世界最速'

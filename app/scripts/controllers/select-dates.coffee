@@ -1,2 +1,2 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'SelectDatesCtrl', ($scope) ->

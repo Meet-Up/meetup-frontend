@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'Event', (railsResourceFactory, railsSerializer, EventSerializer, DateHelper, API_URL, APP_URL) ->
     Event = railsResourceFactory
       url: "#{API_URL}/events/{{token}}"

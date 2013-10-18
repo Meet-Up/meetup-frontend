@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'CalendarModel', ($filter, DateHelper) ->
     class CalendarModel
       constructor: () ->

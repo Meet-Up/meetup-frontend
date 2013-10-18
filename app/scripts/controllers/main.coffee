@@ -1,6 +1,6 @@
-angular.module('meetupControllers', [
+angular.module('MeetAppControllers', [
   'ui.router'
-  'meetupServices'
-  'meetupDirectives'
-  'meetupFilters'
+  'MeetAppServices'
+  'MeetAppDirectives'
+  'MeetAppFilters'
 ])

@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('MeetAppServices')
   .factory 'TimeStatus',  ->
 
     OPENED: 0x01

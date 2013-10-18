@@ -1,4 +1,4 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'AppCtrl', ($scope, $state) ->
     $scope.$on '$stateChangeSuccess', ->
       if $state.current.data?.titleBar?

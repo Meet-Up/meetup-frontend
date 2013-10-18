@@ -1,4 +1,4 @@
-angular.module('meetupFilters')
+angular.module('MeetAppFilters')
   .filter 'isEmpty', ->
     (input) ->
       return true if input == null

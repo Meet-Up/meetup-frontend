@@ -1,4 +1,4 @@
-angular.module('meetupDirectives')
+angular.module('MeetAppDirectives')
   .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeStatus, DEVICE, DAYS_PER_PAGE) ->
 
     [startX, startY] = [-1, -1]

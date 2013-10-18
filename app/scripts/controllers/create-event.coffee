@@ -1,4 +1,4 @@
-angular.module('meetupControllers')
+angular.module('MeetAppControllers')
   .controller 'CreateEventCtrl', ($scope, $state, Event,
         eventContainer, TimeContainer, CalendarModel, DEVICE, DEBUG) ->
 

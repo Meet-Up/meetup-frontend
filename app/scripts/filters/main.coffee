@@ -1,1 +1,1 @@
-angular.module('meetupFilters', ['meetupConfig'])
+angular.module('MeetAppFilters', ['MeetAppConfig'])
