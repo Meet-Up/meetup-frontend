@@ -10,6 +10,7 @@
         <small>*</small>イベント名</span></th>
       <td>
         <input type="text" id="event-title" ng-model="event.title" required>
+        <div class="error">イベント名を入力してください</div>
       </td>
     </tr>
     <tr class="action">
@@ -19,6 +20,7 @@
       </th>
       <td>
         <input type="number" id="event-duration" ng-model="event.duration" required>
+        <div class="error">イベント名を入力してください</div>
       </td>
     </tr>
     <tr class="action">
@@ -27,6 +29,7 @@
       </th>
       <td>
         <textarea id="event-description" cols="28" rows="10" ng-model="event.description"></textarea>
+        <div class="error">イベント名を入力してください</div>
       </td>
     </tr>
     <tr class="action">
@@ -37,17 +40,20 @@
       </th>
       <td>
         <input type="password" id="event-password" ng-model="event.password" required>
+        <div class="error">イベント名を入力してください</div>
       </td>
     </tr>
     </form>
   </table>
   <div class="book-right">
     <span><small>*</small>所要時間</span>
+    <div class="error">イベント名を入力してください</div>
     <calendar toggable="true" allow-past-dates="false">
     </calendar>
   </div>
 </div>
 <select-time selection-target="possibilities" allow-empty="true">
+  <div class="error">イベント名を入力してください</div>
 </select-time>
 
 <div class="btn-create-event">

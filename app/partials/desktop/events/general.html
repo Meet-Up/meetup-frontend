@@ -55,7 +55,7 @@
           </a>
         </li>
       </ul>
-      <p><small>*</small>名前をクリックすると予定を修正できます。</p>
+      <p><small>*</small>名前をクリックすると予定を確認・修正できます。</p>
     </div>
   </div>
 </div>
@@ -96,8 +96,12 @@
     <div class="share-h">
       <p>下記URLをコピーして参加者に共有してください。</p>
     </div>
-    <div class="share-url">
-      <p>http://meetup.co.jp/list.php?id=20131005082551_jrjpjj</p>
+    <input class="share-url" type="text" value="{{event.$url()}}" readonly="readonly">
+    <div class="btn-copy">
+      <p>コピー?</p>
+    </div>
+    <div id="copy-confirm">
+      Copied!
     </div>
   </div>
   <div class="share-box-right">

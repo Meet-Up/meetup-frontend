@@ -1,3 +1,94 @@
 <h1 class="create-event">
-  イベントを確認する
+  作成イベントの確認
 </h1>
+
+<div class="confirm-book">
+
+<table>
+  <tr class="basic-info-top">
+    <th colspan="1">
+      イベント名：
+    </th>
+    <td colspan="3">
+      {{event.title}}
+    </td>
+  </tr>
+  <tr class="basic-info-top">
+    <td colspan="4">
+      <hr>
+    </td>
+  </tr>
+  <tr class="basic-info-bottom">
+    <th>
+      所要時間：
+    </th>
+    <td class="conf-event-duration">
+      {{event.duration}} 時間くらい
+    </td>
+    <th rowspan="2" class="conf-event-dates">
+      日程候補：
+    </th>
+    <td rowspan="2" class="conf-event-dates">
+      <span ng-repeat="dateInfo in timeContainer.dates">
+        {{ dateInfo.date | date:'MM/d(EEE)' }}
+      </span>
+    </td>
+  </tr>
+  <tr class="basic-info-bottom" ng-show="event.description">
+    <th>
+      コメント：
+    </th>
+    <td class="conf-event-description">
+      {{event.description}}
+    </td>
+  </tr>
+  <tr>
+  	<td colspan="4">
+  		<div class="fix-event">
+  			<p>イベントを修正する</p>
+  		</div>
+  	</td>
+  </tr>
+</table>
+
+</div>
+
+<div class="organizer-area">
+  <div class="gide-arrow"></div>
+  <div class="share-box-left">
+    <div class="share-h">
+      <p>下記URLをコピーして参加者に共有してください。</p>
+    </div>
+    <input class="share-url" type="text" value="{{event.$url()}}" readonly="readonly">
+    <div class="btn-copy">
+      <p>コピー?</p>
+    </div>
+    <div id="copy-confirm">
+      Copied!
+    </div>
+  </div>
+  <div class="share-box-right">
+    <div class="share-mail">
+      <p>メール</p>
+    </div>
+    <div class="share-twitter">
+      <img src="images/desktop/btn-mail.png" alt="">
+    </div>
+    <div class="share-facebook">
+      <img src="images/desktop/btn-mail.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<div class="gide-arrow"></div>
+
+<div class="goinput">
+  <p>自分の予定を入力する</p>
+</div>
+
+<!--
+  <a href="javascript:void(0)" ng-click="close()">Close</a>
+  <a href="javascript:void(0)" ng-click="close(); gotoEdit()">Edit</a>
+  -->
