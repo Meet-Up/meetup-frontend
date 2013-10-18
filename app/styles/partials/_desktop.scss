@@ -28,6 +28,7 @@ button {
       padding-top:10px;
       padding-left: 65px;
       background: image-url("desktop/h1-create.png") no-repeat;
+      z-index: 2;
     }
     &.events {
       font-size:23px;
@@ -312,6 +313,7 @@ hr {
   color: white;
   border-radius: 5px;
   opacity: 0.8;
+  z-index: 3;
   &:after {
     content: '';
     position: absolute;
@@ -340,6 +342,7 @@ hr {
   margin-right: auto;
   position: relative;
   background: image-url("desktop/book-create-event.png") no-repeat;
+  z-index: 1;
   small {
     color: red;
     padding-right: 6px;
