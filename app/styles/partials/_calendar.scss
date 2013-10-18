@@ -15,9 +15,11 @@
   background-color: $light-grey;
 }
 
-.current-month {
-  position: relative;
-  top: 12px;
+.current-month-title {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin-left: -53px;
   font-size: 22px;
 }
 
@@ -56,6 +58,7 @@
   width: 100%;
   height: 50px;
   text-align: center;
+  position: relative;
 }
 
 .calendar {
