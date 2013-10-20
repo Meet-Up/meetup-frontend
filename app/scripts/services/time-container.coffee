@@ -111,10 +111,10 @@ angular.module('meetupServices')
 
       comfirmCellsUpdate: ->
         @changedCells = {}
-        @hasValidTimes = @getValidTimeStatus()
+        @hasValidTimes = @checkTimeValidity()
         @onValidTimesChange() if @onValidTimesChange?
 
-      getValidTimeStatus: ->
+      checkTimeValidity: ->
         return true unless @isOpened
         for date in @dates
           return false if _.filter(date.times, (time) -> time.isOpened()).length == 0

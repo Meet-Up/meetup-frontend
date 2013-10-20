@@ -11,9 +11,9 @@ angular.module('meetupDirectives')
     onMove = (e, x, y, $scope) ->
       return if x == lastX && y == lastY
       [lastX, lastY] = [x, y]
-      toUpdate = $scope.timeContainer.updateCells [startX, startY], [x, y], isSelecting, statusNumber
+      toUpdate = $scope.container.updateCells [startX, startY], [x, y], isSelecting, statusNumber
       for cell in toUpdate
-        index = (cell.y - $scope.timeContainer.minRow) * DAYS_PER_PAGE + cell.x
+        index = (cell.y - $scope.container.minRow) * DAYS_PER_PAGE + cell.x
         if cell.selected
           cells.eq(index).addClass 'selected-true'
           cells.eq(index).removeClass 'selected-false'
@@ -22,27 +22,27 @@ angular.module('meetupDirectives')
           cells.eq(index).removeClass 'selected-true'
 
     initializeEvents = ($scope, statusNumber) ->
-      getCell = (x, y) -> $scope.timeContainer.getTimeCell x, y
+      getCell = (x, y) -> $scope.container.getTimeCell x, y
 
       $scope.$on 'moveStart', (e, x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
-        y += $scope.timeContainer.minRow
+        y += $scope.container.minRow
         [startX, startY] = [x, y]
         isSelecting = !getCell(x, y).getStatus(statusNumber)
         onMove e, x, y, $scope
 
       $scope.$on 'move', (e, x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
-        y += $scope.timeContainer.minRow
+        y += $scope.container.minRow
         onMove e, x, y, $scope
 
       $scope.$on 'moveEnd', (e, x, y) ->
-        $scope.timeContainer.comfirmCellsUpdate()
+        $scope.container.comfirmCellsUpdate()
         [lastX, lastY] = [-1, -1]
 
     updateScopeData = ($scope) ->
-      $scope.dates = $filter('paginate')($scope.timeContainer.dates, $scope.page, DAYS_PER_PAGE)
-      $scope.datesNumber = $scope.timeContainer.dates.length
+      $scope.dates = $filter('paginate')($scope.container.dates, $scope.page, DAYS_PER_PAGE)
+      $scope.datesNumber = $scope.container.dates.length
 
     restrict: 'EA'
     replace: true
@@ -59,7 +59,10 @@ angular.module('meetupDirectives')
       $scope.daysIndexes = [0..DAYS_PER_PAGE - 1]
       $scope.page = 1
       $scope.dates = []
-      $scope.rows = $scope.timeContainer.rows()
+      containerName = if 'containerName' of $attrs then $attrs.containerName else 'timeContainer'
+      $scope.container = $scope[containerName]
+
+      $scope.rows = $scope.container.rows()
 
       statusNumber = TimeStatus.getStatusFromName $attrs.selectionTarget
       allowEmpty = $parse($attrs.allowEmpty)()
@@ -71,14 +74,14 @@ angular.module('meetupDirectives')
 
       $scope.isOpened = (x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
-        return false if x >= $scope.timeContainer.dates.length
-        $scope.timeContainer.getTimeCell(x, y).isOpened()
+        return false if x >= $scope.container.dates.length
+        $scope.container.getTimeCell(x, y).isOpened()
 
       $scope.isSelected = (x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
-        y += $scope.timeContainer.minRow
-        return false if x >= $scope.timeContainer.dates.length
-        $scope.timeContainer.getTimeCell(x, y).getStatus statusNumber
+        y += $scope.container.minRow
+        return false if x >= $scope.container.dates.length
+        $scope.container.getTimeCell(x, y).getStatus statusNumber
 
       $scope.previousPage = ->
         $scope.page -= 1
@@ -97,6 +100,6 @@ angular.module('meetupDirectives')
 
       updateScopeData $scope
 
-      $scope.$watch 'timeContainer', () ->
+      $scope.$watch containerName, () ->
         updateScopeData $scope
       , true
