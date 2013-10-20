@@ -1,5 +1,5 @@
 angular.module('meetupServices')
-  .factory 'TimeContainer',  (DateHelper, TimeCell, CELLS_PER_DAY) ->
+  .factory 'TimeContainer',  (DateHelper, TimeCell, TimeStatus, CELLS_PER_DAY) ->
 
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
@@ -45,20 +45,18 @@ angular.module('meetupServices')
 
       rows: -> [@minRow..@maxRow]
 
-      getFirstRow: (start, end, step, condition) ->
+      setFirstRow: (start, end, step, condition, save) ->
         for i in [start..end] by step
           date = @dates[i]
           for time, j in date.times
             if time.isOpened() && condition(j)
-              return j
+              save(j)
 
       setMinRow: ->
-        minRow = @getFirstRow 0, @dates.length - 1, 1, (j) => j < @minRow
-        @minRow = minRow if minRow?
+        @setFirstRow 0, @dates.length - 1, 1, ((j) => j < @minRow), ((j) => @minRow = j)
 
       setMaxRow: ->
-        maxRow = @getFirstRow @dates.length - 1, 0, -1, (j) => j > @maxRow
-        @maxRow = maxRow if maxRow?
+        @setFirstRow @dates.length - 1, 0, -1, ((j) => j > @maxRow), ((j) => @maxRow = j)
 
       setRows: ->
         @setMinRow()
@@ -84,15 +82,17 @@ angular.module('meetupServices')
         toUpdate = []
         if startX == endX && startY == endY
           cell = @getTimeCell(startX, startY)
-          cell.updateStatus(!cell.getStatus(statusNumber), statusNumber)
-          toUpdate.push({x: startX, y: startY, selected: cell.getStatus statusNumber})
+          if cell.canUpdateStatus(statusNumber)
+            cell.updateStatus(!cell.getStatus(statusNumber), statusNumber)
+            toUpdate.push({x: startX, y: startY, selected: cell.getStatus statusNumber})
         else
           for x in [startX..endX]
             for y in [startY..endY]
               cell = @getTimeCell(x, y)
+              continue unless cell.canUpdateStatus(statusNumber)
               @changedCells[[x, y]] = cell.getStatus statusNumber unless [x, y] of @changedCells
               cell.updateStatus isSelecting, statusNumber
-              toUpdate.push({x: x, y: y, selected: isSelecting})
+              toUpdate.push({x: x, y: y, selected: cell.getStatus(statusNumber)})
 
           for k, status of @changedCells
             [x, y] = k.split ','

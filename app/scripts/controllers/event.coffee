@@ -1,5 +1,5 @@
 angular.module('meetupControllers')
-  .controller 'EventCtrl', ($scope, event, TimeContainer, DEBUG) ->
+  .controller 'EventCtrl', ($scope, event, TimeContainer, createDialog, DEBUG) ->
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
@@ -16,3 +16,6 @@ angular.module('meetupControllers')
         $scope.selectedPerson = ''
       else
         $scope.selectedPerson = person
+
+    $scope.openAvailabilites = ->
+      createDialog $scope, 'partials/desktop/events/availabilities-modal.html'

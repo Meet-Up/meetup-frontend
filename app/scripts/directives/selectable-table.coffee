@@ -1,6 +1,7 @@
 angular.module('meetupDirectives')
   .directive 'selectableTable', ($parse) ->
-    restrict: 'A'
+    restrict: 'AC'
+    replace: false
 
     link: ($scope, element, attr) ->
       isTable = element.is 'table'

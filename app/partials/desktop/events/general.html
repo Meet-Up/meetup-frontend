@@ -12,7 +12,7 @@
       </div>
     </h2>
   </div>
-  <div class="input-schedule">
+  <div class="input-schedule" fast-click="openAvailabilites()">
     <p>予定を入力する</p>
   </div>
   <div class="recommend-area">
@@ -97,7 +97,7 @@
       <p>下記URLをコピーして参加者に共有してください。</p>
     </div>
     <div class="share-url">
-      <p>http://meetup.co.jp/list.php?id=20131005082551_jrjpjj</p>
+      <p>{{event.getUrl()}}</p>
     </div>
   </div>
   <div class="share-box-right">

@@ -7,12 +7,12 @@ angular.module('meetupServices')
         @setOpened opened ? false
         @setAvailable available ? false
 
-      _canUpdateStatus: (active, type) ->
+      canUpdateStatus: (type) ->
         return false if type == TimeStatus.AVAILABLE && !@isOpened()
         true
 
       updateStatus: (active, type) ->
-        return unless @_canUpdateStatus(active, type)
+        return unless @canUpdateStatus(type)
         if active then @status |= type else @status &= ~type
       getStatus: (type) -> (@status & type) != 0
 

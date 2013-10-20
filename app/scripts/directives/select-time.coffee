@@ -13,12 +13,13 @@ angular.module('meetupDirectives')
       [lastX, lastY] = [x, y]
       toUpdate = $scope.timeContainer.updateCells [startX, startY], [x, y], isSelecting, statusNumber
       for cell in toUpdate
+        index = (cell.y - $scope.timeContainer.minRow) * DAYS_PER_PAGE + cell.x
         if cell.selected
-          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).addClass 'selected-true'
-          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).removeClass 'selected-false'
+          cells.eq(index).addClass 'selected-true'
+          cells.eq(index).removeClass 'selected-false'
         else
-          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).addClass 'selected-false'
-          cells.eq(cell.y * DAYS_PER_PAGE + cell.x).removeClass 'selected-true'
+          cells.eq(index).addClass 'selected-false'
+          cells.eq(index).removeClass 'selected-true'
 
     initializeEvents = ($scope, statusNumber) ->
       getCell = (x, y) -> $scope.timeContainer.getTimeCell x, y
@@ -43,7 +44,7 @@ angular.module('meetupDirectives')
       $scope.dates = $filter('paginate')($scope.timeContainer.dates, $scope.page, DAYS_PER_PAGE)
       $scope.datesNumber = $scope.timeContainer.dates.length
 
-    restrict: 'E'
+    restrict: 'EA'
     replace: true
     transclude: false
     terminal: true
@@ -64,6 +65,7 @@ angular.module('meetupDirectives')
       allowEmpty = $parse($attrs.allowEmpty)()
 
       $scope.cssClass = $attrs.selectionTarget
+      $scope.selectable = $parse($attrs.selectable)() ? false
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 
@@ -74,6 +76,7 @@ angular.module('meetupDirectives')
 
       $scope.isSelected = (x, y) ->
         x += ($scope.page - 1) * DAYS_PER_PAGE
+        y += $scope.timeContainer.minRow
         return false if x >= $scope.timeContainer.dates.length
         $scope.timeContainer.getTimeCell(x, y).getStatus statusNumber
 
