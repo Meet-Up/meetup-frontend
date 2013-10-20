@@ -119,3 +119,12 @@ angular.module('meetupServices')
         for date in @dates
           return false if _.filter(date.times, (time) -> time.isOpened()).length == 0
         return true
+
+      toEventDates: ->
+        eventDates = []
+        for dateInfo in @dates
+          open_times = ((if t.isOpened() then '1' else '0') for t in dateInfo.times).join ''
+          eventDates.push
+            date: dateInfo.date.toString 'yyyy/MM/dd'
+            open_times: open_times
+        eventDates
