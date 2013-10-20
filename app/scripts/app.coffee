@@ -15,6 +15,17 @@ angular.module('MeetAppApp', [
         titleBar:
           hasCreate: true
 
+  resolveEvent =
+    event: ($stateParams, eventContainer, DEBUG) ->
+      if DEBUG
+        {
+          title: 'foo'
+          duration: 1
+          dates: []
+        }
+      else
+        eventContainer.getEvent $stateParams.token
+
   desktopStates =
     'create-event':
       abstract: true
@@ -34,16 +45,7 @@ angular.module('MeetAppApp', [
       url: '/events/:token'
       templateUrl: 'views/desktop/events.html'
       controller: 'EventCtrl'
-      resolve:
-        event: ($stateParams, eventContainer, DEBUG) ->
-          if DEBUG
-            {
-              title: 'foo'
-              duration: 1
-              dates: []
-            }
-          else
-            eventContainer.getEvent $stateParams.token
+      resolve: resolveEvent
 
   mobileStates =
     'create-event':
@@ -79,6 +81,13 @@ angular.module('MeetAppApp', [
         titleBar:
           hasPrevious: true
           hasNext: false
+
+    events:
+      url: '/events/:token'
+      templateUrl: 'views/mobile/events.html'
+      controller: 'EventCtrl'
+      resolve: resolveEvent
+
 
   otherStates = if DEVICE == 'desktop' then desktopStates else mobileStates
 
