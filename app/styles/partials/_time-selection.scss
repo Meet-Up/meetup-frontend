@@ -15,10 +15,7 @@
       td {
         padding-top: 10px;
         padding-bottom: 10px;
-        @media only screen and (min-width: 760px) {
-          font-size: 16px;
-        }
-        font-size: 8px;
+        font-size: 16px;
       }
     }
     &.even-time-true {
