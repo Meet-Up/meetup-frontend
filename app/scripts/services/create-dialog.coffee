@@ -27,9 +27,10 @@ angular.module('MeetAppServices')
       dialogElement.easyModal({
         onOpen: (modal) ->
           options.onOpen(modal) if options.onOpen?
-        onClose: () ->
+        onClose: ->
           dialogScope.$destroy()
           dialogElement.remove()
+        overlayClose: false
       })
 
       dialogElement.trigger 'openModal'

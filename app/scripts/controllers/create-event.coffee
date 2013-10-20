@@ -14,7 +14,7 @@ angular.module('MeetAppControllers')
       , true
 
     $scope.saveEvent = ->
-      $scope.event.setDates $scope.timeContainer
+      $scope.event.dates = $scope.timeContainer.toEventDates()
       if DEBUG
         $state.go 'create-event.confirm'
       else

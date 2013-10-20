@@ -1,0 +1,12 @@
+<tr class="even-time-{{y % 4 < 2}}"
+    ng-repeat="y in rows"
+    ng-init="show=y % 2 == 0"
+    emit-on-render>
+  <td class="cell"
+      ng-class="{'time-label': show, hidden: dates.length == 0}"
+      ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
+  <td class="cell time-cell selected-{{isSelected(x, y)}}"
+      ng-repeat="x in daysIndexes"
+      ng-class="{hidden: x >= dates.length, opened: isOpened(x, y)}">
+  </td>
+</tr>
