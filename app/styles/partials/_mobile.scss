@@ -859,11 +859,11 @@ footer {
     font-size: 17px;
     color: white;
     text-align: center;
-    .tab-input {
+    .tab-heatmap {
       float: left;
       width: 119px;
       height: 31px;
-      background: image-url("mobile/tab-input.png") no-repeat;
+      background: image-url("mobile/tab-heatmap.png") no-repeat;
       background-size: 0px;
       &:hover {
         opacity: 0.7;
@@ -873,11 +873,11 @@ footer {
         padding-top: 8px;
       }
     }
-    .tab-heatmap {
+    .tab-input {
       float: right;
       width: 119px;
       height: 31px;
-      background: image-url("mobile/tab-heatmap.png") no-repeat;
+      background: image-url("mobile/tab-input.png") no-repeat;
       background-size: 120px;
       &:hover {
         opacity: 0.7;
