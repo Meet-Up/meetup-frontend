@@ -1,4 +1,4 @@
-angular.module('meetupServices')
+angular.module('meetAppServices')
   .factory 'UserSerializer', (railsSerializer) ->
     railsSerializer ->
       @nestedAttribute 'availabilities'
