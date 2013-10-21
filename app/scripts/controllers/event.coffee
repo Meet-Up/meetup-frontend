@@ -3,11 +3,13 @@ angular.module('MeetAppControllers')
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
-    $scope.participants = $scope.event.participants ? []
+    $scope.participants = []
 
-    for participant in $scope.participants
-      participant.token = $scope.event.token
+    for participantObject in $scope.event.participants
+      participant = new User(participantObject)
+      participant.eventToken = $scope.event.token
       participant.timeContainer = TimeContainer.fromEventDates($scope.event.dates, participant.availabilities)
+      $scope.participants.push participant
 
     $scope.selectedUser = null
 
@@ -29,8 +31,9 @@ angular.module('MeetAppControllers')
       createDialog $scope, 'partials/desktop/events/availabilities-modal.html'
 
     $scope.saveAvailabities = ->
-      user = if $scope.editing then $scope.editedUser else $scope.user
-      user.availabilities = $scope.timeEditContainer.toEventDates(true)
+      $scope.user.availabilities = $scope.timeEditContainer.toEventDates(true)
       unless DEBUG
-        user.save().then (savedUser) ->
-          console.log savedUser
+        $scope.user.save().then (savedUser) ->
+          savedUser.token = $scope.event.token
+          savedUser.timeContainer = TimeContainer.fromEventDates($scope.event.dates, savedUser.availabilities)
+          $scope.participants.push savedUser
