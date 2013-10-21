@@ -19,7 +19,8 @@ angular.module('MeetAppControllers')
         $state.go 'create-event.confirm'
       else
         $scope.event.save().then (evt) ->
-          $scope.password = $scope.event.password
+          $scope.event.currentPassword = $scope.event.password
+          $scope.timeContainer.setDates $scope.event.dates
           $state.go 'create-event.confirm'
           eventContainer.addEvent $scope.event
 

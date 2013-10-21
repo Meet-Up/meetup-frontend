@@ -19,12 +19,16 @@ angular.module('MeetAppServices')
 
       @fromEventDates: (eventDates) ->
         timeContainer = new TimeContainer()
+        timeContainer.setDates eventDates
+        timeContainer
+
+      setDates: (eventDates) ->
+        @dates = []
         for eventDate in eventDates
           date = Date.parse(eventDate.date)
           times = (new TimeCell(n == '1') for n in eventDate.times)
-          timeContainer.dates.push { date: date, times: times, id: eventDate.id}
-        timeContainer._fixDates()
-        timeContainer
+          @dates.push { date: date, times: times, id: eventDate.id }
+        @_fixDates()
 
       updateDates: (dates) ->
         tmpDates = @datesObj
@@ -51,6 +55,7 @@ angular.module('MeetAppServices')
           for time, j in date.times
             if time.isOpened() && condition(j)
               save(j)
+        return
 
       setMinRow: ->
         @setFirstRow 0, @dates.length - 1, 1, ((j) => j < @minRow), ((j) => @minRow = j)
