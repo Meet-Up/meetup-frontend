@@ -21,8 +21,8 @@ angular.module('MeetAppServices')
         timeContainer = new TimeContainer()
         for eventDate in eventDates
           date = Date.parse(eventDate.date)
-          times = (new TimeCell(n == '1') for n in eventDate.openTimes)
-          timeContainer.dates.push { date: date, times: times}
+          times = (new TimeCell(n == '1') for n in eventDate.times)
+          timeContainer.dates.push { date: date, times: times, id: eventDate.id}
         timeContainer._fixDates()
         timeContainer
 
@@ -122,9 +122,10 @@ angular.module('MeetAppServices')
 
       toEventDates: ->
         eventDates = []
+        isToggled = (t) => if @isOpened then t.isOpened() else t.isAvailable()
         for dateInfo in @dates
-          open_times = ((if t.isOpened() then '1' else '0') for t in dateInfo.times).join ''
+          times = ((if isToggled t then '1' else '0') for t in dateInfo.times).join ''
           eventDates.push
             date: dateInfo.date.toString 'yyyy/MM/dd'
-            open_times: open_times
+            times: times
         eventDates

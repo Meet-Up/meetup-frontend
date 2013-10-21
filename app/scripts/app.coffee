@@ -39,6 +39,7 @@ angular.module('MeetAppApp', [
 
     'create-event.confirm':
       url: '/confirm'
+      controller: 'ConfirmEventCtrl'
       templateUrl: 'partials/desktop/create-event/confirmation.html'
 
     events:
