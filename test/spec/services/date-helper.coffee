@@ -1,6 +1,6 @@
 describe 'Service: DateHelper', ->
-  beforeEach module 'meetupServices'
-  beforeEach module 'meetupConfig'
+  beforeEach module 'meetAppServices'
+  beforeEach module 'meetAppConfig'
 
   dateHelper = {}
   cellsPerDay = 0

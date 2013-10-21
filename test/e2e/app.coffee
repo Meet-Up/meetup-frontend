@@ -1,4 +1,4 @@
-describe 'meetupApp', ->
+describe 'meetAppApp', ->
 
   generateTitleBarLinks = (links) ->
     ("#title-bar #{st}" for st in links)

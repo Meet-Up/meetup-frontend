@@ -1,7 +1,7 @@
 describe 'Controller: AppCtrl', () ->
 
   # load the controller's module
-  beforeEach module 'meetupControllers'
+  beforeEach module 'meetAppControllers'
 
   AppCtrl = {}
   scope = {}
