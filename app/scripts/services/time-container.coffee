@@ -17,7 +17,7 @@ angular.module('MeetAppServices')
           @minRow = 0
           @maxRow = CELLS_PER_DAY - 1
 
-      @fromEventDates: (eventDates) ->
+      @fromEventDates: (eventDates, nestedId) ->
         timeContainer = new TimeContainer()
         timeContainer.setDates eventDates
         timeContainer
@@ -27,7 +27,7 @@ angular.module('MeetAppServices')
         for eventDate in eventDates
           date = Date.parse(eventDate.date)
           times = (new TimeCell(n == '1') for n in eventDate.times)
-          @dates.push { date: date, times: times, id: eventDate.id }
+          @dates.push { date: date, times: times, id: eventDate.id, eventDateId: eventDate.eventDateId }
         @_fixDates()
 
       updateDates: (dates) ->
@@ -125,7 +125,7 @@ angular.module('MeetAppServices')
           return false if _.filter(date.times, (time) -> time.isOpened()).length == 0
         return true
 
-      toEventDates: ->
+      toEventDates: (useIdForEventDate=false) ->
         eventDates = []
         isToggled = (t) => if @isOpened then t.isOpened() else t.isAvailable()
         for dateInfo in @dates
@@ -133,6 +133,12 @@ angular.module('MeetAppServices')
           eventDate =
             date: dateInfo.date.toString 'yyyy/MM/dd'
             times: times
-          eventDate.id = dateInfo.id if dateInfo.id?
+
+          if useIdForEventDate
+            eventDate.eventDateId = dateInfo.id if dateInfo.id?
+          else
+            eventDate.id = dateInfo.id if dateInfo.id?
+            eventDate.eventDateId = dateInfo.eventDateId if dateInfo.eventDateId?
+
           eventDates.push eventDate
         eventDates

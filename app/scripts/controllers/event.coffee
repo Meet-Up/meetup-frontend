@@ -25,7 +25,7 @@ angular.module('MeetAppControllers')
       createDialog $scope, 'partials/desktop/events/availabilities-modal.html'
 
     $scope.saveAvailabities = ->
-      $scope.user.availabilities = $scope.timeEditContainer.toEventDates()
+      $scope.user.availabilities = $scope.timeEditContainer.toEventDates(true)
       unless DEBUG
         $scope.user.save().then (user) ->
           console.log user
