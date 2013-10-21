@@ -30,7 +30,7 @@ angular.module('MeetAppServices')
         for eventDate in eventDates
           date = Date.parse(eventDate.date)
           times = []
-          for i in [0..eventDate.times.length]
+          for i in [0..eventDate.times.length - 1]
             opened = eventDate.times[i] == '1'
             available = if eventDate.id of availabilities
                           availabilities[eventDate.id].times[i] == '1'

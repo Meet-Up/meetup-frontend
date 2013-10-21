@@ -1,16 +1,16 @@
 <h1 class="create-event">
   イベントを作成する
 </h1>
+<form novalidate name="eventForm" class="css-form">
 <div class="create-book">
-  <form novalidate class="css-form">
   <table class="book-left">
     <tr class="action">
       <th>
         <span class="label" for="event-title">
         <small>*</small>イベント名</span></th>
       <td>
-        <input type="text" id="event-title" ng-model="event.title" required>
-        <div class="error er-event-title">イベント名を入力してください</div>
+        <input type="text" name="name" id="event-title" ng-model="event.title" required>
+        <div ng-show="eventForm.name.$error.required && !eventForm.name.$pristine" class="error er-event-title">イベント名を入力してください</div>
       </td>
     </tr>
     <tr class="action">
@@ -19,8 +19,9 @@
         <small>*</small>所要時間</span>
       </th>
       <td>
-        <input type="number" id="event-duration" ng-model="event.duration" required>
-        <div class="error er-event-duration">イベント名を入力してください</div>
+        <input type="number" id="event-duration" ng-model="event.duration" required name="duration">
+        <div ng-show="eventForm.duration.$error.required && !eventForm.duration.$pristine" class="error er-event-duration">所要時間を入力してください</div>
+        <div ng-show="eventForm.duration.$error.number" class="error er-event-duration">数字のみを入力してください</div>
       </td>
     </tr>
     <tr class="action">
@@ -29,7 +30,7 @@
       </th>
       <td>
         <textarea id="event-description" cols="28" rows="10" ng-model="event.description"></textarea>
-        <div class="error er-event-description">イベント名を入力してください</div>
+        <!-- <div class="error er-event-description">イベント名を入力してください</div> -->
       </td>
     </tr>
     <tr class="action">
@@ -39,11 +40,10 @@
         </span>
       </th>
       <td>
-        <input type="password" id="event-password" ng-model="event.password" required>
-        <div class="error er-event-pass">イベント名を入力してください</div>
+        <input type="password" id="event-password" ng-model="event.password" required name="password">
+        <div class="error er-event-pass" ng-show="eventForm.password.$error.required && !eventForm.password.$pristine">パスワードを入力してください</div>
       </td>
     </tr>
-    </form>
   </table>
   <div class="book-right">
     <span><small>*</small>所要時間</span>
@@ -61,6 +61,9 @@
     type="image"
     src="images/desktop/btn-create-event-long.png"
     fast-click="saveEvent()"
+    ng-disabled="eventForm.$invalid"
   >
   <p>イベントを作成する</p>
 </div>
+</form>
+
