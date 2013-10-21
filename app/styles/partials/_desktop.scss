@@ -51,7 +51,7 @@ header {
   background: image-url("common/header.png") repeat-x;
   .logo {
     float: left;
-    margin-top: 15px;
+    margin-top: 16px;
     margin-left: 26px;
     img {
       width: 168px;
@@ -63,7 +63,7 @@ footer {
   height: 97px;
   background: image-url("common/footer.png") repeat-x;
   img {
-    margin-top: 15px;
+    margin-top: 17px;
     width: 168px;
   }
   p {
@@ -550,7 +550,7 @@ hr {
   margin-left: 50px;
   cursor: pointer;
   &:hover {
-    opacity: 0.7;
+    background: image-url("desktop/btn-input-on.png") no-repeat;
   }
   p {
     color: white;
