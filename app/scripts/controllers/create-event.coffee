@@ -19,10 +19,11 @@ angular.module('MeetAppControllers')
         $state.go 'create-event.confirm'
       else
         $scope.event.save().then (evt) ->
+          $scope.password = $scope.event.password
           $state.go 'create-event.confirm'
           eventContainer.addEvent $scope.event
 
-    $scope.gotoEdit = ->
+    $scope.gotoInput = ->
       $state.go 'events', {
         token: $scope.event.token
       }

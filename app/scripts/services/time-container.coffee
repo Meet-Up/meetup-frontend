@@ -125,7 +125,9 @@ angular.module('MeetAppServices')
         isToggled = (t) => if @isOpened then t.isOpened() else t.isAvailable()
         for dateInfo in @dates
           times = ((if isToggled t then '1' else '0') for t in dateInfo.times).join ''
-          eventDates.push
+          eventDate =
             date: dateInfo.date.toString 'yyyy/MM/dd'
             times: times
+          eventDate.id = dateInfo.id if dateInfo.id?
+          eventDates.push eventDate
         eventDates

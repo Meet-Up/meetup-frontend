@@ -1,10 +1,11 @@
 angular.module('MeetAppDirectives')
-  .directive 'fastLink', ($parse, $location, $state) ->
+  .directive 'fastLink', ($parse, $location, $state, DEVICE) ->
     restrict: 'A'
     link: ($scope, $elem, $attr) ->
-      $elem.fastClick (e) =>
+      eventName = if DEVICE == 'desktop' then 'click' else 'fastClick'
+      $elem[eventName] (e) =>
         e.preventDefault()
-        e.stopImmediatePropagation()
+        # e.stopImmediatePropagation()
         return if $elem.attr('disabled') == 'disabled' || $elem.hasClass('disabled')
         if 'uiSref' of $attr
           $scope.$apply () -> $state.go $attr.uiSref
