@@ -4,13 +4,13 @@ angular.module('MeetAppServices')
     getDateKey = (date) -> date.toString 'yyyyMMdd'
 
     class TimeContainer
-      dates: []
-      datesObj: {}
-      changedCells: {}
-      minRow: CELLS_PER_DAY - 1
-      maxRow: 0
 
       constructor: (@isOpened) ->
+        @dates = []
+        @datesObj = {}
+        @changedCells = {}
+        @minRow = CELLS_PER_DAY - 1
+        @maxRow = 0
         @hasValidTimes = false
         @isOpened ?= false
         if @isOpened

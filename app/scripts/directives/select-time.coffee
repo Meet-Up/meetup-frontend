@@ -78,8 +78,8 @@ angular.module('MeetAppDirectives')
         $scope.container.getTimeCell(x, y).isOpened()
 
       $scope.isSelected = (x, y) ->
+        return false unless $scope.selectable
         x += ($scope.page - 1) * DAYS_PER_PAGE
-        y += $scope.container.minRow
         return false if x >= $scope.container.dates.length
         $scope.container.getTimeCell(x, y).getStatus statusNumber
 
@@ -95,8 +95,8 @@ angular.module('MeetAppDirectives')
         for time in dateInfo.times
           time.setOpened !isOpened
 
-
-      initializeEvents $scope, statusNumber
+      if $scope.selectable
+        initializeEvents $scope, statusNumber
 
       updateScopeData $scope
 
