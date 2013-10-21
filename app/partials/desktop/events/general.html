@@ -45,12 +45,12 @@
     <div class="people-inputed-contents">
       <ul>
         <li
-          ng-repeat="person in persons"
-          ng-click="selectPerson(person)"
-          ng-class="{selected: selectedPerson == person}"
+          ng-repeat="participant in participants"
+          ng-click="selectUser(participant)"
+          ng-class="{selected: selectedUser == participant}"
         >
-          {{person}}
-          <a href="" class="edit" ng-show="selectedPerson == person">
+          {{participant.name}}
+          <a href="javascript:void(0)" fast-click="openAvailabilites(participant)" class="edit" ng-show="selectedUser == participant">
             edit
           </a>
         </li>

@@ -17,16 +17,25 @@ angular.module('MeetAppServices')
           @minRow = 0
           @maxRow = CELLS_PER_DAY - 1
 
-      @fromEventDates: (eventDates, nestedId) ->
+      @fromEventDates: (eventDates, userAvailabilities) ->
         timeContainer = new TimeContainer()
-        timeContainer.setDates eventDates
+        timeContainer.setDates eventDates, userAvailabilities
         timeContainer
 
-      setDates: (eventDates) ->
+      setDates: (eventDates, userAvailabilities=[]) ->
         @dates = []
+        availabilities = {}
+        for availability in userAvailabilities
+          availabilities[availability.eventDateId] = availability
         for eventDate in eventDates
           date = Date.parse(eventDate.date)
-          times = (new TimeCell(n == '1') for n in eventDate.times)
+          times = []
+          for i in [0..eventDate.times.length]
+            opened = eventDate.times[i] == '1'
+            available = if eventDate.id of availabilities
+                          availabilities[eventDate.id].times[i] == '1'
+                        else false
+            times.push new TimeCell(opened, available)
           @dates.push { date: date, times: times, id: eventDate.id, eventDateId: eventDate.eventDateId }
         @_fixDates()
 

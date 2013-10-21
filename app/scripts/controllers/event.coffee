@@ -1,31 +1,36 @@
-
 angular.module('MeetAppControllers')
   .controller 'EventCtrl', ($scope, event, TimeContainer, createDialog, User, DEBUG) ->
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
-    $scope.user = new User({eventToken: $scope.event.token })
+    $scope.participants = $scope.event.participants
 
-    $scope.persons = [
-      'Daniel'
-      'Soneoka'
-      'Hajime'
-    ]
+    for participant in $scope.participants
+      participant.token = $scope.event.token
+      participant.timeContainer = TimeContainer.fromEventDates($scope.event.dates, participant.availabilities)
 
-    $scope.selectedPerson = ''
+    $scope.selectedUser = null
 
-    $scope.selectPerson = (person) ->
-      if person == $scope.selectedPerson
-        $scope.selectedPerson = ''
+    $scope.selectUser = (user) ->
+      if user == $scope.selectedUser
+        $scope.selectedUser = null
       else
-        $scope.selectedPerson = person
+        $scope.selectedUser = user
 
-    $scope.openAvailabilites = ->
-      $scope.timeEditContainer = TimeContainer.fromEventDates(event.dates)
+    $scope.openAvailabilites = (participant) ->
+      if participant?
+        $scope.timeEditContainer = participant.timeContainer
+        $scope.user = participant
+        $scope.editing = true
+      else
+        $scope.timeEditContainer = TimeContainer.fromEventDates($scope.event.dates)
+        $scope.user = new User({eventToken: $scope.event.token })
+        $scope.editing = false
       createDialog $scope, 'partials/desktop/events/availabilities-modal.html'
 
     $scope.saveAvailabities = ->
-      $scope.user.availabilities = $scope.timeEditContainer.toEventDates(true)
+      user = if $scope.editing then $scope.editedUser else $scope.user
+      user.availabilities = $scope.timeEditContainer.toEventDates(true)
       unless DEBUG
-        $scope.user.save().then (user) ->
-          console.log user
+        user.save().then (savedUser) ->
+          console.log savedUser
