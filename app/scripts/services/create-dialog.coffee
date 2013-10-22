@@ -21,9 +21,6 @@ angular.module('MeetAppServices')
 
       $(body).append dialogElement
 
-      dialogScope.close = ->
-        dialogElement.trigger 'closeModal'
-
       dialogElement.easyModal({
         onOpen: (modal) ->
           options.onOpen(modal) if options.onOpen?
@@ -34,3 +31,6 @@ angular.module('MeetAppServices')
       })
 
       dialogElement.trigger 'openModal'
+
+      close: ->
+        dialogElement.trigger 'closeModal'
