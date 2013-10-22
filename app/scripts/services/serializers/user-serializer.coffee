@@ -1,6 +1,7 @@
 angular.module('MeetAppServices')
-  .factory 'UserSerializer', (railsSerializer) ->
+  .factory 'UserSerializer', (railsSerializer, AvailabilitySerializer) ->
     railsSerializer ->
       @nestedAttribute 'availabilities'
-      @exclude 'eventToken', 'createdAt', 'updatedAt', 'eventId', 'timeContainer'
+      @serializeWith 'availabilities', 'AvailabilitySerializer'
+      @only 'name', 'password', 'availabilities', 'availabilities_attributes'
       return

@@ -12,6 +12,8 @@ angular.module('MeetAppControllers')
       $scope.participants.push participant
 
     $scope.selectedUser = null
+    $scope.saving = false
+    $scope.errors = {}
 
     $scope.selectUser = (user) ->
       if user == $scope.selectedUser
@@ -29,15 +31,22 @@ angular.module('MeetAppControllers')
         $scope.user = new User({eventToken: $scope.event.token })
         $scope.editing = false
       $scope.dialog = createDialog $scope, 'partials/desktop/events/availabilities-modal.html'
+      $scope.dialog.setOnClose () => $scope.errors = {}
 
     $scope.saveAvailabities = ->
+      $scope.saving = true
       $scope.user.availabilities = $scope.timeEditContainer.toEventDates(true)
       if DEBUG
         $scope.dialog.close()
       else
         $scope.user.save().then (savedUser) ->
+          $scope.errors.wrongPassword = false
           savedUser.token = $scope.event.token
           savedUser.timeContainer = TimeContainer.fromEventDates($scope.event.dates, savedUser.availabilities)
           $scope.participants.push savedUser unless savedUser in $scope.participants
           $scope.dialog.close()
-
+          $scope.saving = false
+        , (response) ->
+          $scope.saving = false
+          $scope.user.password = ''
+          $scope.errors.wrongPassword = true if response.status == 403
