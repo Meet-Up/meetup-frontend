@@ -61,7 +61,7 @@
     type="image"
     src="images/desktop/btn-create-event-long.png"
     fast-click="saveEvent()"
-    ng-disabled="eventForm.$invalid"
+    ng-disabled="eventForm.$invalid || !calendar.hasSelectedDates() || !timeContainer.hasValidTimes"
   >
   <p>イベントを作成する</p>
 </div>

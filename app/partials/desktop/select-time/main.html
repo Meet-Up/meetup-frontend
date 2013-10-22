@@ -1,5 +1,5 @@
 <div class="time-output">
-  <div class="error">イベント名を入力してください</div>
+  <div class="error" ng-show="timeContainer.dates.length > 0 && !timeContainer.hasValidTimes">すべての日付に対して時間帯お選び下さい</div>
   <p class="label" for="event-name">
     <small>*</small>日時候補
   </p>

@@ -38,11 +38,13 @@ angular.module('MeetAppDirectives')
 
       $scope.$on 'moveEnd', (e, x, y) ->
         $scope.container.comfirmCellsUpdate()
+        $scope.$apply()
         [lastX, lastY] = [-1, -1]
 
     updateScopeData = ($scope) ->
       $scope.dates = $filter('paginate')($scope.container.dates, $scope.page, DAYS_PER_PAGE)
       $scope.datesNumber = $scope.container.dates.length
+      $scope.container.updateValidity()
 
     restrict: 'EA'
     replace: true

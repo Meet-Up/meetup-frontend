@@ -125,6 +125,9 @@ angular.module('MeetAppServices')
 
       comfirmCellsUpdate: ->
         @changedCells = {}
+        @updateValidity()
+
+      updateValidity: ->
         @hasValidTimes = @checkTimeValidity()
         @onValidTimesChange() if @onValidTimesChange?
 
