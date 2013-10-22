@@ -1,3 +1,80 @@
+.modal {
+  width:950px;
+  height: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border-radius: 10px;
+}
+
+.input-availabilities {
+  h2 {
+    width: 210px;
+    margin-top: 30px;
+    margin-left: 370px;
+    background: image-url("common/logo-symbol.png") no-repeat;
+    padding-top: 3px;
+    padding-left: 22px;
+    font-size: 25px;
+    text-align: center;
+    color: $main-color;
+  }
+  hr {
+    margin-top:10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 2px dotted $main-color;
+  }
+  table.control {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    tr {
+      th {
+        padding-top: 20px;
+        text-align: right;
+        color: #777;
+      }
+      td {
+        text-align: left;
+        input {
+          margin-top: 20px;
+          margin-left: 30px;
+        }
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    top: -27px;
+    right: -27px;
+    width: 64px;
+    height: 64px;
+    background: image-url("desktop/modal-close.png") no-repeat;
+    &:hover {
+      background: image-url("desktop/modal-close-on.png") no-repeat;
+    }
+  }
+  .save {
+    display: block;
+    width: 200px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background: $main-color;
+    border-radius: 5px;
+    padding-top: 13px;
+    font-size: 20px;
+    text-decoration: none;
+    color:white;
+    text-align: center;
+    &:hover {
+      background: $ocean-blue;
+    }
+  }
+}
+
 .confirm-book {
   width: 840px;
   height: auto;

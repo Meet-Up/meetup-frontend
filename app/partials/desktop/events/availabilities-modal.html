@@ -1,21 +1,34 @@
 <div class="input-availabilities">
-<div class="control">
-  <label for="name">
-    Name
-  </label>
-  <input type="text" id="name" ng-model="user.name">
-</div>
+  <h2>
+    予定を入力する
+  </h2>
+  <hr>
+  <table class="control">
+    <tr>
+      <th>
+        <label for="name">
+          名前
+        </label>
+      </th>
+      <td>
+        <input type="text" id="name" ng-model="user.name">
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label for="password">
+          パスワード
+        </label>
+      </th>
+      <td>
+        <input type="password" id="password" ng-model="user.password">
+      </td>
+    </tr>
+  </table>
+  <select-time selection-target="availabilities" allow-empty="true" selectable="true" container-name="timeEditContainer">
+  </select-time>
 
-<div class="control">
-  <label for="password">Password</label>
-  <input type="password" id="password" ng-model="user.password">
-</div>
-
-<select-time selection-target="availabilities" allow-empty="true" selectable="true" container-name="timeEditContainer">
-</select-time>
-
-
-<a href="javascript:void(0)" class="close">Close</a>
-<a href="javascript:void(0)" fast-click="saveAvailabities()">Save</a>
+  <a href="javascript:void(0)" class="close"></a>
+  <a href="javascript:void(0)" class="save" fast-click="saveAvailabities()">完了</a>
 
 </div>
