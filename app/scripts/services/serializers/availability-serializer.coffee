@@ -1,5 +1,5 @@
 angular.module('MeetAppServices')
   .factory 'AvailabilitySerializer', (railsSerializer) ->
     railsSerializer ->
-      @exclude 'date', 'createdAt', 'updatedAt'
+      @only 'times', 'eventDateId', 'id'
       return

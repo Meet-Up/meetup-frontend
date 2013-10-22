@@ -10,6 +10,7 @@ angular.module('MeetAppControllers')
       participant.eventToken = $scope.event.token
       participant.timeContainer = TimeContainer.fromEventDates($scope.event.dates, participant.availabilities)
       $scope.participants.push participant
+      console.log participant.timeContainer
 
     $scope.selectedUser = null
     $scope.saving = false
@@ -35,7 +36,7 @@ angular.module('MeetAppControllers')
 
     $scope.saveAvailabities = ->
       $scope.saving = true
-      $scope.user.availabilities = $scope.timeEditContainer.toEventDates(true)
+      $scope.user.availabilities = $scope.timeEditContainer.toEventDates($scope.user.isNew())
       if DEBUG
         $scope.dialog.close()
       else

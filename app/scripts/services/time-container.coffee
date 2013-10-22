@@ -36,7 +36,13 @@ angular.module('MeetAppServices')
                           availabilities[eventDate.id].times[i] == '1'
                         else false
             times.push new TimeCell(opened, available)
-          @dates.push { date: date, times: times, id: eventDate.id, eventDateId: eventDate.eventDateId }
+
+          if eventDate.id of availabilities
+            id = availabilities[eventDate.id].id
+            eventDateId = availabilities[eventDate.id].eventDateId
+          else
+            id = eventDate.id
+          @dates.push { date: date, times: times, id: id, eventDateId: eventDateId }
         @_fixDates()
 
       updateDates: (dates) ->
