@@ -47,7 +47,7 @@
   </table>
   <div class="book-right">
     <span><small>*</small>所要時間</span>
-    <div class="error er-event-dates">イベント名を入力してください</div>
+    <div class="error er-event-dates" ng-hide="calendar.hasSelectedDates() || calendar.pristine">イベント名を入力してください</div>
     <calendar toggable="true" allow-past-dates="false">
     </calendar>
   </div>

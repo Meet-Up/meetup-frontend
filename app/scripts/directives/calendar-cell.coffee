@@ -17,6 +17,7 @@ angular.module('MeetAppDirectives')
         delete calendar.selectedDates[dateKey]
       else
         calendar.selectedDates[dateKey] = date
+        calendar.pristine = false
       updateClass dateKey of calendar.selectedDates, $elem
 
     updateClass = (isSelected, $elem) ->

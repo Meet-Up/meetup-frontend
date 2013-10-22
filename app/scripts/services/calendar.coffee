@@ -6,6 +6,7 @@ angular.module('MeetAppServices')
         @setDate Date.today()
         @toggable = false
         @noToolbar = false
+        @pristine = true
 
       setDate: (date) ->
         @date = date
