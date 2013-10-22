@@ -8,12 +8,12 @@
 
   <ng-switch on="selectable">
     <table class="time-selection {{cssClass}}" selectable-table="" start-column="1" ng-switch-when="true">
-      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></div>
-      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></div>
+      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></thead>
+      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></tbody>
     </table>
     <table class="time-selection {{cssClass}}" start-column="1" ng-switch-default>
-      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></div>
-      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></div>
+      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></thead>
+      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></tbody>
     </table>
   </ng-switch>
 

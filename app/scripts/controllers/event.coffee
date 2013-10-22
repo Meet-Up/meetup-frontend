@@ -10,7 +10,6 @@ angular.module('MeetAppControllers')
       participant.eventToken = $scope.event.token
       participant.timeContainer = TimeContainer.fromEventDates($scope.event.dates, participant.availabilities)
       $scope.participants.push participant
-      console.log participant.timeContainer
 
     $scope.selectedUser = null
     $scope.saving = false

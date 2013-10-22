@@ -16,7 +16,7 @@ angular.module('MeetAppApp', [
           hasCreate: true
 
   resolveEvent =
-    event: ($stateParams, eventContainer, DEBUG) ->
+    event: ['$stateParams', 'eventContainer', 'DEBUG', ($stateParams, eventContainer, DEBUG) ->
       if DEBUG
         {
           title: 'foo'
@@ -25,6 +25,8 @@ angular.module('MeetAppApp', [
         }
       else
         eventContainer.getEvent $stateParams.token
+    ]
+
 
   desktopStates =
     'create-event':
@@ -89,7 +91,6 @@ angular.module('MeetAppApp', [
       controller: 'EventCtrl'
       resolve: resolveEvent
 
-
   otherStates = if DEVICE == 'desktop' then desktopStates else mobileStates
 
   for stateName, stateData of _.extend({}, commonStates, otherStates)
@@ -98,5 +99,5 @@ angular.module('MeetAppApp', [
   $urlRouterProvider.otherwise '/'
 
 ).run ($rootScope, $state) ->
-  $rootScope.$on '$stateChangeStart', (event, toState, toParams) ->
-    # console.log event, toState, toParams
+  $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
+    console.log error
