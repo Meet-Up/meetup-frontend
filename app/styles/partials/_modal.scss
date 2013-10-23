@@ -37,10 +37,16 @@
         color: #777;
       }
       td {
+        position: relative;
         text-align: left;
         input {
           margin-top: 20px;
           margin-left: 30px;
+        }
+        .error {
+          position: absolute;
+          top:-15px;
+          right:0px;
         }
       }
     }
