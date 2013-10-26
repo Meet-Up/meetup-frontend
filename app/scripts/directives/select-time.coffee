@@ -74,6 +74,7 @@ angular.module('MeetAppDirectives')
 
       $scope.cssClass = $attrs.selectionTarget
       $scope.selectable = $parse($attrs.selectable)() ? false
+      $scope.scrollable = $parse($attrs.scrollable)() ? false
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 

@@ -1,0 +1,14 @@
+<ng-switch on="selectable">
+  <table
+    class="time-selection {{cssClass}} selectable-table"
+    start-column="1"
+    ng-switch-when="true"
+    ng-include src="'partials/desktop/select-time/table-content.html'">
+  </table>
+  <table
+    class="time-selection {{cssClass}}"
+    start-column="1"
+    ng-switch-default
+    ng-include src="'partials/desktop/select-time/table-content.html'">
+  </table>
+</ng-switch>

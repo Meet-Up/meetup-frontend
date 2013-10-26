@@ -6,17 +6,16 @@
 
   <div ng-include src="'partials/desktop/select-time/time-select-control.html'"></div>
 
-  <div class="scroll-pane">
-  <ng-switch on="selectable">
-    <table class="time-selection {{cssClass}}" selectable-table="" start-column="1" ng-switch-when="true">
-      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></thead>
-      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></tbody>
-    </table>
-    <table class="time-selection {{cssClass}}" start-column="1" ng-switch-default>
-      <thead ng-include src="'partials/desktop/select-time/table-head.html'"></thead>
-      <tbody ng-include src="'partials/desktop/select-time/table-body.html'"></tbody>
-    </table>
+  <ng-switch on="scrollable">
+    <div
+      class="scroll-pane"
+      ng-include src="'partials/desktop/select-time/table.html'"
+      ng-switch-when="true">
+    </div>
+    <div
+      ng-include src="'partials/desktop/select-time/table.html'"
+      ng-switch-default>
+    </div>
   </ng-switch>
-  </div>
 
 </div>
