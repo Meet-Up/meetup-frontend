@@ -10,6 +10,11 @@
   text-align: center;
   border-collapse: collapse;
   border-spacing: 1px;
+  &.selectable-table {
+    td {
+      cursor: image-url("desktop/pointer-pen.png"), default;
+    }
+  }
   tr {
     &.days-of-week {
       td {
@@ -34,7 +39,6 @@
           width: 10%;
         }
         height: 20px;
-        cursor: image-url("desktop/pointer-pen.png"), default;
         &.time-label {
           width: 1%;
           padding-left: 5px;
