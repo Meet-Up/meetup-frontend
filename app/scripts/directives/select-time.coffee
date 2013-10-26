@@ -75,6 +75,13 @@ angular.module('MeetAppDirectives')
       $scope.cssClass = $attrs.selectionTarget
       $scope.selectable = $parse($attrs.selectable)() ? false
       $scope.scrollable = $parse($attrs.scrollable)() ? false
+      $scope.heatMap = $parse($attrs.heatMap)() ? $element.hasClass 'heat-map'
+
+      if $scope.heatMap
+        $scope.getOpacity = (x, y) ->
+          $scope.availabilityContainer.availabilityPercentage(x, y)
+      else
+        $scope.getOpacity = -> 1
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 

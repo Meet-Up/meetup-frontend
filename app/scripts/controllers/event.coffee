@@ -1,5 +1,5 @@
 angular.module('MeetAppControllers')
-  .controller 'EventCtrl', ($scope, event, TimeContainer, createDialog, User, DEBUG) ->
+  .controller 'EventCtrl', ($scope, event, TimeContainer, AvailabilityContainer, createDialog, User, DEBUG) ->
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
@@ -14,6 +14,8 @@ angular.module('MeetAppControllers')
     $scope.selectedUser = null
     $scope.saving = false
     $scope.errors = {}
+
+    $scope.availabilityContainer = new AvailabilityContainer($scope.event.participants, $scope.timeContainer)
 
     $scope.selectUser = (user) ->
       if user == $scope.selectedUser
