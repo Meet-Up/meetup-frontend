@@ -57,6 +57,7 @@ angular.module('MeetAppDirectives')
       errorElement = element.find '.error'
       $scope.$on 'ngRepeatFinished', ->
         cells = element.find('.time-cell')
+        $scope.$broadcast 'initScrollPane'
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE

@@ -5,6 +5,10 @@
   margin-right: auto;
   background: white;
   border-radius: 10px;
+
+  .scroll-pane {
+    max-height: 400px;
+  }
 }
 
 .input-availabilities {

@@ -27,6 +27,7 @@ angular.module('MeetAppServices')
         onOpen: (modal) ->
           options.onOpen(modal) if options.onOpen?
         onClose: ->
+          $(body).css 'overflow', 'auto'
           onClose() if onClose?
           dialogScope.$destroy()
           dialogElement.remove()
@@ -34,6 +35,7 @@ angular.module('MeetAppServices')
       })
 
       dialogElement.trigger 'openModal'
+      $(body).css 'overflow', 'hidden'
 
       setOnClose: (callback) ->
         onClose = callback
