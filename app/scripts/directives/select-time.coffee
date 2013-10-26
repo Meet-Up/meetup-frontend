@@ -7,6 +7,7 @@ angular.module('MeetAppDirectives')
     statusNumber = 0
 
     cells = []
+    errorElement = {}
 
     onMove = (e, x, y, $scope) ->
       return if x == lastX && y == lastY
@@ -38,7 +39,7 @@ angular.module('MeetAppDirectives')
 
       $scope.$on 'moveEnd', (e, x, y) ->
         $scope.container.comfirmCellsUpdate()
-        $scope.$apply()
+        errorElement.toggle(!$scope.container.hasValidTimes)
         [lastX, lastY] = [-1, -1]
 
     updateScopeData = ($scope) ->
@@ -53,6 +54,7 @@ angular.module('MeetAppDirectives')
     templateUrl: "partials/#{DEVICE}/select-time/main.html"
 
     link: ($scope, element, attr) ->
+      errorElement = element.find '.error'
       $scope.$on 'ngRepeatFinished', ->
         cells = element.find('.time-cell')
 
