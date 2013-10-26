@@ -7,9 +7,7 @@ angular.module('MeetAppDirectives')
       isTable = element.is 'table'
       [childRow, childCell] = if isTable then ['tr', 'td'] else ['.row', '.cell']
 
-      elem = if isTable then element.find 'tbody' else element
       headerSelector = if isTable then 'theader' else 'header'
-      header = elem.children headerSelector
 
       startRow = $parse(attr.startRow)() ? 0
       startColumn = $parse(attr.startColumn)() ? 0
@@ -22,6 +20,8 @@ angular.module('MeetAppDirectives')
       rows = {}
 
       initialize = ->
+        elem = if isTable then element.find 'tbody' else element
+        header = elem.children headerSelector
         elem.off()
         header.off()
         rows = elem.find(childRow)

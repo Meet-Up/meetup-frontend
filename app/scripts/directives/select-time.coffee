@@ -16,11 +16,9 @@ angular.module('MeetAppDirectives')
       for cell in toUpdate
         index = (cell.y - $scope.container.minRow) * DAYS_PER_PAGE + cell.x
         if cell.selected
-          cells.eq(index).addClass 'selected-true'
-          cells.eq(index).removeClass 'selected-false'
+          cells.eq(index).addClass 'selected'
         else
-          cells.eq(index).addClass 'selected-false'
-          cells.eq(index).removeClass 'selected-true'
+          cells.eq(index).removeClass 'selected'
 
     initializeEvents = ($scope, statusNumber) ->
       getCell = (x, y) -> $scope.container.getTimeCell x, y
@@ -48,7 +46,7 @@ angular.module('MeetAppDirectives')
       $scope.container.updateValidity()
 
     restrict: 'EA'
-    replace: true
+    replace: false
     transclude: false
     terminal: true
     templateUrl: "partials/#{DEVICE}/select-time/main.html"
@@ -78,7 +76,9 @@ angular.module('MeetAppDirectives')
       $scope.heatMap = $parse($attrs.heatMap)() ? $element.hasClass 'heat-map'
 
       if $scope.heatMap
+        $scope.cssClass += " heat-map"
         $scope.getOpacity = (x, y) ->
+          return 1 unless $scope.isOpened(x, y)
           $scope.availabilityContainer.availabilityPercentage(x, y)
       else
         $scope.getOpacity = -> 1
@@ -86,6 +86,7 @@ angular.module('MeetAppDirectives')
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 
       $scope.isOpened = (x, y) ->
+        return true if $scope.container.isOpened
         x += ($scope.page - 1) * DAYS_PER_PAGE
         return false if x >= $scope.container.dates.length
         $scope.container.getTimeCell(x, y).isOpened()

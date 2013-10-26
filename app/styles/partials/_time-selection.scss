@@ -13,6 +13,19 @@
   &.selectable-table {
     td {
       cursor: image-url("desktop/pointer-pen.png"), default;
+      &.opened {
+        background: #dcdddd;
+      }
+      &.selected {
+        background: $selected-cell-color;
+      }
+    }
+  }
+  &.heat-map {
+    td {
+      &.opened {
+        background: $selected-cell-color;
+      }
     }
   }
   tr {
@@ -21,18 +34,24 @@
         padding-top: 10px;
         padding-bottom: 10px;
         font-size: 16px;
+        background-color: inherit;
       }
     }
     &.even-time-true {
-      background: #FFF4E1;
+      td:first-child {
+        background: #FFF4E1;
+      }
     }
     &.even-time-false {
-      background: #D5EEDA;
+      td:first-child {
+        background: #D5EEDA;
+      }
     }
     td {
       text-align: center;
       color: $main-color;
       font-weight: bold;
+      background: #cdcdcd;
       &.cell {
         width: 5%;
         @media only screen and (min-width: 760px) {
@@ -48,20 +67,6 @@
           color: #535353;
           cursor: default;
         }
-      }
-    }
-  }
-
-  &.availabilities {
-    td {
-      &.selected-false {
-        background: #cdcdcd;
-      }
-      &.opened {
-        background: #dcdddd;
-      }
-      &.selected-true {
-        background: $selected-cell-color;
       }
     }
   }

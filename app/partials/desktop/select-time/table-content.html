@@ -11,9 +11,9 @@
   <td class="cell"
       ng-class="{'time-label': show, hidden: dates.length == 0}"
       ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
-  <td class="cell time-cell selected-{{isSelected(x, y)}}"
+  <td class="cell time-cell"
       style="opacity: {{getOpacity(x, y)}}"
       ng-repeat="x in daysIndexes"
-      ng-class="{hidden: x >= dates.length, opened: isOpened(x, y)}">
+      ng-class="{hidden: x >= dates.length, opened: isOpened(x, y), selectable: selectable, selected: isSelected(x, y)}">
   </td>
 </tr>

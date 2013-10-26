@@ -22,16 +22,16 @@ angular.module('MeetAppDirectives')
 
     updateClass = (isSelected, $elem) ->
       if isSelected
-        $elem.addClass 'selected-true'
+        $elem.addClass 'selected'
       else
-        $elem.removeClass 'selected-true'
+        $elem.removeClass 'selected'
 
     return {
       restrict: 'A'
 
       link: ($scope, $elem, $attr) ->
         calendar = $scope.calendar
-        $elem.addClass 'day-cell'
+        $elem.addClass 'day-cell selectable'
 
         cellDate = $parse($attr.calendarCell)($scope)
 
