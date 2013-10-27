@@ -46,6 +46,7 @@ angular.module('MeetAppControllers')
           savedUser.token = $scope.event.token
           savedUser.timeContainer = TimeContainer.fromEventDates($scope.event.dates, savedUser.availabilities)
           $scope.participants.push savedUser unless savedUser in $scope.participants
+          $scope.availabilityContainer.updateUserAvailability savedUser
           $scope.dialog.close()
           $scope.saving = false
         , (response) ->
