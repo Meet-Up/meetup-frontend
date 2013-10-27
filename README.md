@@ -55,6 +55,15 @@ $ npm install
 $ bower install
 ```
 
+### Configure the application
+
+You need to have a file `config-local.coffee` in the `app/scripts` directory to configure the application. 
+The simplest is to copy the example and change the configuration after.
+
+```
+cp app/scripts/config.default.coffee app/scripts/config-local.coffee
+```
+
 ### Running the application
 
 You can run the application using Grunt
