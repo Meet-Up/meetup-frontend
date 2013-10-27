@@ -75,6 +75,7 @@
     width: 99.5%;
     float: left;
     margin-left: 1px;
+    border-spacing: 0;
     background: image-url("common/back-green-sub.png");
     thead {
       background: image-url("common/back-green-main.png");
@@ -101,7 +102,7 @@
         }
       }
       .past {
-        background: #999;
+        background: #CCC;
         color: #AAA;
         cursor: default;
         &.selected {
