@@ -8,8 +8,9 @@
   margin-right: auto;
   padding-right: 40px;
   text-align: center;
-  border-collapse: collapse;
-  border-spacing: 1px;
+  border:1px solid white;
+  border-collapse: separate;
+  border-spacing: 0px;
   &.selectable-table {
     td {
       cursor: image-url("desktop/pointer-pen.png"), default;
