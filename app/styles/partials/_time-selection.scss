@@ -25,6 +25,12 @@
     td {
       &.opened {
         background: $selected-cell-color;
+        @for $i from 0 through 100 {
+          &.alpha-#{$i} {
+            filter: "alpha(opacity=$i)";
+            opacity: $i / 100;
+          }
+        }
       }
       &.time-cell:not(.opened) {
         opacity: 1;

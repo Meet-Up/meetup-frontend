@@ -34,10 +34,12 @@ angular.module('MeetAppControllers')
         $scope.timeEditContainer = TimeContainer.fromEventDates($scope.event.dates)
         $scope.user = new User({eventToken: $scope.event.token })
         $scope.editing = false
-      $scope.dialog = createDialog $scope, 'partials/desktop/events/availabilities-modal.html'
-      $scope.dialog.setOnClose () => $scope.errors = {}
+      $scope.dialog = createDialog $scope, 'partials/desktop/events/availabilities-modal.html', {
+        modal: true
+        onClose: => $scope.errors = {}
+      }
 
-    $scope.saveAvailabities = ->
+    $scope.saveAvailabilities = ->
       $scope.saving = true
       $scope.user.availabilities = $scope.timeEditContainer.toEventDates($scope.user.isNew())
       if DEBUG
