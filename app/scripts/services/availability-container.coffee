@@ -14,6 +14,8 @@ angular.module('MeetAppServices')
         @availabilities = ([] for _ in @timeContainer.rows() for _ in @timeContainer.dates)
         @updateAvailabilities @users
 
+        @computeRecommendations()
+
       clearWantedUsers: ->
         @wantedUsers = []
 
@@ -43,6 +45,12 @@ angular.module('MeetAppServices')
               if index > -1
                 delete @availabilities[i][time][index]
                 @availabilities[i][time] = _.compact @availabilities[i][time]
+
+      computeRecommendations: ->
+        recommendations = []
+        for date, i in @timeContainer.dates
+          for availability in @availabilities[i]
+            console.log availability
 
       availableUsers: (dateIndex, timeIndex) ->
         timeIndex -= @timeContainer.minRow

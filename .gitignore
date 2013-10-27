@@ -1,5 +1,10 @@
+# Generated files and directories
 node_modules
 dist
 .tmp
 .sass-cache
 app/bower_components
+
+# Local configuration
+app/scripts/config-local.coffee
+
