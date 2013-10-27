@@ -3,9 +3,10 @@ angular.module('MeetAppControllers')
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
+    $scope.event.participants ?= []
     $scope.participants = []
 
-    for participantObject in $scope.event.participants ? []
+    for participantObject in $scope.event.participants
       participant = new User(participantObject)
       participant.eventToken = $scope.event.token
       participant.timeContainer = TimeContainer.fromEventDates($scope.event.dates, participant.availabilities)
