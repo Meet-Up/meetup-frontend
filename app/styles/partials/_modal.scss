@@ -45,12 +45,13 @@
     border-top: 2px dotted $main-color;
   }
   table.control {
-    width: 300px;
+    width: 440px;
     margin-left: auto;
     margin-right: auto;
     tr {
       th {
         padding-top: 20px;
+        padding-left: 20px;
         text-align: right;
         color: #777;
       }
@@ -59,7 +60,7 @@
         text-align: left;
         input {
           margin-top: 20px;
-          margin-left: 30px;
+          margin-left: 10px;
         }
         .error {
           position: absolute;

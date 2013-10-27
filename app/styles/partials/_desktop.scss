@@ -435,9 +435,10 @@ hr {
   position: relative;
   .error {
     position: absolute;
-    top:-45px;
+    top:-65px;
     left:50%;
-    margin-left: -95px;
+    margin-left: -120px;
+    line-height: 1.3em;
   }
   p {
     text-align: center;
