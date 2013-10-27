@@ -7,12 +7,10 @@
   margin-left: 0;
 }
 
-.selected-true {
-  background-color: $selected-cell-color;
-}
-
-.selected-false {
-  background-color: $light-grey;
+.selectable {
+  &.selected {
+    background-color: $selected-cell-color;
+  }
 }
 
 .current-month-title {
@@ -89,25 +87,25 @@
         text-align: center;
         padding-top: 8px;
         padding-bottom: 8px;
-        &.selected-true {
+        &.selected {
           color: white;
         }
       }
       .past {
         color: #AAA;
-        &.selected-true {
+        &.selected {
           color: #CCC;
         }
       }
       .previous-month {
         color: #AAA;
-        &.selected-true {
+        &.selected {
           color: #CCC;
         }
       }
       .next-month {
         color: #AAA;
-        &.selected-true {
+        &.selected {
           color: #CCC;
         }
       }

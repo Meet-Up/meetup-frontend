@@ -49,3 +49,10 @@ hr {
 input:invalid {
   box-shadow: none;
 }
+
+@for $i from 0 through 100 {
+  .alpha-#{$i} {
+    filter: "alpha(opacity=$i)";
+    opacity: $i / 100;
+  }
+}

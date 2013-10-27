@@ -16,11 +16,9 @@ angular.module('MeetAppDirectives')
       for cell in toUpdate
         index = (cell.y - $scope.container.minRow) * DAYS_PER_PAGE + cell.x
         if cell.selected
-          cells.eq(index).addClass 'selected-true'
-          cells.eq(index).removeClass 'selected-false'
+          cells.eq(index).addClass 'selected'
         else
-          cells.eq(index).addClass 'selected-false'
-          cells.eq(index).removeClass 'selected-true'
+          cells.eq(index).removeClass 'selected'
 
     initializeEvents = ($scope, statusNumber) ->
       getCell = (x, y) -> $scope.container.getTimeCell x, y
@@ -48,7 +46,7 @@ angular.module('MeetAppDirectives')
       $scope.container.updateValidity()
 
     restrict: 'EA'
-    replace: true
+    replace: false
     transclude: false
     terminal: true
     templateUrl: "partials/#{DEVICE}/select-time/main.html"
@@ -57,6 +55,7 @@ angular.module('MeetAppDirectives')
       errorElement = element.find '.error'
       $scope.$on 'ngRepeatFinished', ->
         cells = element.find('.time-cell')
+        $scope.$broadcast 'initScrollPane'
 
     controller: ($scope, $element, $attrs) ->
       $scope.daysPerPage = DAYS_PER_PAGE
@@ -73,10 +72,26 @@ angular.module('MeetAppDirectives')
 
       $scope.cssClass = $attrs.selectionTarget
       $scope.selectable = $parse($attrs.selectable)() ? false
+      $scope.scrollable = $parse($attrs.scrollable)() ? false
+      $scope.heatMap = $parse($attrs.heatMap)() ? $element.hasClass 'heat-map'
+
+      if $scope.heatMap
+        $scope.cssClass += " heat-map"
+        $scope.getOpacity = (x, y) ->
+          return 1 unless $scope.isOpened(x, y)
+          rate = $scope.availabilityContainer.availabilityRate(x, y)
+          alpha = Math.round(rate * 100)
+          # strange bug with firefox when alpha=1 or alpha=0
+          alpha = 1 if  alpha == 0
+          alpha = 99 if  alpha == 100
+          alpha
+      else
+        $scope.getOpacity = -> 1
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 
       $scope.isOpened = (x, y) ->
+        return true if $scope.container.isOpened
         x += ($scope.page - 1) * DAYS_PER_PAGE
         return false if x >= $scope.container.dates.length
         $scope.container.getTimeCell(x, y).isOpened()

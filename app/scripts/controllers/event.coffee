@@ -1,5 +1,5 @@
 angular.module('MeetAppControllers')
-  .controller 'EventCtrl', ($scope, event, TimeContainer, createDialog, User, DEBUG) ->
+  .controller 'EventCtrl', ($scope, event, TimeContainer, AvailabilityContainer, createDialog, User, DEBUG) ->
     $scope.event = event
     $scope.timeContainer = TimeContainer.fromEventDates(event.dates)
 
@@ -15,10 +15,14 @@ angular.module('MeetAppControllers')
     $scope.saving = false
     $scope.errors = {}
 
+    $scope.availabilityContainer = new AvailabilityContainer($scope.event.participants, $scope.timeContainer)
+
     $scope.selectUser = (user) ->
       if user == $scope.selectedUser
+        $scope.availabilityContainer.clearWantedUsers()
         $scope.selectedUser = null
       else
+        $scope.availabilityContainer.setWantedUsers user
         $scope.selectedUser = user
 
     $scope.openAvailabilites = (participant) ->
@@ -44,6 +48,7 @@ angular.module('MeetAppControllers')
           savedUser.token = $scope.event.token
           savedUser.timeContainer = TimeContainer.fromEventDates($scope.event.dates, savedUser.availabilities)
           $scope.participants.push savedUser unless savedUser in $scope.participants
+          $scope.availabilityContainer.updateUserAvailability savedUser
           $scope.dialog.close()
           $scope.saving = false
         , (response) ->

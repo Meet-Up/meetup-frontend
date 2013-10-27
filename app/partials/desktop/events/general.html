@@ -60,16 +60,12 @@
 </div>
 <hr class="event-horizen">
 <div class="heatmap-area">
-  <h2>みんなの予定</h2>
-<!--   <div class="overnavi">
-    <div class="overnavi-left"></div>
-    <div class="overnavi-right"></div>
+  <ng-switch on="selectedUser">
+    <h2 ng-switch-when="null">みんなの予定</h2>
+    <h2 ng-switch-default>{{selectedUser.name}}の予定</h2>
+  </ng-switch>
+  <div select-time selection-target="availabilities" class="heat-map">
   </div>
-  <div class="heatmap">
-    <img src="images/sample-heatmap.png">
-  </div> -->
-  <select-time selection-target="availabilities">
-  </select-time>
   <p class="help-mydates">* 橙色の枠部分は自分が参加できる日時です。</p>
   <p class="help-select">* 色のついたボックスを選択すると、その日時に参加できる人が表示されます。</p>
 </div>
@@ -107,8 +103,10 @@
     <div class="share-mail">
       <p>メール</p>
     </div>
+
     <div class="share-twitter">
-      <img src="images/desktop/btn-mail.png" alt="">
+      <a href="https://twitter.com/intent/tweet" class="twitter-mention-button" data-lang="en" data-text="新しいイベントを作成しました。{{event.getUrl()}}">Tweet</a>
+      <!-- <img src="images/desktop/btn-mail.png" alt=""> -->
     </div>
     <div class="share-facebook">
       <img src="images/desktop/btn-mail.png" alt="">
@@ -118,3 +116,4 @@
     </div>
   </div>
 </div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
