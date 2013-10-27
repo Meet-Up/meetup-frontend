@@ -61,7 +61,7 @@ You need to have a file `config-local.coffee` in the `app/scripts` directory to 
 The simplest is to copy the example and change the configuration after.
 
 ```
-cp app/scripts/config.default.coffee app/scripts/config-local.coffee
+cp app/scripts/config.example.coffee app/scripts/config-local.coffee
 ```
 
 ### Running the application
