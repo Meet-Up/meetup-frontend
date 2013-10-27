@@ -18,6 +18,7 @@
       }
       &.selected {
         background: $selected-cell-color;
+        cursor: image-url("desktop/pointer-eraser.png"), default;
       }
     }
   }
