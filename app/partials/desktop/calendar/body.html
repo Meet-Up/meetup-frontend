@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <td ng-repeat="day in daysOfWeek">{{day}}</td>
+      <td ng-repeat="day in calendar.weeks[0]">{{day|date: 'EEE'}}</td>
     </tr>
   </thead>
   <tbody>
