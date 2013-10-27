@@ -48,7 +48,7 @@ angular.module('MeetAppServices')
 
       updateRecommendations: ->
         recommendations = @_computeRecommendations()
-        @recommendations = _.chain(recommendations).initial(6).filter((r) ->
+        @recommendations = _.chain(recommendations).first(6).filter((r) ->
           r.ranking <= 3).groupBy('ranking').value()
 
       _setRecommendationRanking: (recommendations) ->
