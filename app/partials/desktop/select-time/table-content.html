@@ -1,19 +1,23 @@
-<tr class="days-of-week">
-  <td></td>
-  <td ng-repeat="dateInfo in dates" ng-click="selectAll(dateInfo)">
-    {{ dateInfo.date | date:'MM/d（EEE曜）' }}
-  </td>
-</tr>
-<tr class="even-time-{{y % 4 < 2}}"
-    ng-repeat="y in rows"
-    ng-init="show=y % 2 == 0"
-    emit-on-render>
-  <td class="cell"
-      ng-class="{'time-label': show, hidden: dates.length == 0}"
-      ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
-  <td class="cell time-cell"
-      style="opacity: {{getOpacity(x, y)}}"
-      ng-repeat="x in daysIndexes"
-      ng-class="{hidden: x >= dates.length, opened: isOpened(x, y), selectable: selectable, selected: isSelected(x, y)}">
-  </td>
-</tr>
+<thead>
+  <tr class="days-of-week">
+    <td></td>
+    <td ng-repeat="dateInfo in dates" ng-click="selectAll(dateInfo)">
+      {{ dateInfo.date | date:'MM/d（EEE曜）' }}
+    </td>
+  </tr>
+</thead>
+<tbody>
+  <tr class="even-time-{{y % 4 < 2}}"
+      ng-repeat="y in rows"
+      ng-init="show=y % 2 == 0"
+      emit-on-render>
+    <td class="cell"
+        ng-class="{'time-label': show, hidden: dates.length == 0}"
+        ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
+    <td class="cell time-cell"
+        style="opacity: {{getOpacity(x, y)}}"
+        ng-repeat="x in daysIndexes"
+        ng-class="{hidden: x >= dates.length, opened: isOpened(x, y), selectable: selectable, selected: isSelected(x, y)}">
+    </td>
+  </tr>
+</tbody>
