@@ -12,6 +12,9 @@ angular.module('MeetAppControllers')
         dates = (date for k, date of $scope.calendar.selectedDates)
         $scope.timeContainer.updateDates dates
       , true
+      $scope.timeContainer.onValidTimesChange = ->
+        unless $scope.$$phase
+          $scope.$apply()
 
     $scope.saveEvent = ->
       $scope.event.dates = $scope.timeContainer.toEventDates()
@@ -30,4 +33,3 @@ angular.module('MeetAppControllers')
       }
 
     $scope.$on 'createEvent', $scope.saveEvent
-
