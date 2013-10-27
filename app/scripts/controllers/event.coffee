@@ -16,7 +16,7 @@ angular.module('MeetAppControllers')
     $scope.saving = false
     $scope.errors = {}
 
-    $scope.availabilityContainer = new AvailabilityContainer($scope.event.participants, $scope.timeContainer)
+    $scope.availabilityContainer = new AvailabilityContainer($scope.event.participants, $scope.timeContainer, $scope.event.duration)
 
     $scope.selectUser = (user) ->
       if user == $scope.selectedUser

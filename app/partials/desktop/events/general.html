@@ -20,20 +20,15 @@
       <p>オススメ日程</p>
     </div>
     <div class="recommend-days">
-      <ul class="recommend-no1">
-        <li class="rank no1">No.1</li>
-        <li>9/7（木） 19:30 〜 22:30</li>
-        <li>9/7（木） 18:30 〜 21:30</li>
-      </ul>
-      <ul class="recommend-no2">
-        <li class="rank no2">No.2</li>
-        <li>9/3（日） 14:30 〜 17:30</li>
-      </ul>
-      <ul class="recommend-no3">
-        <li class="rank no3">No.3</li>
-        <li>9/4（月） 13:00 〜 16:00</li>
-        <li>9/4（月） 14:00 〜 17:00</li>
-        <li>9/5（火） 13:00 〜 16:00</li>
+      <ul class="recommend-no{{rank}}"
+          ng-repeat="(rank, recommendationGroup) in availabilityContainer.recommendations">
+        <li class="rank no{{rank}}">No.{{rank}}</li>
+        <li ng-repeat="recommendation in recommendationGroup">
+          {{recommendation.date | date: 'M/d(EEE)'}}
+          {{recommendation.start|timeFromIndex}}
+          〜
+          {{recommendation.end|timeFromIndex}}
+        </li>
       </ul>
     </div>
   </div>

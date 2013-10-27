@@ -2,7 +2,7 @@ angular.module('MeetAppServices')
   .factory 'AvailabilityContainer',  ->
     class AvailabilityContainer
 
-      constructor: (users, @timeContainer) ->
+      constructor: (users, @timeContainer, @neededTime) ->
         @availabilitiesMap = {}
         @maxAvailabilities = 0
         @wantedUsers = []
@@ -13,8 +13,7 @@ angular.module('MeetAppServices')
           @availabilitiesMap[date.id] = i
         @availabilities = ([] for _ in @timeContainer.rows() for _ in @timeContainer.dates)
         @updateAvailabilities @users
-
-        @computeRecommendations()
+        @updateRecommendations()
 
       clearWantedUsers: ->
         @wantedUsers = []
@@ -27,9 +26,9 @@ angular.module('MeetAppServices')
           @wantedUsers.push id
 
       updateAvailabilities: (users) ->
-        _.each users, @updateUserAvailability, this
+        _.each users, ((u) -> @updateUserAvailability(u, false)), this
 
-      updateUserAvailability: (user) ->
+      updateUserAvailability: (user, updateRecommendations=true) ->
         @users[user.id] = user
         for availability in user.availabilities
           for j in @timeContainer.rows()
@@ -45,12 +44,47 @@ angular.module('MeetAppServices')
               if index > -1
                 delete @availabilities[i][time][index]
                 @availabilities[i][time] = _.compact @availabilities[i][time]
+        @updateRecommendations() if updateRecommendations
 
-      computeRecommendations: ->
+      updateRecommendations: ->
+        recommendations = @_computeRecommendations()
+        @recommendations = _.chain(recommendations).initial(6).filter((r) ->
+          r.ranking <= 3).groupBy('ranking').value()
+
+      _setRecommendationRanking: (recommendations) ->
+        currentRanking = 0
+        usersAvailable = 0
+        for recommendation in recommendations
+          if recommendation.participantsNumber != usersAvailable
+            currentRanking += 1
+            usersAvailable = recommendation.participantsNumber
+          recommendation.ranking = currentRanking
+
+      _computeRecommendations: ->
         recommendations = []
-        for date, i in @timeContainer.dates
-          for availability in @availabilities[i]
-            console.log availability
+        neededCells = Math.ceil(@neededTime * 2)
+        for eventDate, i in @timeContainer.dates
+          currentAvailabilitiesNumber = 0
+          recommendation = {}
+          for j in [0..@availabilities[i].length - neededCells - 1]
+            totalAvailabilities = 0
+            unavailable = false
+            for k in [j..j+neededCells]
+              totalAvailabilities += @availabilities[i][k].length
+            if totalAvailabilities != currentAvailabilitiesNumber
+              if currentAvailabilitiesNumber > 0
+                recommendation.end = k + @timeContainer.minRow
+                recommendations.push recommendation
+              currentAvailabilitiesNumber = totalAvailabilities
+              recommendation =
+                start: j + @timeContainer.minRow
+                date: eventDate.date
+                participantsNumber: currentAvailabilitiesNumber
+
+        recommendations = _.sortBy recommendations, (recommendation) ->
+          -recommendation.participantsNumber
+        @_setRecommendationRanking recommendations
+        recommendations
 
       availableUsers: (dateIndex, timeIndex) ->
         timeIndex -= @timeContainer.minRow
