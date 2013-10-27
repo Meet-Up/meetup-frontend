@@ -60,7 +60,10 @@
 </div>
 <hr class="event-horizen">
 <div class="heatmap-area">
-  <h2>みんなの予定</h2>
+  <ng-switch on="selectedUser">
+    <h2 ng-switch-when="null">みんなの予定</h2>
+    <h2 ng-switch-default>{{selectedUser.name}}の予定</h2>
+  </ng-switch>
   <div select-time selection-target="availabilities" class="heat-map">
   </div>
   <p class="help-mydates">* 橙色の枠部分は自分が参加できる日時です。</p>
