@@ -2,10 +2,13 @@ angular.module('MeetAppServices')
   .factory 'AvailabilityContainer',  ->
     class AvailabilityContainer
 
-      constructor: (@users, @timeContainer) ->
+      constructor: (users, @timeContainer) ->
         @availabilitiesMap = {}
         @maxAvailabilities = 0
         @wantedUsers = []
+        @users = {}
+        for user in users
+          @users[user.id] = user
         for date, i in @timeContainer.dates
           @availabilitiesMap[date.id] = i
         @availabilities = ([] for _ in @timeContainer.rows() for _ in @timeContainer.dates)
@@ -39,6 +42,10 @@ angular.module('MeetAppServices')
               if index > -1
                 delete @availabilities[i][time][index]
                 @availabilities[i][time] = _.compact @availabilities[i][time]
+
+      availableUsers: (dateIndex, timeIndex) ->
+        timeIndex -= @timeContainer.minRow
+        (@users[i] for i in @availabilities[dateIndex][timeIndex])
 
       availableUsersNumber: (dateIndex, timeIndex) ->
         availabilities = @availabilities[dateIndex][timeIndex]

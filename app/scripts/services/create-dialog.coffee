@@ -4,10 +4,9 @@ angular.module('MeetAppServices')
 
     onClose = null
 
-    createTemplate = (templateUrl) ->
+    createTemplate = (templateUrl, options) ->
       template = $('<div />')
-      template.attr 'id', 'modal'
-      template.addClass 'modal'
+      template.addClass 'modal' if options.modal
       template.append $('<div />').addClass('modal-header')
       innerTemplate = $('<div />')
       innerTemplate.addClass 'modal-body'
@@ -16,28 +15,38 @@ angular.module('MeetAppServices')
       template.append innerTemplate
 
     ($scope, templateUrl, options={}) ->
-      template = createTemplate(templateUrl)
+      template = createTemplate templateUrl, options
 
       dialogScope = $scope.$new()
       dialogElement = $compile(template)(dialogScope)
 
+      onClose = options.onClose
+
       $(body).append dialogElement
 
-      dialogElement.easyModal({
-        onOpen: (modal) ->
-          options.onOpen(modal) if options.onOpen?
-        onClose: ->
-          $(body).css 'overflow', 'auto'
-          onClose() if onClose?
-          dialogScope.$destroy()
-          dialogElement.remove()
-        overlayClose: false
-      })
+      $scope.close = ->
+        onClose() if onClose?
+        dialogScope.$destroy()
+        dialogElement.remove()
 
-      dialogElement.trigger 'openModal'
-      $(body).css 'overflow', 'hidden'
+      if options.modal
+        dialogElement.easyModal({
+          onOpen: (modal) ->
+            options.onOpen(modal) if options.onOpen?
+          onClose: ->
+            $(body).css 'overflow', 'auto'
+            $scope.close()
+          overlayClose: false
+        })
 
-      setOnClose: (callback) ->
-        onClose = callback
-      close: ->
-        dialogElement.trigger 'closeModal'
+        dialogElement.trigger 'openModal'
+        $(body).css 'overflow', 'hidden'
+
+        setOnClose: (callback) ->
+          onClose = callback
+        close: ->
+          dialogElement.trigger 'closeModal'
+        element: dialogElement
+      else
+        close: $scope.close
+        element: dialogElement

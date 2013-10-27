@@ -1,5 +1,5 @@
 angular.module('MeetAppDirectives')
-  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeStatus, DEVICE, DAYS_PER_PAGE) ->
+  .directive 'selectTime', ($parse, $state, $filter, TimeContainer, TimeStatus, createDialog, DEVICE, DAYS_PER_PAGE) ->
 
     [startX, startY] = [-1, -1]
     [lastX, lastY] = [-1, -1]
@@ -87,6 +87,22 @@ angular.module('MeetAppDirectives')
           alpha
       else
         $scope.getOpacity = -> 1
+
+      $scope.showUsers = (event, x, y) ->
+        $scope.dialog.close() if $scope.dialog?
+        users = $scope.availabilityContainer.availableUsers x, y
+        return unless $scope.heatMap && event.which == 1 && users? && users.length > 0
+        $scope.users = users
+        $scope.dialog = createDialog $scope, 'partials/desktop/events/availabilities-popup.html'
+        $scope.$on 'ngRepeatFinished', ->
+          height = $scope.dialog.element.find('.area-selected').height()
+          width = $scope.dialog.element.find('.area-selected').width()
+          top = event.clientY + $(window).scrollTop() - height + 10
+          $scope.dialog.element.css {
+            left: event.clientX - width / 2
+            top: top
+            position: 'absolute'
+          }
 
       $scope.maxPage = -> Math.ceil($scope.datesNumber / DAYS_PER_PAGE)
 
