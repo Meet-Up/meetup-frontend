@@ -64,7 +64,10 @@
       text-align: center;
       color: $main-color;
       font-weight: bold;
-      background: #cdcdcd;
+      background: #c0c0c0;
+      &.time-cell:not(.opened) {
+        cursor: default;
+      }
       &.cell {
         width: 5%;
         @media only screen and (min-width: 760px) {
