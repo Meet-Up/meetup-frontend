@@ -19,8 +19,10 @@ angular.module('MeetAppControllers')
 
     $scope.selectUser = (user) ->
       if user == $scope.selectedUser
+        $scope.availabilityContainer.clearWantedUsers()
         $scope.selectedUser = null
       else
+        $scope.availabilityContainer.setWantedUsers user
         $scope.selectedUser = user
 
     $scope.openAvailabilites = (participant) ->

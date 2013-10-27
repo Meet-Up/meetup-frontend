@@ -13,8 +13,7 @@ angular.module('MeetAppControllers')
         $scope.timeContainer.updateDates dates
       , true
       $scope.timeContainer.onValidTimesChange = ->
-        unless $scope.$$phase
-          $scope.$apply()
+        $scope.$apply() unless $scope.$$phase
 
     $scope.saveEvent = ->
       $scope.event.dates = $scope.timeContainer.toEventDates()

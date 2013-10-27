@@ -79,7 +79,8 @@ angular.module('MeetAppDirectives')
         $scope.cssClass += " heat-map"
         $scope.getOpacity = (x, y) ->
           return 1 unless $scope.isOpened(x, y)
-          $scope.availabilityContainer.availabilityPercentage(x, y)
+          rate = $scope.availabilityContainer.availabilityRate(x, y)
+          Math.round(rate * 100)
       else
         $scope.getOpacity = -> 1
 

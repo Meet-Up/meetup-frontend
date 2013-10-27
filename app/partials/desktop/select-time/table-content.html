@@ -1,7 +1,7 @@
 <thead>
   <tr class="days-of-week">
     <td></td>
-    <td ng-repeat="dateInfo in dates" ng-click="selectAll(dateInfo)">
+    <td ng-repeat="dateInfo in dates">
       {{ dateInfo.date | date:'MM/d（EEE曜）' }}
     </td>
   </tr>
@@ -14,8 +14,7 @@
     <td class="cell"
         ng-class="{'time-label': show, hidden: dates.length == 0}"
         ng-bind="{true: (y|timeFromIndex), false: ''}[show]"></td>
-    <td class="cell time-cell"
-        style="opacity: {{getOpacity(x, y)}}"
+    <td class="cell time-cell alpha-{{getOpacity(x, y)}}"
         ng-repeat="x in daysIndexes"
         ng-class="{hidden: x >= dates.length, opened: isOpened(x, y), selectable: selectable, selected: isSelected(x, y)}">
     </td>
