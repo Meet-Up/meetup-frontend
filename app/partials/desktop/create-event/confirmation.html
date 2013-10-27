@@ -60,23 +60,23 @@
       <p>下記URLをコピーして参加者に共有してください。</p>
     </div>
     <input class="share-url" selectable-input type="text" value="{{event.getUrl()}}" readonly="readonly">
-    <div class="btn-copy">
+<!--     <div class="btn-copy">
       <p>コピー?</p>
-    </div>
-    <div id="copy-confirm">
+    </div> -->
+<!--     <div id="copy-confirm">
       Copied!
-    </div>
+    </div> -->
   </div>
   <div class="share-box-right">
-    <div class="share-mail">
+<!--     <div class="share-mail">
       <p>メール</p>
-    </div>
+    </div> -->
     <div class="share-twitter">
-      <img src="images/desktop/btn-mail.png" alt="">
+      <a href="https://twitter.com/intent/tweet" class="twitter-mention-button" data-lang="en" data-text="新しいイベントを作成しました。{{event.getUrl()}}">Tweet</a>
     </div>
-    <div class="share-facebook">
+<!--     <div class="share-facebook">
       <img src="images/desktop/btn-mail.png" alt="">
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -92,3 +92,11 @@
   <a href="javascript:void(0)" ng-click="close()">Close</a>
   <a href="javascript:void(0)" ng-click="close(); gotoEdit()">Edit</a>
   -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=218831004960391";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

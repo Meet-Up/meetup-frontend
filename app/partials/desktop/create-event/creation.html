@@ -55,14 +55,13 @@
 <select-time selection-target="possibilities" allow-empty="true" selectable="true">
 </select-time>
 
-<div class="btn-create-event">
+<div class="btn-create-event"
+    fast-click="saveEvent()"
+    ng-class="{disabled: eventForm.$invalid || !calendar.hasSelectedDates() || !timeContainer.hasValidTimes}">
   <input
     class="create-event"
     type="image"
-    src="images/desktop/btn-create-event-long.png"
-    fast-click="saveEvent()"
-    ng-disabled="eventForm.$invalid || !calendar.hasSelectedDates() || !timeContainer.hasValidTimes"
-  >
+    src="images/desktop/btn-create-event-long.png">
   <p>イベントを作成する</p>
 </div>
 </form>
