@@ -71,9 +71,13 @@ angular.module('MeetAppServices')
             unavailable = false
             for k in [j..j+neededCells-1]
               totalAvailabilities += @availabilities[i][k].length
-            if totalAvailabilities != currentAvailabilitiesNumber
+              unless @timeContainer.getTimeCell(i, k + @timeContainer.minRow).isOpened()
+                totalAvailabilities = 0
+                break
+            isLastCell = j == @availabilities[i].length - neededCells - 1
+            if totalAvailabilities != currentAvailabilitiesNumber || isLastCell
               if currentAvailabilitiesNumber > 0
-                recommendation.end = k + @timeContainer.minRow
+                recommendation.end = k + @timeContainer.minRow - 1
                 recommendations.push recommendation
               currentAvailabilitiesNumber = totalAvailabilities
               recommendation =

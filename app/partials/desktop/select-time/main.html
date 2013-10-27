@@ -1,8 +1,10 @@
 <div class="time-output">
   <div class="error" ng-show="timeContainer.dates.length > 0 && !timeContainer.hasValidTimes">すべての日付に対して<br>時間帯を選んで下さい</div>
-  <p class="label" for="event-name">
+  <ng-switch on="selectable">
+  <p class="label" for="event-name" ng-switch-when="true">
     <small>*</small>日時候補
   </p>
+  </ng-switch>
 
   <div ng-include src="'partials/desktop/select-time/time-select-control.html'"></div>
 
