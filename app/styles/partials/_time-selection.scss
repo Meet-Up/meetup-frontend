@@ -26,6 +26,10 @@
       &.opened {
         background: $selected-cell-color;
       }
+      &.time-cell:not(.opened) {
+        opacity: 1;
+        filter: "alpha(opacity=100)";
+      }
     }
   }
   tr {

@@ -80,7 +80,11 @@ angular.module('MeetAppDirectives')
         $scope.getOpacity = (x, y) ->
           return 1 unless $scope.isOpened(x, y)
           rate = $scope.availabilityContainer.availabilityRate(x, y)
-          Math.round(rate * 100)
+          alpha = Math.round(rate * 100)
+          # strange bug with firefox when alpha=1 or alpha=0
+          alpha = 1 if  alpha == 0
+          alpha = 99 if  alpha == 100
+          alpha
       else
         $scope.getOpacity = -> 1
 
