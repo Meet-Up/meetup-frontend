@@ -66,10 +66,10 @@ angular.module('MeetAppServices')
         for eventDate, i in @timeContainer.dates
           currentAvailabilitiesNumber = 0
           recommendation = {}
-          for j in [0..@availabilities[i].length - neededCells - 1]
+          for j in [0..@availabilities[i].length - neededCells] by 1
             totalAvailabilities = 0
             unavailable = false
-            for k in [j..j+neededCells]
+            for k in [j..j+neededCells-1]
               totalAvailabilities += @availabilities[i][k].length
             if totalAvailabilities != currentAvailabilitiesNumber
               if currentAvailabilitiesNumber > 0
