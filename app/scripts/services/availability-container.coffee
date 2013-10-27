@@ -73,7 +73,7 @@ angular.module('MeetAppServices')
               totalAvailabilities += @availabilities[i][k].length
             if totalAvailabilities != currentAvailabilitiesNumber
               if currentAvailabilitiesNumber > 0
-                recommendation.end = k + @timeContainer.minRow
+                recommendation.end = k + @timeContainer.minRow - 1
                 recommendations.push recommendation
               currentAvailabilitiesNumber = totalAvailabilities
               recommendation =
