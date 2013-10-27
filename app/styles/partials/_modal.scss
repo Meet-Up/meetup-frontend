@@ -7,7 +7,21 @@
   border-radius: 10px;
 
   .scroll-pane {
-    max-height: 400px;
+    @media only screen and (max-height: 400px) {
+      max-height: 200px;
+    }
+    @media only screen and (min-height: 400px) and (max-height: 600px) {
+      max-height: 250px;
+    }
+    @media only screen and (min-height: 600px) and (max-height: 800px) {
+      max-height: 300px;
+    }
+    @media only screen and (min-height: 800px) and (max-height: 1000px) {
+      max-height: 400px;
+    }
+    @media only screen and (min-height: 1000px) {
+      max-height: 500px;
+    }
   }
 }
 
