@@ -28,6 +28,7 @@ angular.module('MeetAppServices')
         _.each users, @updateUserAvailability, this
 
       updateUserAvailability: (user) ->
+        @users[user.id] = user
         for availability in user.availabilities
           for j in @timeContainer.rows()
             i = @availabilitiesMap[availability.eventDateId]
