@@ -45,9 +45,7 @@
     border-top: 2px dotted $main-color;
   }
   table.control {
-    width: 440px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 270px;
     tr {
       th {
         padding-top: 20px;
@@ -85,6 +83,8 @@
     display: block;
     width: 200px;
     height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     background: $main-color;
