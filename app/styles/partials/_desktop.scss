@@ -898,14 +898,18 @@ hr {
       width:68px;
       height: 20px;
       background: image-url("desktop/btn-mail.png") no-repeat;
-      p {
-        font-size: 12px;
-        font-weight: bold;
-        padding-top: 5px;
-        padding-left: 22px;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.7;
+      a {
+        text-decoration: none;
+        p {
+          font-size: 12px;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-left: 22px;
+          color:black;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
