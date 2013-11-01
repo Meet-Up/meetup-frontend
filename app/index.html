@@ -40,6 +40,16 @@
     <div id="wrapper" ng-include="" src="'views/app.html'" ng-controller="AppCtrl">
     </div>
 
+    <script>
+    $(document).ready(function(){
+      $("#copy-button").zclip({
+        path: "scripts/directives/ZeroClipboard.swf",
+        copy: function(){
+          return $(this).prev().val();
+        }
+      });
+    });
+    </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>

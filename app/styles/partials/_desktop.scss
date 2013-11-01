@@ -868,10 +868,13 @@ hr {
       background: white;
       color: #202020;
     }
+    textarea {
+      resize:none;
+    }
     .btn-copy {
       position: absolute;
-      bottom: 5px;
-      right: 5px;
+      bottom: 15px;
+      right: 15px;
       width: 75px;
       height: 36px;
       background: image-url("common/btn-copy.png") no-repeat;
