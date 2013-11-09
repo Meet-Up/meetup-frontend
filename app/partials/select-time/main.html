@@ -10,16 +10,16 @@
     <small>*</small>日時候補
   </p>
 
-  <div ng-include src="'partials/desktop/select-time/time-select-control.html'"></div>
+  <div ng-include src="'partials/select-time/time-select-control.html'"></div>
 
   <ng-switch on="scrollable">
     <div ng-switch-when="true">
       <div class="scroll-pane"
-        ng-include src="'partials/desktop/select-time/table.html'">
+        ng-include src="'partials/select-time/table.html'">
       </div>
     </div>
     <div ng-switch-default>
-      <div ng-include src="'partials/desktop/select-time/table.html'">
+      <div ng-include src="'partials/select-time/table.html'">
       </div>
     </div>
   </ng-switch>

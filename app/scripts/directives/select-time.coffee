@@ -49,7 +49,7 @@ angular.module('MeetAppDirectives')
     replace: false
     transclude: false
     terminal: true
-    templateUrl: "partials/desktop/select-time/main.html"
+    templateUrl: "partials/select-time/main.html"
 
     link: ($scope, element, attr) ->
       errorElement = element.find '.error'
