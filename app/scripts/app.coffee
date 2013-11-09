@@ -6,14 +6,6 @@ angular.module('MeetAppApp', [
   'MeetAppConfig'
 ]).config(($stateProvider, $urlRouterProvider, DEVICE) ->
 
-  commonStates =
-    home:
-      url: '/'
-      templateUrl: 'views/home.html'
-      controller: 'HomeCtrl'
-      data:
-        titleBar:
-          hasCreate: true
 
   resolveEvent =
     event: ['$stateParams', 'eventContainer', 'DEBUG', ($stateParams, eventContainer, DEBUG) ->
@@ -27,6 +19,19 @@ angular.module('MeetAppApp', [
         eventContainer.getEvent $stateParams.token
     ]
 
+  commonStates =
+    home:
+      url: '/'
+      templateUrl: 'views/home.html'
+      controller: 'HomeCtrl'
+      data:
+        titleBar:
+          hasCreate: true
+    events:
+      url: '/events/:token'
+      templateUrl: 'views/events.html'
+      controller: 'EventCtrl'
+      resolve: resolveEvent
 
   desktopStates =
     'create-event':
@@ -44,11 +49,6 @@ angular.module('MeetAppApp', [
       controller: 'ConfirmEventCtrl'
       templateUrl: 'partials/desktop/create-event/confirmation.html'
 
-    events:
-      url: '/events/:token'
-      templateUrl: 'views/desktop/events.html'
-      controller: 'EventCtrl'
-      resolve: resolveEvent
 
   mobileStates =
     'create-event':
@@ -84,12 +84,6 @@ angular.module('MeetAppApp', [
         titleBar:
           hasPrevious: true
           hasNext: false
-
-    events:
-      url: '/events/:token'
-      templateUrl: 'views/mobile/events.html'
-      controller: 'EventCtrl'
-      resolve: resolveEvent
 
   otherStates = if DEVICE == 'desktop' then desktopStates else mobileStates
 
