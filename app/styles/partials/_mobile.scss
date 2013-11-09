@@ -865,34 +865,33 @@ footer {
     background: image-url("mobile/tab-off.png") no-repeat;
     background-size: 240px;
     font-size: 17px;
-    color: white;
     text-align: center;
-    .tab-heatmap {
-      float: left;
+
+    .tab {
       width: 119px;
       height: 31px;
-      background: image-url("mobile/tab-heatmap.png") no-repeat;
-      background-size: 0px;
-      &:hover {
-        opacity: 0.7;
-      }
-      p {
-        color: white;
-        padding-top: 8px;
-      }
-    }
-    .tab-input {
-      float: right;
-      width: 119px;
-      height: 31px;
-      background: image-url("mobile/tab-input.png") no-repeat;
       background-size: 120px;
+      color: #777;
       &:hover {
         opacity: 0.7;
       }
       p {
-        color: #777;
         padding-top: 8px;
+      }
+      &.tab-heatmap {
+        float: left;
+        background: image-url("mobile/tab-heatmap.png") no-repeat;
+      }
+      &.tab-input {
+        float: right;
+        background: image-url("mobile/tab-input.png") no-repeat;
+      }
+
+      &.active {
+        background-size: 0px;
+        p {
+          color: #fff;
+        }
       }
     }
   }
