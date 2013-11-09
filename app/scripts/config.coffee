@@ -7,7 +7,7 @@ angular.module('MeetAppConfig', ['MeetAppLocalConfig'])
       API_URL: 'http://localhost:3000'
       CELLS_PER_DAY: 48
       DEVICE: device
-      DAYS_PER_PAGE: if device == 'desktop' then 7 else 5
+      DAYS_PER_PAGE: if device == 'desktop' then 7 else 4
       RECOMMENDATIONS_NUMBER: 5
       DEBUG: false
 

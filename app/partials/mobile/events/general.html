@@ -2,12 +2,14 @@
   <div class="basic-info">
     <h2>
       <div class="duration-h">所要時間</div>
-      <div class="duration-text">約3時間</div>
+      <div class="duration-text">約{{event.duration}}時間</div>
     </h2>
     <hr>
-    <h2>
+    <h2 ng-show="event.description.length > 0">
       <div class="comment-h">コメント</div>
-      <div class="comment-text">レバ刺しを食べます。死んでも文句言わない人だけ行きましょう！</div>
+      <div class="comment-text">
+        {{event.description}}
+      </div>
     </h2>
   </div>
   <div class="people-inputed-area">
@@ -17,31 +19,16 @@
     </div>
     <div class="people-inputed-contents">
       <ul>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
-        <li>Daniel Perez</li>
-        <li>はじぴょん</li>
-        <li>そねお</li>
-        <li>さそー</li>
-        <li>くわこ</li>
+        <li
+          ng-repeat="participant in participants"
+          ng-click="selectUser(participant)"
+          ng-class="{selected: selectedUser == participant}"
+        >
+          {{participant.name}}
+          <a href="javascript:void(0)" fast-click="openAvailabilites(participant)" class="edit" ng-show="selectedUser == participant">
+            編集
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -50,45 +37,24 @@
       <h2>オススメ日程</h2>
     </div>
     <table class="recommend-days">
-      <tr class="recommend-no1">
-        <th class="no1">
-          No.1
+      <tr class="recommend-{{rank}}"
+          ng-repeat="(rank, recommendationGroup) in availabilityContainer.recommendations">
+        <th class="no{{rank}}">
+          No.{{rank}}
         </th>
         <td>
           <ul>
-            <li>9/7（木） 19:30 〜 22:30 ,</li>
-            <li>9/7（木） 18:30 〜 21:30</li>
-          </ul>
-        </td>
-      </tr>
-      <tr class="recommend-no2">
-        <th class="no2">
-          No.2
-        </th>
-        <td>
-          <ul>
-            <li>9/3（日） 14:30 〜 17:30</li>
-          </ul>
-        </td>
-      </tr>
-      <tr class="recommend-no3">
-        <th class="no3">
-          No.3
-        </th>
-        <td>
-          <ul>
-            <li>9/4（月） 13:00 〜 16:00 ,</li>
-            <li>9/4（月） 14:00 〜 17:00 ,</li>
-            <li>9/5（火） 13:00 〜 16:00</li>
+            <li ng-repeat="recommendation in recommendationGroup">
+              {{recommendation.date | date: 'M/d(EEE)'}}
+              {{recommendation.start|timeFromIndex}}
+              〜
+              {{recommendation.end|timeFromIndex}}
+            </li>
           </ul>
         </td>
       </tr>
     </table>
   </div>
-
-      <calendar toggable="true">
-      </calendar>
-
 </div>
 
 
@@ -99,15 +65,16 @@
 <div class="input-area">
 
   <div class="tabs">
-    <div class="tab-heatmap">
-      <p>みんなの予定</p>
+    <div class="tab-heatmap" ng-switch on="selectedUser">
+      <p ng-switch-when="null">みんなの予定</p>
+      <p ng-switch-default>{{selectedUser.name}}の予定</p>
     </div>
     <div class="tab-input">
       <p>自分の予定</p>
     </div>
   </div>
 
-  <div class="input-schedule">
+<!--   <div class="input-schedule">
     <div class="input-login">
       <img src="images/mobile/pencil.png" alt="予定を入力する" class="pencil">
       <table>
@@ -168,11 +135,12 @@
         </tr>
       </table>
     </div>
-    <select-time selection-target="possibilities" allow-empty="true">
+ -->
+    <select-time selection-target="availabilities" class="heat-map">
     </select-time>
   </div>
 
-  <div class="area-selected">
+<!--   <div class="area-selected">
     <div class="area-selected-info">
       <h3>
         9/2(土) 18:00 〜 18:30
@@ -195,5 +163,5 @@
       <p>閉じる</p>
     </div>
   </div>
-
+ -->
 </div>
