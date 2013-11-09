@@ -40,6 +40,16 @@
     <div id="wrapper" ng-include="" src="'views/app.html'" ng-controller="AppCtrl">
     </div>
 
+    <script>
+    $(document).ready(function(){
+      $("#copy-button").zclip({
+        path: "scripts/directives/ZeroClipboard.swf",
+        copy: function(){
+          return $(this).prev().val();
+        }
+      });
+    });
+    </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -113,6 +123,7 @@
     <script src="scripts/directives/calendar.js"></script>
     <script src="scripts/directives/selectable-table.js"></script>
     <script src="scripts/directives/emit-on-render.js"></script>
+    <script src="scripts/directives/zclip.js"></script>
     <script src="scripts/filters/main.js"></script>
     <script src="scripts/filters/sub-array.js"></script>
     <script src="scripts/filters/time-from-index.js"></script>

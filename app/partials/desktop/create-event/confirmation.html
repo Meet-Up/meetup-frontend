@@ -59,10 +59,12 @@
     <div class="share-h">
       <p>下記URLをコピーして参加者に共有してください。</p>
     </div>
-    <input class="share-url" selectable-input type="text" value="{{event.getUrl()}}" readonly="readonly">
-<!--     <div class="btn-copy">
-      <p>コピー?</p>
-    </div> -->
+    <textarea class="share-url" selectable-input type="text" readonly="readonly">{{event.getUrl()}}</textarea>
+    <div class="btn-copy">
+      <a id="copy-button">
+        <p>コピー</p>
+      </a>
+    </div>
 <!--     <div id="copy-confirm">
       Copied!
     </div> -->

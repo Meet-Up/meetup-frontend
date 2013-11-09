@@ -186,7 +186,7 @@ hr {
       height: 100px;
     }
     p {
-      font-color: 15px;
+      font-size: 19px;
       color: #535353;
       line-height: 1.4em;
       margin-top: 17px;
@@ -249,7 +249,7 @@ hr {
       height: 100px;
     }
     p {
-      font-color: 15px;
+      font-size: 18px;
       color: #535353;
       line-height: 1.4em;
       margin-top: 17px;
@@ -868,10 +868,13 @@ hr {
       background: white;
       color: #202020;
     }
+    textarea {
+      resize:none;
+    }
     .btn-copy {
       position: absolute;
-      bottom: 5px;
-      right: 5px;
+      bottom: 15px;
+      right: 15px;
       width: 75px;
       height: 36px;
       background: image-url("common/btn-copy.png") no-repeat;
